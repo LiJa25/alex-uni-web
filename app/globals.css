@@ -1,26 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-kameron: 'Kameron', serif;
+--color-primary: color-mix(in srgb, var(--color-smart-blue-900) 95%, transparent);
+  /* Harvest Gold */
+  --color-harvest-gold-50: #fbf5ea;
+  --color-harvest-gold-100: #f7ead4;
+  --color-harvest-gold-200: #eed5aa;
+  --color-harvest-gold-300: #e6c07f;
+  --color-harvest-gold-400: #ddab55;
+  --color-harvest-gold-500: #d5962a;
+  --color-harvest-gold-600: #aa7822;
+  --color-harvest-gold-700: #805a19;
+  --color-harvest-gold-800: #553c11;
+  --color-harvest-gold-900: #2b1e08;
+  --color-harvest-gold-950: #1e1506;
+
+  /* Smart Blue */
+  --color-smart-blue-50: #eef1f6;
+  --color-smart-blue-100: #dde3ee;
+  --color-smart-blue-200: #bbc7dd;
+  --color-smart-blue-300: #99abcc;
+  --color-smart-blue-400: #778fbb;
+  --color-smart-blue-500: #5573aa;
+  --color-smart-blue-600: #445c88;
+  --color-smart-blue-700: #334566;
+  --color-smart-blue-800: #222e44;
+  --color-smart-blue-900: #111722;
+  --color-smart-blue-950: #0c1018;
+
+  /* Blue Bell */
+  --color-blue-bell-50: #e6f7fe;
+  --color-blue-bell-100: #cdeefe;
+  --color-blue-bell-200: #9bdefd;
+  --color-blue-bell-300: #69cdfc;
+  --color-blue-bell-400: #37bdfb;
+  --color-blue-bell-500: #05acfa;
+  --color-blue-bell-600: #048ac8;
+  --color-blue-bell-700: #036796;
+  --color-blue-bell-800: #024564;
+  --color-blue-bell-900: #012232;
+  --color-blue-bell-950: #011823;
+
+  /* Rich Cerulean */
+  --color-rich-cerulean-50: #e8f4fc;
+  --color-rich-cerulean-100: #d1eafa;
+  --color-rich-cerulean-200: #a3d4f5;
+  --color-rich-cerulean-300: #75bff0;
+  --color-rich-cerulean-400: #47a9eb;
+  --color-rich-cerulean-500: #1994e6;
+  --color-rich-cerulean-600: #1476b8;
+  --color-rich-cerulean-700: #0f598a;
+  --color-rich-cerulean-800: #0a3b5c;
+  --color-rich-cerulean-900: #051e2e;
+  --color-rich-cerulean-950: #041520;
+}
+
+/* Set the default look for the whole university site */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-harvest-gold-50); 
+  --foreground: var(--color-smart-blue-950);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
