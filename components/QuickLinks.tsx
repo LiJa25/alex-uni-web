@@ -58,11 +58,10 @@ export default function QuickLinks() {
     ];
 
     return (
-        <section className="w-full bg-white py-16 md:py-24 px-6">
+        <section className="w-full bg-white dark:bg-gray-950 transition-colors duration-500 py-16 md:py-24 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 
-                {/* 1. The Top Navigation Tabs */}
-                <div className="bg-gray-100/80 p-1.5 rounded-full flex flex-wrap justify-center items-center gap-1 mb-16 shadow-inner">
+                <div className="bg-gray-100/80 dark:bg-gray-900/80 p-1.5 rounded-full flex flex-wrap justify-center items-center gap-1 mb-16 shadow-inner transition-colors duration-300">
                     {tabs.map((tab) => (
                         <button
                             key={tab}
@@ -70,7 +69,7 @@ export default function QuickLinks() {
                             className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
                                 activeTab === tab 
                                 ? "bg-harvest-gold-500 text-white shadow-md" 
-                                : "text-gray-500 hover:text-blue-900 hover:bg-gray-200/50" 
+                                : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50" 
                             }`}
                         >
                             {tab}
@@ -78,28 +77,21 @@ export default function QuickLinks() {
                     ))}
                 </div>
 
-                {/* 2. The Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                     {cards.map((card) => (
                         <div 
                             key={card.id}
-                            className="group relative bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center border-t-4 border-t-transparent border-b border-l border-r border-gray-100 hover:border-t-blue-900 hover:shadow-2xl transition-all duration-300 cursor-pointer h-64"
+                            className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-t-4 border-t-transparent border-b border-l border-r border-gray-100 dark:border-gray-800 hover:border-t-blue-900 dark:hover:border-t-harvest-gold-500 hover:shadow-2xl transition-all duration-300 cursor-pointer h-64"
                         >
-                            {/* Icon Box */}
-                            {/* FIX: Removed the conflicting group-hover:scale-110 and added:
-                                1. transition-transform: for smooth animation
-                                2. group-hover:rotate-6: This is the slight tilt when you hover! */}
-                            <div className="w-20 h-20 rounded-2xl bg-blue-900/95 flex items-center justify-center mb-6 shadow-md transition-all duration-300 transition-transform group-hover:bg-harvest-gold-500 group-hover:rotate-6">
+                            <div className="w-20 h-20 rounded-2xl bg-blue-900/95 dark:bg-gray-800 flex items-center justify-center mb-6 shadow-md transition-all duration-300 group-hover:bg-harvest-gold-500 group-hover:rotate-6">
                                 {card.icon}
                             </div>
 
-                            {/* Card Title */}
-                            <h3 className="font-kameron text-xl font-bold text-blue-900 mb-6 leading-snug">
+                            <h3 className="font-kameron text-xl font-bold text-blue-900 dark:text-white mb-6 leading-snug transition-colors duration-300">
                                 {card.title}
                             </h3>
 
-                            {/* The small dash at the bottom */}
-                            <div className="h-1 w-8 bg-gray-200 rounded-full transition-colors duration-300 group-hover:bg-harvest-gold-500 mt-auto"></div>
+                            <div className="h-1 w-8 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 group-hover:bg-harvest-gold-500 mt-auto"></div>
                         </div>
                     ))}
                 </div>
