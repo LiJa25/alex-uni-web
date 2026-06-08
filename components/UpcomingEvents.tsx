@@ -1,42 +1,46 @@
 "use client";
 
 import React, { useState } from 'react';
-
-const allEvents = [
-  {
-    title: "Faculty of Education Forum",
-    description: "Annual gathering of educational minds discussing future pedagogy.",
-    date: "Apr 12, 10:00 AM",
-    location: "Alexandria",
-  },
-  {
-    title: "Faculty of Economic and Political Science Charity Exhibition",
-    description: "Supporting local initiatives through university resources.",
-    date: "Apr 15, 09:00 AM",
-    location: "Alexandria",
-  },
-  {
-    title: "Integrated Scientific Activities",
-    description: "Showcasing student projects across science disciplines.",
-    date: "Apr 18, 11:30 AM",
-    location: "Alexandria",
-  },
-  {
-    title: "AU in 75: Faculty of Agriculture",
-    description: "Celebrating 75 years of agricultural excellence and innovation.",
-    date: "Apr 22, 10:00 AM",
-    location: "Alexandria",
-  },
-  {
-    title: "Medical Innovation Workshop",
-    description: "Exploring advanced techniques in medical research at the Faculty of Medicine.",
-    date: "Apr 28, 11:00 AM",
-    location: "Alexandria",
-  }
-];
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function UpcomingEvents() {
+  const { strings, language } = useLanguage();
+  const isRTL = language === "ar";
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const allEvents = [
+    {
+      title: strings.upcomingEvents.events[2]?.title || "Faculty of Education Forum",
+      description: strings.upcomingEvents.events[2]?.description || "Annual gathering of educational minds discussing future pedagogy.",
+      date: strings.upcomingEvents.events[2]?.date || "Apr 12, 10:00 AM",
+      location: strings.upcomingEvents.events[2]?.location || "Alexandria",
+    },
+    {
+      title: strings.upcomingEvents.events[3]?.title || "Faculty of Economic & Political Science Charity Exhibition",
+      description: strings.upcomingEvents.events[3]?.description || "Supporting local initiatives through university resources.",
+      date: strings.upcomingEvents.events[3]?.date || "Apr 15, 09:00 AM",
+      location: strings.upcomingEvents.events[3]?.location || "Alexandria",
+    },
+    {
+      title: strings.upcomingEvents.events[4]?.title || "Integrated Scientific Activities",
+      description: strings.upcomingEvents.events[4]?.description || "Showcasing student projects across science disciplines.",
+      date: strings.upcomingEvents.events[4]?.date || "Apr 18, 11:30 AM",
+      location: strings.upcomingEvents.events[4]?.location || "Alexandria",
+    },
+    {
+      title: strings.upcomingEvents.events[0]?.title || "AU in 75: Faculty of Agriculture",
+      description: strings.upcomingEvents.events[0]?.description || "Celebrating 75 years of agricultural excellence and innovation.",
+      date: strings.upcomingEvents.events[0]?.date || "Apr 22, 10:00 AM",
+      location: strings.upcomingEvents.events[0]?.location || "Alexandria",
+    },
+    {
+      title: strings.upcomingEvents.events[1]?.title || "Diamond Jubilee Celebrations: Faculty of Commerce",
+      description: strings.upcomingEvents.events[1]?.description || "Exploring advanced techniques in medical research at the Faculty of Medicine.",
+      date: strings.upcomingEvents.events[1]?.date || "Apr 28, 11:00 AM",
+      location: strings.upcomingEvents.events[1]?.location || "Alexandria",
+    }
+  ];
+
   const totalItems = allEvents.length;
   const cardsToShow = 4;
 
@@ -49,21 +53,21 @@ export default function UpcomingEvents() {
   };
 
   return (
-    <section className="bg-[#F9FAFB] dark:bg-gray-950 transition-colors duration-500 pt-6 pb-20 px-4 md:px-8 overflow-hidden">
+    <section dir={isRTL ? "rtl" : "ltr"} className="bg-[#F9FAFB] dark:bg-gray-950 transition-colors duration-500 pt-6 pb-20 px-4 md:px-8 overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300 pb-6">
           <div>
             <span className="text-[#D4AF37] font-bold uppercase tracking-[0.15em] text-[13px] mb-2 block">
-              MARK YOUR CALENDAR
+              {strings.upcomingEvents.badge}
             </span>
             <h2 className="text-[#001A41] dark:text-white text-5xl font-kameron font-bold transition-colors duration-300">
-              Upcoming Events
+              {strings.upcomingEvents.heading}
             </h2>
           </div>
           <a href="#" className="text-[#3B82F6] dark:text-blue-400 font-semibold flex items-center gap-2 hover:opacity-80 transition-all text-lg group">
-            View Calendar 
-            <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {strings.upcomingEvents.viewCalendar} 
+            <svg className={`w-6 h-6 transition-transform ${isRTL ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
@@ -71,14 +75,14 @@ export default function UpcomingEvents() {
 
         <div className="relative">
           <button 
-            onClick={prevSlide}
+            onClick={isRTL ? nextSlide : prevSlide}
             className="absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-full flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-[#4F46E5] dark:hover:bg-[#4F46E5] hover:text-white dark:hover:text-white hover:border-[#4F46E5] dark:hover:border-[#4F46E5] transition-all duration-300 z-20 hidden xl:flex shadow-md"
           >
              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
           
           <button 
-            onClick={nextSlide}
+            onClick={isRTL ? prevSlide : nextSlide}
             className="absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-full flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-[#4F46E5] dark:hover:bg-[#4F46E5] hover:text-white dark:hover:text-white hover:border-[#4F46E5] dark:hover:border-[#4F46E5] transition-all duration-300 z-20 hidden xl:flex shadow-md"
           >
              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -88,7 +92,7 @@ export default function UpcomingEvents() {
             <div 
               className="flex transition-transform duration-700 ease-in-out"
               style={{ 
-                transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` 
+                transform: `translateX(${isRTL ? '' : '-'}${currentIndex * (100 / cardsToShow)}%)` 
               }}
             >
               {allEvents.concat(allEvents.slice(0, cardsToShow)).map((event, index) => (
@@ -114,8 +118,8 @@ export default function UpcomingEvents() {
                       </p>
 
                       <a href="#" className="text-[#3B82F6] dark:text-blue-400 font-semibold flex items-center gap-1.5 hover:underline text-[16px] mb-8 group self-start transition-colors duration-300">
-                        Read More
-                        <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        {strings.upcomingEvents.readMore}
+                        <svg className={`w-5 h-5 transition-transform ${isRTL ? "rotate-180 group-hover:-translate-x-0.5" : "group-hover:translate-x-0.5"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </a>

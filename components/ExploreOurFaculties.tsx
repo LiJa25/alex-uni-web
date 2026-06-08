@@ -1,91 +1,78 @@
-
-
 "use client";
 
 import React from 'react';
+import { useLanguage } from "@/components/LanguageProvider"; 
 import Image from 'next/image';
-
-const facultiesData = [
-  { id: 1, title: "Faculty of Engineering", color: "bg-[#001A41]/90", img: "/imgs/eng.jpg", students: "12,500", courses: "85" },
-  { id: 2, title: "Faculty of Medicine", color: "bg-[#2563EB]/85", img: "/imgs/med.jpg", students: "8,200", courses: "45" },
-  { id: 3, title: "Faculty of Arts", color: "bg-[#6D28D9]/85", img: "/imgs/arts.jpg", students: "15,000", courses: "60" },
-  { id: 4, title: "Faculty of Science", color: "bg-[#3B82F6]/85", img: "/imgs/sci.jpg", students: "9,800", courses: "42" },
-  { id: 5, title: "Faculty of Fine Arts", color: "bg-[#60A5FA]/85", img: "/imgs/fine.jpg", students: "5,100", courses: "38" },
-  { id: 6, title: "Faculty of Law", color: "bg-[#1E3A8A]/90", img: "/imgs/law.jpg", students: "10,900", courses: "55" },
-];
+import { BookOpen, FlaskConical, Palette, Stethoscope, Scale, Building2 } from 'lucide-react';
 
 export default function ExploreFaculties() {
+  const { language } = useLanguage(); 
+  const isRTL = language === "ar";
+
+  const faculties = [
+    { title: isRTL ? "كلية الهندسة" : "Faculty of Engineering", icon: Building2, img: "/imgs/eng.jpg" },
+    { title: isRTL ? "كلية العلوم" : "Faculty of Science", icon: FlaskConical, img: "/imgs/sci.jpg" },
+    { title: isRTL ? "كلية الآداب" : "Faculty of Arts", icon: BookOpen, img: "/imgs/arts.jpg" },
+    { title: isRTL ? "كلية الفنون الجميلة" : "Faculty of Fine Arts", icon: Palette, img: "/imgs/fine.jpg" },
+    { title: isRTL ? "كلية التمريض" : "Faculty of Nursing", icon: Stethoscope, img: "/imgs/med.jpg" },
+    { title: isRTL ? "كلية الحقوق" : "Faculty of Law", icon: Scale, img: "/imgs/law.jpg" },
+  ];
+
+  const hoverColors = ["#10B981", "#8B5CF6", "#3B82F6"];
+
   return (
-    <section className="bg-white py-24 px-6 md:px-12 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
+    <section dir={isRTL ? "rtl" : "ltr"} className="bg-slate-50 dark:bg-[#0B1D33] py-20 px-6 md:px-12 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto text-center">
         
-        {/* --- Section Header --- */}
-        <div className="text-center mb-20 max-w-2xl mx-auto flex flex-col items-center">
-          <span className="text-[#D4AF37] font-bold uppercase tracking-[0.18em] text-[13px] mb-3 block">
-            ACADEMIC EXCELLENCE
-          </span>
-          <h2 className="text-[#001A41] text-5xl font-kameron font-bold leading-tight">
-            Explore Our Faculties
+        <div className="mb-16">
+          <p className="text-[#C9A227] font-medium tracking-[0.2em] uppercase text-sm mb-3">
+            {isRTL ? "التميز الأكاديمي" : "Academic Excellence"}
+          </p>
+          <h2 className="text-slate-900 dark:text-white text-5xl md:text-6xl" style={{ fontFamily: isRTL ? 'unset' : 'Italiana, serif' }}>
+            {isRTL ? "استكشف كلياتنا" : "Explore Our Faculties"}
           </h2>
-          <div className="w-16 h-[2.5px] bg-[#2563EB] mt-5 rounded-full"></div>
+          <div className="w-24 h-[2px] bg-[#C9A227] mx-auto mt-6"></div>
         </div>
 
-        {/* --- Grid Layout --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 px-4">
-          {facultiesData.map((faculty) => (
-            <div 
-              key={faculty.id} 
-              className="relative overflow-hidden p-10 rounded-[28px] shadow-sm flex flex-col items-start min-h-[480px] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl group -skew-x-12 cursor-pointer bg-slate-100"
-            >
-              
-              {/* Background Image Layer */}
-              <div className="absolute inset-0 skew-x-12 scale-110 object-cover origin-center bg-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {faculties.map((faculty, index) => {
+            const color = hoverColors[Math.floor(index / 2)];
+            
+            return (
+              <div 
+                key={index} 
+                style={{ '--hover-color': color } as React.CSSProperties}
+                className="group relative h-[350px] rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 shadow-md dark:shadow-none"
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = color; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; }}
+              >
+                <div className="absolute inset-0">
                   <Image 
                     src={faculty.img} 
                     alt={faculty.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-w-7xl) 33vw, 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-w-6xl) 33vw, 50vw, 100vw"
+                    priority={index < 3}
                   />
-              </div>
-
-              {/* Colored Scrim Overlay */}
-              <div className={`absolute inset-0 ${faculty.color} transition-all duration-300 group-hover:opacity-100 z-10`}></div>
-              
-              {/* Content Layer (Shifted up more on hover) */}
-              <div className="relative z-20 h-full flex flex-col justify-end p-10 skew-x-12 transition-transform duration-300 group-hover:-translate-y-24">
-                {/* Bigger Title: text-4xl */}
-                <h3 className="text-white font-kameron text-4xl font-bold leading-tight mb-6 drop-shadow-md">
-                  {faculty.title}
-                </h3>
-                
-                {/* Thicker Animated Gold Line: h-[5px] */}
-                <div className="h-[5px] bg-[#D4AF37] w-14 transition-all duration-500 ease-out group-hover:w-full"></div>
-              </div>
-
-              {/* Bigger Hover Statistics Section: h-24 */}
-              <div className="absolute bottom-0 left-0 w-full h-24 bg-[#001A41]/95 z-30 skew-x-12 px-10 flex items-center justify-start gap-12 translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                
-                {/* Student Count - Bigger Icons & Text */}
-                <div className="flex items-center gap-3 text-white/90">
-                  <svg className="w-7 h-7 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <span className="text-2xl font-bold font-serif">{faculty.students}</span>
+                  <div className="absolute inset-0 bg-slate-900/40 dark:bg-[#0B1D33]/70 group-hover:bg-slate-900/30 group-hover:dark:bg-[#0B1D33]/50 transition-colors duration-300"></div>
                 </div>
                 
-                {/* Course Count - Bigger Icons & Text */}
-                <div className="flex items-center gap-3 text-white/90">
-                  <svg className="w-7 h-7 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  <span className="text-2xl font-bold font-serif">{faculty.courses}</span>
+                <div className="absolute top-8 left-8 right-8 z-10 text-white dark:text-white/80 border border-white/20 p-3 rounded-full transition-all duration-300 group-hover:border-[var(--hover-color)] group-hover:text-[var(--hover-color)] w-fit bg-slate-900/20 dark:bg-transparent">
+                  <faculty.icon className="w-6 h-6" strokeWidth={1.5} />
                 </div>
 
+                <div className="absolute bottom-8 left-8 right-8 text-start z-10">
+                  <h3 className="text-white text-2xl font-semibold mb-3 drop-shadow-sm">
+                    {faculty.title}
+                  </h3>
+                  <a href="#" className="text-white text-sm font-medium uppercase tracking-wider flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-[var(--hover-color)] drop-shadow-sm">
+                    {isRTL ? "اعرف المزيد ←" : "Learn More →"}
+                  </a>
+                </div>
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

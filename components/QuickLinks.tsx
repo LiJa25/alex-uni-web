@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function QuickLinks() {
+    const { strings, language } = useLanguage();
+    const isRTL = language === "ar";
     const [activeTab, setActiveTab] = useState("Undergraduates");
 
     const tabs = ["Undergraduates", "Visitors", "Staff & Employees", "Postgraduates"];
@@ -58,11 +61,11 @@ export default function QuickLinks() {
     ];
 
     return (
-        <section className="w-full bg-white dark:bg-gray-950 transition-colors duration-500 py-16 md:py-24 px-6">
+        <section dir={isRTL ? "rtl" : "ltr"} className="w-full bg-white dark:bg-gray-950 transition-colors duration-500 py-16 md:py-24 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 
                 <div className="bg-gray-100/80 dark:bg-gray-900/80 p-1.5 rounded-full flex flex-wrap justify-center items-center gap-1 mb-16 shadow-inner transition-colors duration-300">
-                    {tabs.map((tab) => (
+                    {tabs.map((tab, index) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -72,13 +75,13 @@ export default function QuickLinks() {
                                 : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50" 
                             }`}
                         >
-                            {tab}
+                            {strings.quickLinks.tabs[index] || tab}
                         </button>
                     ))}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-                    {cards.map((card) => (
+                    {cards.map((card, index) => (
                         <div 
                             key={card.id}
                             className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-t-4 border-t-transparent border-b border-l border-r border-gray-100 dark:border-gray-800 hover:border-t-blue-900 dark:hover:border-t-harvest-gold-500 hover:shadow-2xl transition-all duration-300 cursor-pointer h-64"
@@ -88,7 +91,7 @@ export default function QuickLinks() {
                             </div>
 
                             <h3 className="font-kameron text-xl font-bold text-blue-900 dark:text-white mb-6 leading-snug transition-colors duration-300">
-                                {card.title}
+                                {strings.quickLinks.cards[index]?.title || card.title}
                             </h3>
 
                             <div className="h-1 w-8 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 group-hover:bg-harvest-gold-500 mt-auto"></div>

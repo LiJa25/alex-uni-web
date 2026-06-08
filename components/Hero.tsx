@@ -3,12 +3,16 @@
 import { useState, useEffect } from "react";
 import AuthModal from "./AuthModal";
 import ThemeToggle from "./ThemeToggle";
+import { useLanguage } from "@/components/LanguageProvider";
+import Link from 'next/link';
 
-export default function Hero() {
+export default function Hero({ showFullHero = true }: { showFullHero?: boolean }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const { language, toggleLanguage, strings } = useLanguage();
+    const isRTL = language === "ar";
 
     const backgroundImages = [
         "/imgs/alexUni.png",
@@ -41,15 +45,15 @@ export default function Hero() {
                 setIsScrolled(false);
             }
         };
-
+        
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
-        <section className="relative w-full h-screen min-h-[800px] flex flex-col items-center justify-center overflow-hidden">
+        <section dir={isRTL ? "rtl" : "ltr"} className={`relative w-full ${showFullHero ? "h-screen min-h-[800px]" : ""} flex flex-col items-center justify-center overflow-hidden`}>
 
-            {backgroundImages.map((src, index) => (
+            {showFullHero && backgroundImages.map((src, index) => (
                 <div
                     key={src}
                     className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100 z-0" : "opacity-0 z-0"
@@ -62,7 +66,7 @@ export default function Hero() {
                 />
             ))}
 
-            <div className="absolute inset-0 bg-smart-blue-800/50 dark:bg-gray-950/70 z-10 transition-colors duration-500"></div>
+            {showFullHero && <div className="absolute inset-0 bg-smart-blue-800/50 dark:bg-gray-950/70 z-10 transition-colors duration-500"></div>}
 
             <nav className={`fixed top-0 w-full z-50 px-4 md:px-8 flex justify-between items-center transition-all duration-300 ease-in-out ${
                 isScrolled 
@@ -79,7 +83,7 @@ export default function Hero() {
                         />
                     </div>
                     <div className="text-harvest-gold-50 font-semibold leading-tight tracking-widest text-xs md:text-sm">
-                        ALEXANDRIA<br />UNIVERSITY
+                        {isRTL ? <>جامعة<br />الإسكندرية</> : <>ALEXANDRIA<br />UNIVERSITY</>}
                     </div>
                 </div>
 
@@ -95,26 +99,26 @@ export default function Hero() {
                 </button>
 
                 <div className="hidden md:flex items-center gap-8 text-harvest-gold-50 text-lg font-medium">
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Home</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">About</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Students</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Academics</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">International Collaboration</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Alumni</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Administration</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors">Researches</a>
+                    <Link href="/" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[0]}</Link>
+                    <Link href="/about" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[1]}</Link>
+                    <Link href="/students" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[2]}</Link>
+                    <Link href="/academics" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[3]}</Link>
+                    <Link href="/collaboration" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[4]}</Link>
+                    <Link href="/alumni" className="hover:text-harvest-gold-300 transition-colors">{strings.hero.navLinks[5]}</Link>
+                    <Link href="/administration" className="hover:text-harvest-gold-300 transition-colors">{isRTL ? "الإدارة" : "Administration"}</Link>
+                    <Link href="/researches" className="hover:text-harvest-gold-300 transition-colors">{isRTL ? "الأبحاث" : "Researches"}</Link>
                 </div>
 
                 <div className="hidden md:flex items-center gap-4 z-50">
-                    <button className="flex items-center gap-1 text-harvest-gold-50 hover:text-harvest-gold-300 transition-colors text-sm font-medium">
+                    <button onClick={toggleLanguage} className="flex items-center gap-1 text-harvest-gold-50 hover:text-harvest-gold-300 transition-colors text-sm font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="2" x2="22" y1="12" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
-                        EN | AR
+                        {strings.hero.languageLabel}
                     </button>
                     <button 
                         onClick={() => setIsAuthModalOpen(true)}
                         className="bg-harvest-gold-500 hover:bg-yellow-500 hover:text-white text-smart-blue-950 px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 shadow-lg"
                     >
-                        Apply Now
+                        {strings.hero.applyNow}
                     </button>
                     <ThemeToggle />
                 </div>
@@ -122,12 +126,12 @@ export default function Hero() {
 
             <div className={`fixed inset-0 bg-blue-900/95 dark:bg-gray-950/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} md:hidden`}>
                 <div className="flex flex-col items-center gap-6 text-harvest-gold-50 text-xl font-medium w-full px-6 overflow-y-auto max-h-screen py-10 pt-24">
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Students</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Academics</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>International Collaboration</a>
-                    <a href="#" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Alumni</a>
+                    <Link href="/" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[0]}</Link>
+                    <Link href="/about" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[1]}</Link>
+                    <Link href="/students" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[2]}</Link>
+                    <Link href="/academics" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[3]}</Link>
+                    <Link href="/collaboration" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[4]}</Link>
+                    <Link href="/alumni" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>{strings.hero.navLinks[5]}</Link>
                     
                     <button 
                         className="mt-4 bg-harvest-gold-500 text-smart-blue-950 px-8 py-3 rounded-full font-bold w-full max-w-xs shadow-lg" 
@@ -136,33 +140,37 @@ export default function Hero() {
                             setIsAuthModalOpen(true);
                         }}
                     >
-                        Apply Now
+                        {strings.hero.applyNow}
                     </button>
                     <div className="mt-6">
                         <ThemeToggle />
                     </div>
-                    <button className="mt-2 flex items-center justify-center gap-2 text-harvest-gold-300 w-full">
+                    <button onClick={toggleLanguage} className="mt-2 flex items-center justify-center gap-2 text-harvest-gold-300 w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="2" x2="22" y1="12" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
-                        EN | AR
+                        {strings.hero.mobileLanguageLabel}
                     </button>
                 </div>
             </div>
 
-            <div className="relative z-20 flex flex-col items-center text-center px-4 mt-8 md:mt-16 w-full max-w-6xl pt-16 md:pt-0">
-                <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-harvest-gold-50 mb-4 md:mb-6 drop-shadow-xl tracking-wide leading-tight">
-                    Alexandria university<br />جامعة الاسكندرية
-                </h1>
-                <p className="text-lg md:text-2xl text-harvest-gold-400 font-medium tracking-wide drop-shadow-md px-2">
-                    Find your future in Alexandria University
-                </p>
-            </div>
+            {showFullHero && (
+                <div className="relative z-20 flex flex-col items-center text-center px-4 mt-8 md:mt-16 w-full max-w-6xl pt-16 md:pt-0">
+                    <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-harvest-gold-50 mb-4 md:mb-6 drop-shadow-xl tracking-wide leading-tight">
+                        {strings.hero.heroHeading}
+                    </h1>
+                    <p className="text-lg md:text-2xl text-harvest-gold-400 font-medium tracking-wide drop-shadow-md px-2">
+                        {strings.hero.heroDescription}
+                    </p>
+                </div>
+            )}
 
-            <div className="absolute bottom-16 md:bottom-30 z-20 flex flex-col items-center animate-bounce opacity-80">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e6c07f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-8 md:h-8">
-                    <rect x="5" y="2" width="14" height="20" rx="7" />
-                    <path d="M12 6v4" />
-                </svg>
-            </div>
+            {showFullHero && (
+                <div className="absolute bottom-16 md:bottom-30 z-20 flex flex-col items-center animate-bounce opacity-80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e6c07f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-8 md:h-8">
+                        <rect x="5" y="2" width="14" height="20" rx="7" />
+                        <path d="M12 6v4" />
+                    </svg>
+                </div>
+            )}
 
             <AuthModal 
                 isOpen={isAuthModalOpen} 

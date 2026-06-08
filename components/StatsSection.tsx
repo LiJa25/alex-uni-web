@@ -1,4 +1,12 @@
+"use client";
+
+import React from 'react';
+import { useLanguage } from "@/components/LanguageProvider";
+
 export default function StatsSection() {
+    const { strings, language } = useLanguage();
+    const isRTL = language === "ar";
+
     const stats = [
         {
             id: 1,
@@ -62,32 +70,35 @@ export default function StatsSection() {
     ];
 
     return (
-        <section className="w-full bg-blue-900/95 dark:bg-gray-900 transition-colors duration-500 py-20 px-6">
+        <section dir={isRTL ? "rtl" : "ltr"} className="w-full bg-blue-900/95 dark:bg-gray-900 transition-colors duration-500 py-20 px-6">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     
-                    {stats.map((stat) => (
-                        <div 
-                            key={stat.id} 
-                            className="group bg-white dark:bg-gray-950 rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer border border-transparent dark:border-gray-800"
-                        >
-                            <div className="w-24 h-24 rounded-full bg-smart-blue-50 dark:bg-gray-800 text-blue-900 dark:text-harvest-gold-500 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-smart-blue-800 dark:group-hover:bg-harvest-gold-500 group-hover:text-white dark:group-hover:text-gray-950">
-                                {stat.icon}
-                            </div>
+                    {stats.map((stat, index) => {
+                        const currentStat = strings.statsSection[index] || stat;
+                        return (
+                            <div 
+                                key={stat.id} 
+                                className="group bg-white dark:bg-gray-950 rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-lg transition-transform duration-300 hover:-translate-y-2 cursor-pointer border border-transparent dark:border-gray-800"
+                            >
+                                <div className="w-24 h-24 rounded-full bg-smart-blue-50 dark:bg-gray-800 text-blue-900 dark:text-harvest-gold-500 flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-smart-blue-800 dark:group-hover:bg-harvest-gold-500 group-hover:text-white dark:group-hover:text-gray-950">
+                                    {stat.icon}
+                                </div>
 
-                            <div className="text-4xl md:text-5xl font-kameron font-bold text-smart-blue-950 dark:text-white mb-3 transition-colors duration-300">
-                                {stat.value}
-                                {stat.hasPlus && (
-                                    <span className="text-smart-blue-500 dark:text-harvest-gold-500 ml-1 transition-colors duration-300">+</span>
-                                )}
-                            </div>
+                                <div className="text-4xl md:text-5xl font-kameron font-bold text-smart-blue-950 dark:text-white mb-3 transition-colors duration-300">
+                                    {currentStat.value}
+                                    {currentStat.hasPlus && (
+                                        <span className="text-smart-blue-500 dark:text-harvest-gold-500 ml-1 transition-colors duration-300">+</span>
+                                    )}
+                                </div>
 
-                            <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest transition-colors duration-300">
-                                {stat.label}
+                                <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest transition-colors duration-300">
+                                    {currentStat.label}
+                                </div>
+                                
                             </div>
-                            
-                        </div>
-                    ))}
+                        );
+                    })}
 
                 </div>
             </div>
