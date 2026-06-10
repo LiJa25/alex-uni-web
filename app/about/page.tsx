@@ -1,12 +1,13 @@
 import About from "@/components/AboutPage";
-import Hero from "@/components/Hero"; 
+import Hero from "@/components/Hero";
 
 export default function AboutRoute() {
   return (
-    <main>
-<Hero showFullHero={false} />
-      
-      <About />
-    </main>
+    <div>
+      <Hero showFullHero={false} />
+      <main>
+        <About />
+      </main>
+    </div>
   );
 }
