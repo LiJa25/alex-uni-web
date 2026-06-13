@@ -12,6 +12,7 @@ export default function Administration() {
     const [activeDeptItem, setActiveDeptItem] = useState<any | null>(null);
     const [activeNewsItem, setActiveNewsItem] = useState<any | null>(null);
     const [newsIndex, setNewsIndex] = useState(0);
+    const [timelineYear, setTimelineYear] = useState<number>(2026);
 
     const [gradFaculty, setGradFaculty] = useState("Faculty of Engineering");
     const [isGradFacultyOpen, setIsGradFacultyOpen] = useState(false);
@@ -296,13 +297,57 @@ export default function Administration() {
     ];
 
     const secGenNews = [
-        { date: { month: "Nov", day: "28" }, hits: "1,067", title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings." },
-        { date: { month: "Jul", day: "22" }, hits: "1,585", title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025." },
+        { 
+            date: { month: "Nov", day: "28" }, 
+            hits: "1,067", 
+            title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.",
+            fullTitle: "Vice President of Alexandria University discusses with the Board of Trustees of the University's Faculties and Institutes the completion of maintenance work for all facilities and buildings",
+            created: "28 November 2024",
+            images: [
+                "/imgs/Article photo 1.jpg", 
+                "/imgs/Article photo 2.jpg", 
+                "/imgs/Article photo 3.jpg", 
+                "/imgs/Article photo 4.jpg"
+            ],
+            fullText: [
+                "Dr. Saeed Allam, Vice President of Alexandria University for Community Service and Environmental Development Affairs, stressed during his participation with the Board of Trustees of the Faculties and Institutes of Alexandria University, the necessity for the trustees to complete maintenance work for all faculties' facilities and review the roofs, ceilings, rainwater drains, and electrical panels to ensure the safety of individuals and facilities in all faculties and institutes of the university.",
+                "Dr. Allam discussed with the Board of Trustees of the faculties the vision prepared by the Community Service and Environmental Development Sector to provide waste and waste sorting boxes within the faculties and institutes of the university to maintain the aesthetic appearance befitting Alexandria University.",
+                "Dr. Allam also discussed with the Board the mechanism for organizing a package of training courses for university employees, especially departments that deal directly with students, with the aim of providing a good educational service to students and overcoming all obstacles facing them.",
+                "Within the framework of the presidential initiative \"Bedaya\", Dr. Allam followed up with the council the implementation of the timetable for the initiative organized by the Community Service and Environment Development Sector in coordination with the Faculty of Medicine to conduct a survey of high blood pressure and diabetes among university employees for early detection of this type of chronic non-communicable diseases and to provide the necessary guidance, in order to ensure the health of university employees."
+            ]
+        },
+        {
+            date: { month: "Jul", day: "22" },
+            hits: "1,585",
+            title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.",
+            fullTitle: "Alexandria University's Faculties and Institutes Board of Trustees Discusses Administrative Preparations for Faculties Organizing Entrance Exams for Academic Year 2024/2025",
+            created: "22 July 2024",
+            images: [
+                "/imgs/Article photo 5.jpg",
+                "/imgs/Article photo 6.jpg",
+                "/imgs/Article photo 3.jpg",
+                "/imgs/Article photo 7.jpg"
+            ],
+            fullText: [
+                "Alexandria University's Board of Trustees of Faculties and Institutes, headed by Mr. Mohamed Fathy Abu Al-Nassar, Secretary-General of the University, discussed the administrative preparations for organizing entrance exams according to the recommendations of the Human Resources Council.",
+                "The Board emphasized the need for faculty readiness in facilities, exam halls, and student guidance services, while also coordinating medical and safety teams during exam days.",
+                "They reviewed the mechanisms for implementing the schedule, distributing exam material, and providing secure transportation and accommodation support for students from outside Alexandria.",
+                "The Board also stressed that all evaluations should comply with the academic regulations and ensure a fair testing environment for all candidates."
+            ]
+        },
         { date: { month: "Jun", day: "26" }, hits: "1,192", title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget." },
         { date: { month: "May", day: "24" }, hits: "1,275 ", title: "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025." },
         { date: { month: "Apr", day: "21" }, hits: "1,297", title: "Board of Trustees Discusses Preparations for Second Semester Final Exams." },
         { date: { month: "Feb", day: "20" }, hits: "1,229", title: "Alexandria University organizes event for workers to train in occupational health and safety." },
-        { date: { month: "Dec", day: "11" }, hits: "1,363", title: "Employees of Alexandria University Cast Their Votes in The 2024 Presidential Election." }
+        { 
+            date: { month: "DEC", day: "11" }, 
+            hits: "1,363", 
+            title: "Employees of Alexandria University Cast Their Votes in The 2024 Presidential Election",
+            created: "11 December 2023",
+            fullText: [
+                "Staff of Alexandria University participated in the 2024 Presidential Election, exercising their civic duty. University administration facilitated participation by organizing schedules to ensure all eligible staff members could vote."
+            ]
+        }
     ];
 
     const archiveVideos = [
@@ -317,6 +362,16 @@ export default function Administration() {
     ];
 
     const maxNewsIndex = Math.max(0, secGenNews.length - 3);
+
+    const timelineYears = [2016, 2024, 2025, 2026];
+    const activeIndex = timelineYears.indexOf(timelineYear);
+    const progressWidth = `${(activeIndex / (timelineYears.length - 1)) * 100}%`;
+
+    const filteredArchiveVideos = archiveVideos.filter(video => {
+        const match = video.date.match(/\d{4}/);
+        const year = match ? parseInt(match[0]) : 2026;
+        return year <= timelineYear;
+    });
 
     return (
         <main className="min-h-screen relative bg-[#000D1A] bg-gradient-to-br from-[#000D1A] to-[#001A33] pt-32 pb-20 px-4 overflow-hidden">
@@ -339,7 +394,7 @@ export default function Administration() {
             <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
             <div className="absolute top-1/3 right-1/3 w-[300px] h-[300px] bg-amber-500/[0.03] blur-[100px] rounded-full pointer-events-none"></div>
 
-            <div className={`relative z-10 mx-auto ${activePage === 'secretary_general' || activePage === 'council_meetings' ? 'max-w-[1400px]' : 'max-w-7xl'}`}>
+            <div className={`relative z-10 mx-auto ${activePage === 'secretary_general' || activePage === 'council_meetings' || activePage === 'graduate_studies' ? 'max-w-[1400px]' : 'max-w-7xl'}`}>
                 {activePage === 'hub' ? (
                     <>
                         <div className="text-center mb-16">
@@ -731,147 +786,6 @@ export default function Administration() {
                         </div>
                     </div>
                     
-                ) : activePage === 'council_meetings' ? (
-                    <div className="max-w-[1200px] mx-auto w-full flex flex-col items-start text-left pb-20">
-                        <div className="mb-10">
-                            <button 
-                                onClick={() => setActivePage('hub')}
-                                className="inline-flex items-center gap-2 text-slate-400 hover:text-[#D4AF37] transition-all duration-300 group cursor-pointer font-medium p-0 bg-transparent border-none"
-                            >
-                                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-                                <span>Back to Administration Hub</span>
-                            </button>
-                        </div>
-
-                        <div className="w-full flex flex-col items-start text-left mb-8">
-                            <h2 className="text-4xl md:text-5xl font-serif text-white mb-3">
-                                Research Intelligence Hub
-                            </h2>
-                            <p className="text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase">
-                                GRADUATE STUDIES & RESEARCH SECTOR
-                            </p>
-                        </div>
-
-                        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-                            {/* Left Box */}
-                            <div className="lg:col-span-8 bg-gradient-to-br from-[#c6a355] via-[#816832] to-[#252a36] rounded-[32px] p-6 lg:p-8 flex flex-col shadow-2xl relative">
-                                <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-2xl font-serif text-white/90">Live Council Broadcast</h3>
-                                    <div className="bg-red-500/20 border border-red-500/30 text-red-400 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> LIVE
-                                    </div>
-                                </div>
-
-                                <div className="flex-1 w-full bg-[#030b17] rounded-2xl border border-white/10 relative overflow-hidden min-h-[350px] lg:min-h-[450px] flex flex-col justify-end p-8 shadow-inner bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0a192f] to-[#030b17]">
-                                    <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                                    
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        <div className="w-20 h-20 rounded-full border border-[#D4AF37]/50 flex items-center justify-center cursor-pointer hover:bg-[#D4AF37]/10 transition-colors pointer-events-auto group">
-                                            <Play size={32} className="text-[#D4AF37] ml-2 group-hover:scale-110 transition-transform" />
-                                        </div>
-                                    </div>
-
-                                    <div className="relative z-10">
-                                        <p className="text-white/60 text-[10px] font-bold tracking-widest uppercase mb-2">Active Agenda:</p>
-                                        <p className="text-[#D4AF37] text-lg font-serif">Global Research Protocols & Strategic Expansion</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Right Box */}
-                            <div className="lg:col-span-4 bg-gradient-to-br from-[#c6a355] via-[#816832] to-[#252a36] rounded-[32px] p-6 lg:p-8 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
-                                <p className="text-[#ffe9a6] text-[10px] font-bold tracking-widest uppercase mb-8 w-full text-left">Sector Leadership</p>
-                                
-                                <div className="w-24 h-24 rounded-full border-[3px] border-[#030b17]/20 mb-5 overflow-hidden shadow-xl">
-                                    <img src="/imgs/Hesham Saeed.jpg" alt="Prof. Dr. Hesham Saeed" className="w-full h-full object-cover" />
-                                </div>
-                                
-                                <h4 className="text-xl font-serif text-[#ffe9a6] mb-2">Prof. Dr. Hesham Saeed</h4>
-                                <p className="text-white/90 text-xs font-light mb-8 px-2">Vice President for Graduate Studies & Research</p>
-
-                                <div className="w-full flex flex-col gap-4 mt-auto">
-                                    <div className="bg-white/10 border border-white/20 rounded-2xl p-5 text-left backdrop-blur-sm">
-                                        <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider mb-1">Research Grants</p>
-                                        <p className="text-white text-lg font-semibold">120+ Active Projects</p>
-                                    </div>
-                                    <div className="bg-white/10 border border-white/20 rounded-2xl p-5 text-left backdrop-blur-sm">
-                                        <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider mb-1">Doctoral Programs</p>
-                                        <p className="text-white text-lg font-semibold">850+ PhD Candidates</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Bottom Filters */}
-                        <div className="w-full bg-transparent border border-[#D4AF37]/30 rounded-[28px] p-6 lg:p-8 flex flex-col mb-10">
-                            <p className="text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase mb-6">Archive Filters</p>
-                            
-                            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="relative flex items-center bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors">
-                                    <Search size={16} className="text-[#D4AF37] mr-3 opacity-70" />
-                                    <input 
-                                        type="text" 
-                                        placeholder="Search by Faculty Name" 
-                                        className="bg-transparent border-none outline-none text-white text-sm w-full font-light placeholder:text-slate-500"
-                                    />
-                                </div>
-                                
-                                <div className="relative flex items-center bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors">
-                                    <div className="mr-3 opacity-70 text-[#D4AF37]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Filter by Topic" 
-                                        className="bg-transparent border-none outline-none text-white text-sm w-full font-light placeholder:text-slate-500"
-                                    />
-                                </div>
-
-                                <div className="relative flex items-center bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors">
-                                    <Calendar size={16} className="text-[#D4AF37] mr-3 opacity-70" />
-                                    <select className="bg-transparent border-none outline-none text-slate-500 text-sm w-full font-light appearance-none cursor-pointer">
-                                        <option value="">Council Date Range</option>
-                                        <option value="2026">2026</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2016">2016</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Video Archive Grid */}
-                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                            {archiveVideos.map((video, idx) => (
-                                <div key={idx} className="group relative flex flex-col bg-[#0b162c] border border-[#D4AF37]/20 rounded-2xl overflow-hidden hover:border-[#D4AF37]/60 transition-all duration-300 shadow-lg min-h-[320px]">
-                                    {/* Video Placeholder Top */}
-                                    <div className="h-44 w-full relative flex items-center justify-center transition-colors duration-500" style={{ backgroundColor: video.color }}>
-                                        <div className="absolute top-4 right-4 bg-[#000d1a]/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold shadow-sm">
-                                            {video.date}
-                                        </div>
-                                        <div className="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center text-white/50 group-hover:bg-white/10 group-hover:text-white group-hover:border-white transition-all duration-300">
-                                            <Play size={24} className="ml-1" />
-                                        </div>
-                                    </div>
-                                    {/* Content Bottom */}
-                                    <div className="p-6 flex flex-col flex-1 bg-[#101b33]">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <div className="w-5 h-5 rounded bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center text-[10px] font-bold shrink-0">
-                                                {video.initial}
-                                            </div>
-                                            <p className="text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">{video.category}</p>
-                                        </div>
-                                        <h3 className="text-white text-sm font-medium leading-relaxed line-clamp-3 mb-2 group-hover:opacity-20 transition-opacity duration-300">{video.title}</h3>
-                                        
-                                        {/* Hover Button */}
-                                        <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                            <button className="w-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 text-[#D4AF37] py-2 rounded-lg text-xs font-semibold hover:bg-[#D4AF37]/30 transition-colors">
-                                                View Details
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
                 ) : activePage === 'graduate_studies' ? (
                     
                     <div className="max-w-none w-full flex flex-col items-start text-left pb-20">
@@ -1022,31 +936,239 @@ export default function Administration() {
                         </div>
 
                         
-                        <div className="w-full bg-[#00172e]/50 border border-[#D4AF37]/20 rounded-2xl p-8 mt-4 flex flex-col items-center shadow-lg">
-                            <h4 className="text-[#D4AF37] font-serif text-lg mb-10">Historical Timeline</h4>
+                        <div className="w-full bg-transparent border border-[#D4AF37]/30 rounded-[24px] p-8 mt-4 flex flex-col items-center shadow-lg">
+                            <h4 className="text-[#D4AF37] font-serif text-[22px] mb-14">Historical Timeline</h4>
                             
-                            <div className="relative w-full max-w-4xl flex justify-between items-center px-4">
+                            <div className="relative w-full max-w-4xl mx-auto flex justify-between items-center px-4">
                                 
-                                <div className="absolute top-1/2 left-8 right-8 h-[1px] bg-white/10 -translate-y-1/2"></div>
+                                <div className="absolute top-[7px] left-6 right-6 h-[1px] bg-slate-600 z-0"></div>
                                 
-                                
-                                <div className="relative flex flex-col items-center gap-4 z-10">
-                                    <div className="w-4 h-4 rounded-full bg-slate-400 border-[3px] border-[#00172e]"></div>
-                                    <span className="text-slate-400 text-xs">2015</span>
+                                <div className="relative flex flex-col items-center z-10">
+                                    <div className="w-[15px] h-[15px] rounded-full bg-slate-500"></div>
+                                    <span className="absolute top-8 text-slate-400 text-xs font-medium">2016</span>
                                 </div>
-                                <div className="relative flex flex-col items-center gap-4 z-10">
-                                    <div className="w-4 h-4 rounded-full bg-slate-400 border-[3px] border-[#00172e]"></div>
-                                    <span className="text-slate-400 text-xs">2020</span>
+                                <div className="relative flex flex-col items-center z-10">
+                                    <div className="w-[15px] h-[15px] rounded-full bg-slate-500"></div>
+                                    <span className="absolute top-8 text-slate-400 text-xs font-medium">2020</span>
                                 </div>
-                                <div className="relative flex flex-col items-center gap-4 z-10">
-                                    <div className="w-4 h-4 rounded-full bg-slate-400 border-[3px] border-[#00172e]"></div>
-                                    <span className="text-slate-400 text-xs">2025</span>
+                                <div className="relative flex flex-col items-center z-10">
+                                    <div className="w-[15px] h-[15px] rounded-full bg-slate-500"></div>
+                                    <span className="absolute top-8 text-slate-400 text-xs font-medium">2025</span>
                                 </div>
-                                <div className="relative flex flex-col items-center gap-4 z-10">
-                                    <div className="w-5 h-5 rounded-full bg-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.6)] border-[3px] border-[#00172e]"></div>
-                                    <span className="text-[#D4AF37] text-xs font-medium drop-shadow-md">May 2026</span>
+                                <div className="relative flex flex-col items-center z-10">
+                                    <div className="w-4 h-4 rounded-full bg-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.8)]"></div>
+                                    <span className="absolute top-8 text-[#D4AF37] text-xs font-bold whitespace-nowrap">May 2026</span>
                                 </div>
                             </div>
+                            <div className="h-6"></div>
+                        </div>
+
+                    </div>
+                    
+                ) : activePage === 'council_meetings' ? (
+                    
+                    <div className="max-w-none w-full flex flex-col items-start text-left pb-20">
+                        <div className="mb-10">
+                            <button 
+                                onClick={() => setActivePage('hub')}
+                                className="inline-flex items-center gap-2 text-slate-400 hover:text-[#D4AF37] transition-all duration-300 group cursor-pointer font-medium p-0 bg-transparent border-none"
+                            >
+                                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+                                <span>Back to Administration Hub</span>
+                            </button>
+                        </div>
+
+                        <div className="w-full flex flex-col items-start text-left mb-8">
+                            <h2 className="text-4xl md:text-5xl font-serif text-white mb-3">
+                                Research Intelligence Hub
+                            </h2>
+                            <p className="text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase">
+                                GRADUATE STUDIES & RESEARCH SECTOR
+                            </p>
+                        </div>
+
+                        
+                        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+                            
+                            <div className="lg:col-span-8 bg-gradient-to-br from-[#c6a355] via-[#816832] to-[#252a36] rounded-[32px] p-6 lg:p-8 flex flex-col shadow-2xl relative">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-2xl font-serif text-white/90">Live Council Broadcast</h3>
+                                    <div className="bg-red-500/20 border border-red-500/30 text-red-400 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> LIVE
+                                    </div>
+                                </div>
+
+                                <div className="flex-1 w-full bg-[#030b17] rounded-2xl border border-white/10 relative overflow-hidden min-h-[350px] lg:min-h-[450px] flex flex-col justify-end p-8 shadow-inner bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0a192f] to-[#030b17]">
+                                    <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                                    
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <div className="w-20 h-20 rounded-full border border-[#D4AF37]/50 flex items-center justify-center cursor-pointer hover:bg-[#D4AF37]/10 transition-colors pointer-events-auto group">
+                                            <Play size={32} className="text-[#D4AF37] ml-2 group-hover:scale-110 transition-transform" />
+                                        </div>
+                                    </div>
+
+                                    <div className="relative z-10">
+                                        <p className="text-white/60 text-[10px] font-bold tracking-widest uppercase mb-2">Active Agenda:</p>
+                                        <p className="text-[#D4AF37] text-lg font-serif">Global Research Protocols & Strategic Expansion</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div className="lg:col-span-4 bg-gradient-to-br from-[#c6a355] via-[#816832] to-[#252a36] rounded-[32px] p-6 lg:p-8 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+                                <p className="text-[#ffe9a6] text-[10px] font-bold tracking-widest uppercase mb-8 w-full text-left">Sector Leadership</p>
+                                
+                                <div className="w-24 h-24 rounded-full border-[3px] border-[#030b17]/20 mb-5 overflow-hidden shadow-xl">
+                                    <img src="/imgs/Hesham Saeed.jpg" alt="Prof. Dr. Hesham Saeed" className="w-full h-full object-cover" />
+                                </div>
+                                
+                                <h4 className="text-xl font-serif text-[#ffe9a6] mb-2">Prof. Dr. Hesham Saeed</h4>
+                                <p className="text-white/90 text-xs font-light mb-8 px-2">Vice President for Graduate Studies & Research</p>
+
+                                <div className="w-full flex flex-col gap-4 mt-auto">
+                                    <div className="bg-white/10 border border-white/20 rounded-2xl p-5 text-left backdrop-blur-sm">
+                                        <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider mb-1">Research Grants</p>
+                                        <p className="text-white text-lg font-semibold">120+ Active Projects</p>
+                                    </div>
+                                    <div className="bg-white/10 border border-white/20 rounded-2xl p-5 text-left backdrop-blur-sm">
+                                        <p className="text-white/60 text-[10px] font-bold uppercase tracking-wider mb-1">Doctoral Programs</p>
+                                        <p className="text-white text-lg font-semibold">850+ PhD Candidates</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div className="w-full bg-transparent border border-[#D4AF37]/30 rounded-[28px] p-6 lg:p-8 flex flex-col mb-10">
+                            <p className="text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase mb-6">Archive Filters</p>
+                            
+                            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="relative flex items-center bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors">
+                                    <Search size={16} className="text-[#D4AF37] mr-3 opacity-70" />
+                                    <input 
+                                        type="text" 
+                                        placeholder="Search by Faculty Name" 
+                                        className="bg-transparent border-none outline-none text-white text-sm w-full font-light placeholder:text-slate-500"
+                                    />
+                                </div>
+                                
+                                <div className="relative flex items-center bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors">
+                                    <div className="mr-3 opacity-70 text-[#D4AF37]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Filter by Topic" 
+                                        className="bg-transparent border-none outline-none text-white text-sm w-full font-light placeholder:text-slate-500"
+                                    />
+                                </div>
+
+                                <div className="relative flex items-center justify-between bg-[#00172e]/50 border border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#D4AF37]/60 transition-colors cursor-pointer group z-50">
+                                    <div className="flex items-center">
+                                        <Calendar size={16} className="text-[#D4AF37] mr-3 opacity-70" />
+                                        <span className="text-white text-sm font-light">{timelineYear === 2026 && activePage === 'council_meetings' ? "Council Date Range" : timelineYear}</span>
+                                    </div>
+                                    <ChevronDown size={16} className="text-slate-400 group-hover:text-white transition-colors" />
+                                    
+                                    <div className="absolute top-full left-0 mt-2 w-full bg-white border border-white/10 rounded-lg overflow-hidden shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                        <div className="px-5 py-3 text-sm bg-[#93c5fd] text-black font-medium transition-colors">
+                                            Council Date Range
+                                        </div>
+                                        {["2026", "2025", "2024", "2016"].map((opt, i) => (
+                                            <div 
+                                                key={i} 
+                                                onClick={() => setTimelineYear(parseInt(opt))}
+                                                className="px-5 py-3 text-sm text-slate-800 hover:bg-slate-100 transition-colors"
+                                            >
+                                                {opt}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                            {filteredArchiveVideos.map((video, idx) => (
+                                <div key={idx} className="group relative flex flex-col bg-[#0b162c] border border-[#D4AF37]/20 rounded-2xl overflow-hidden hover:border-[#D4AF37]/60 transition-all duration-300 shadow-lg min-h-[320px]">
+                                    
+                                    <div className="h-44 w-full relative flex items-center justify-center transition-colors duration-500" style={{ backgroundColor: video.color }}>
+                                        <div className="absolute top-4 right-4 bg-[#000d1a]/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold shadow-sm">
+                                            {video.date}
+                                        </div>
+                                        <div className="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center text-white/50 group-hover:bg-white/10 group-hover:text-white group-hover:border-white transition-all duration-300">
+                                            <Play size={24} className="ml-1" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="p-6 pb-16 flex flex-col flex-1 bg-[#101b33] relative">
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <div className="w-5 h-5 rounded bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center text-[10px] font-bold shrink-0">
+                                                {video.initial}
+                                            </div>
+                                            <p className="text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">{video.category}</p>
+                                        </div>
+                                        <h3 className="text-white text-sm font-medium leading-relaxed line-clamp-3 mb-2 transition-opacity duration-300 group-hover:-translate-y-2">{video.title}</h3>
+                                        
+                                        
+                                        <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                            <button className="w-full bg-[#464835] border border-[#D4AF37]/50 text-[#D4AF37] py-2.5 rounded-lg text-xs font-semibold hover:bg-[#585940] transition-colors shadow-lg">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        
+                        <div className="w-full bg-[#020b1a] border border-[#D4AF37]/40 rounded-xl p-6 lg:p-8 mt-4 flex flex-col shadow-lg">
+                            <div className="flex items-center gap-3 mb-14">
+                                <Clock size={18} className="text-[#D4AF37]" />
+                                <h4 className="text-[#D4AF37] font-bold text-xs tracking-widest uppercase">Time-Machine Chronology</h4>
+                            </div>
+                            
+                            <div className="relative w-full max-w-5xl mx-auto flex justify-between items-center px-2">
+                                
+                                <div className="absolute top-1/2 left-2 right-2 h-[2px] bg-[#1a2b4c] -translate-y-1/2 z-0">
+                                    <div 
+                                        className="h-full bg-[#D4AF37] transition-all duration-500" 
+                                        style={{ width: progressWidth }}
+                                    ></div>
+                                </div>
+                                
+                                {timelineYears.map((year) => {
+                                    const isActive = year === timelineYear;
+                                    const isPast = year < timelineYear;
+                                    
+                                    return (
+                                        <div 
+                                            key={year} 
+                                            className="relative flex flex-col items-center z-10 cursor-pointer group"
+                                            onClick={() => setTimelineYear(year)}
+                                        >
+                                            <div className={`transition-all duration-300 rounded-full flex items-center justify-center ${
+                                                isActive 
+                                                ? 'w-[14px] h-[14px] bg-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.8)]' 
+                                                : isPast
+                                                ? 'w-[14px] h-[14px] border-[2px] border-[#D4AF37] bg-[#020b1a] group-hover:bg-[#D4AF37]/20'
+                                                : 'w-[14px] h-[14px] border-[2px] border-slate-600 bg-[#020b1a] group-hover:border-slate-500'
+                                            }`}></div>
+                                            
+                                            <div className="absolute top-8 flex flex-col items-center w-40">
+                                                <span className={`text-[13px] font-bold transition-colors ${isActive ? 'text-[#D4AF37]' : isPast ? 'text-white' : 'text-slate-500'}`}>
+                                                    {year}
+                                                </span>
+                                                {year === 2016 && (
+                                                    <span className={`text-[10px] font-medium whitespace-nowrap mt-1.5 ${isActive || isPast ? 'text-[#D4AF37]' : 'text-slate-600'}`}>
+                                                        Dr. Seddik Celebration
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <div className="h-10"></div>
                         </div>
 
                     </div>
@@ -1152,7 +1274,7 @@ export default function Administration() {
                 ) : activePage === 'secretary_general' ? (
                     <div className="max-w-[1400px] mx-auto w-full flex flex-col items-start text-left pb-20">
                         
-                        {!activeDeptItem && (
+                        {!activeDeptItem && !activeNewsItem && (
                             <div className="mb-6 w-full">
                                 <button 
                                     onClick={() => setActivePage('hub')}
@@ -1164,7 +1286,59 @@ export default function Administration() {
                             </div>
                         )}
 
-                        {!activeDeptItem ? (
+                        {activeNewsItem ? (
+                            <div className="w-full flex flex-col items-start text-left animate-in fade-in zoom-in duration-300">
+                                <div className="w-full flex justify-start mb-10">
+                                    <button 
+                                        onClick={() => setActiveNewsItem(null)}
+                                        className="inline-flex items-center gap-2 text-slate-400 hover:text-[#D4AF37] transition-all duration-300 group cursor-pointer font-medium p-0 bg-transparent border-none"
+                                    >
+                                        <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+                                        <span>Back to Secretary General Sector</span>
+                                    </button>
+                                </div>
+                                <div className="w-full bg-transparent border border-[#D4AF37]/50 rounded-[24px] p-6 lg:p-8 relative overflow-hidden">
+                                    <div className="flex items-center gap-4 mb-8">
+                                        <div className="border border-[#D4AF37]/50 rounded-2xl px-4 py-2 bg-[#001A33]/50 text-center min-w-[70px] shadow-inner">
+                                            <span className="text-[#D4AF37] text-[10px] font-bold block mb-0.5 uppercase">{activeNewsItem.date.month}</span>
+                                            <span className="text-[#D4AF37] text-2xl font-black leading-none">{activeNewsItem.date.day}</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5">
+                                            <div className="text-[#89c5ff] text-[11px] font-bold tracking-widest flex items-center gap-1.5">
+                                                Created: {activeNewsItem.created || "20 February 2024"}
+                                            </div>
+                                            <div className="text-slate-500 text-xs flex items-center gap-1.5 font-medium">
+                                                <BarChart2 size={14} className="text-slate-500" /> {activeNewsItem.hits} hits
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <h2 className="text-xl md:text-2xl font-serif text-[#D4AF37] mb-8 leading-snug max-w-4xl">
+                                        {activeNewsItem.fullTitle || activeNewsItem.title}
+                                    </h2>
+                                    
+                                    {activeNewsItem.images && activeNewsItem.images.length > 0 && (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 w-full">
+                                            {activeNewsItem.images.map((img: string, i: number) => (
+                                                <div key={i} className="rounded-2xl border border-white/10 overflow-hidden h-48 md:h-80 bg-[#001A33]/50 shadow-md">
+                                                    <img src={img} alt="News Illustration" className="w-full h-full object-cover" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                    
+                                    {activeNewsItem.fullText ? (
+                                        <div className="flex flex-col gap-6 text-white/90 text-[13px] md:text-[14px] font-light leading-relaxed">
+                                            {activeNewsItem.fullText.map((paragraph: string, i: number) => (
+                                                <p key={i}>{paragraph}</p>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-slate-300 text-[14px] font-light leading-relaxed">The Board of Trustees of Faculties and Institutes of Alexandria University directed the necessity of optimal use of the budget for the fiscal year 2024/2025, emphasizing transparency and accountability in all financial dealings across faculties and institutes.</p>
+                                    )}
+                                </div>
+                            </div>
+                        ) : !activeDeptItem ? (
                             <>
                                 <div className="w-full bg-[#001124] border border-[#D4AF37]/30 rounded-2xl p-8 lg:p-10 flex flex-col lg:flex-row justify-between mb-8 shadow-2xl relative overflow-hidden">
                                     <div className="flex flex-col z-10 w-full lg:w-2/3">
@@ -1298,7 +1472,10 @@ export default function Administration() {
                                                         </div>
                                                     </div>
                                                     <p className="text-white text-[15px] leading-relaxed font-medium mb-8 flex-1 group-hover:text-[#D4AF37] transition-colors">{news.title}</p>
-                                                    <div className="text-[#3b82f6] text-sm font-semibold flex items-center gap-1.5 w-fit hover:underline">
+                                                    <div 
+                                                        onClick={() => setActiveNewsItem(news)}
+                                                        className="text-[#3b82f6] text-sm font-semibold flex items-center gap-1.5 w-fit hover:underline cursor-pointer"
+                                                    >
                                                         Read More <ExternalLink size={14} />
                                                     </div>
                                                 </div>
