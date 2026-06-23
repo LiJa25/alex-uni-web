@@ -6,7 +6,8 @@ import ThemeToggle from "./ThemeToggle";
 import { useLanguage } from "@/components/LanguageProvider";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Search, User, LogOut, LogIn } from 'lucide-react'; // <-- ADDED AUTH ICONS
+import { supabase } from "@/lib/supabase"; // <-- ADDED SUPABASE CLIENT
 
 export default function Hero({ showFullHero = true }: { showFullHero?: boolean }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -14,11 +15,12 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     
-    // We keep useLanguage just for the RTL layout flipping
+    // --- INTEGRATED AUTH SESSION SYNCHRONIZER STATE ---
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     const { language, toggleLanguage } = useLanguage();
     const isRTL = language === "ar";
 
-    // --- SEARCH STATE ---
     const [searchQuery, setSearchQuery] = useState("");
     const router = useRouter();
 
@@ -27,6 +29,47 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
         "/imgs/alexUni2.webp",
         "/imgs/alexUni3.jpg"
     ];
+
+    // Listen to real-time session changes across live and fallback engines
+    useEffect(() => {
+        const checkUserSession = async () => {
+            // 1. Audit active database tokens on the cloud ledger
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                setIsLoggedIn(true);
+            } else {
+                // 2. Audit background sandbox storage tokens for safe offline fallback
+                const isDemoActive = localStorage.getItem('demo_session') === 'active';
+                setIsLoggedIn(isDemoActive);
+            }
+        };
+
+        checkUserSession();
+
+        // Bind cloud listener hooks
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+            if (session) setIsLoggedIn(true);
+            else checkUserSession();
+        });
+
+        // Bind cross-tab window broadcast signals for instant client refresh
+        const handleStorageUpdate = () => checkUserSession();
+        window.addEventListener('storage', handleStorageUpdate);
+
+        return () => {
+            subscription.unsubscribe();
+            window.removeEventListener('storage', handleStorageUpdate);
+        };
+    }, []);
+
+    // Handle global user teardown / exit
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();           
+        localStorage.removeItem('demo_session'); 
+        setIsLoggedIn(false);
+        setIsMobileMenuOpen(false);
+        router.push('/');                        
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -58,7 +101,6 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // --- SEARCH HANDLER ---
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
@@ -88,7 +130,7 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                     : "bg-gradient-to-b from-smart-blue-950/80 dark:from-gray-950/90 to-transparent py-4 md:py-6"
                 }`}>
 
-                <div className="flex items-center gap-2 md:gap-4 cursor-pointer z-50">
+                <div className="flex items-center gap-2 md:gap-4 cursor-pointer z-50" onClick={() => router.push('/')}>
                     <div className="h-10 md:h-12 flex items-center justify-center transition-all duration-300">
                         <img
                             src="/logos/logo2.png"
@@ -123,22 +165,47 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                     <Link href="/researches" className="hover:text-harvest-gold-300 transition-colors">Researches</Link>
                 </div>
 
+                {/* --- DESKTOP ACTION INTERFACE TOGGLE PANELS --- */}
                 <div className="hidden md:flex items-center gap-4 z-50">
-                    <button onClick={toggleLanguage} className="flex items-center gap-1 text-harvest-gold-50 hover:text-harvest-gold-300 transition-colors text-sm font-medium">
+                    {/* <button onClick={toggleLanguage} className="flex items-center gap-1 text-harvest-gold-50 hover:text-harvest-gold-300 transition-colors text-sm font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="2" x2="22" y1="12" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
                         EN | AR
-                    </button>
-                    <button
-                        onClick={() => setIsAuthModalOpen(true)}
-                        className="bg-[#D4AF37] hover:bg-[#A67F1F] hover:text-white text-[#0B3C5D] px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 shadow-lg"
-                    >
-                        Sign In
-                    </button>
+                    </button>  */}
+                    
+                    {isLoggedIn ? (
+                        <div className="flex items-center gap-3 animate-in fade-in duration-300">
+                            {/* PROFILE BUTTON SHORTCUT */}
+                            <button 
+                                onClick={() => router.push('/dashboard')}
+                                className="p-2 rounded-full bg-white/10 dark:bg-slate-900/50 text-white dark:text-[#D4AF37] border border-white/20 dark:border-[#D4AF37]/30 hover:scale-110 transition-transform shadow-md"
+                                title="Go to Academic Student Dashboard"
+                            >
+                                <User size={18} />
+                            </button>
+                            {/* SIGN OUT ELEMENT */}
+                            <button
+                                onClick={handleSignOut}
+                                className="flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-full font-semibold transition-transform hover:scale-105 shadow-lg text-sm"
+                            >
+                                <LogOut size={14} />
+                                Sign Out
+                            </button>
+                        </div>
+                    ) : (
+                        /* GUEST SIGN IN TRIGGER */
+                        <button
+                            onClick={() => setIsAuthModalOpen(true)}
+                            className="bg-[#D4AF37] hover:bg-[#A67F1F] hover:text-white text-[#0B3C5D] px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 shadow-lg flex items-center gap-2"
+                        >
+                            <LogIn size={14} />
+                            Sign In
+                        </button>
+                    )}
                     <ThemeToggle />
                 </div>
             </nav>
 
-            {/* Mobile Menu logic */}
+            {/* --- MOBILE DRAW PANEL ACTUATOR --- */}
             <div className={`fixed inset-0 bg-blue-900/95 dark:bg-gray-950/95 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} md:hidden`}>
                 <div className="flex flex-col items-center gap-6 text-harvest-gold-50 text-xl font-medium w-full px-6 overflow-y-auto max-h-screen py-10 pt-24">
                     <Link href="/" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
@@ -150,15 +217,38 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                     <Link href="/administration" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Administration</Link>
                     <Link href="/researches" className="hover:text-harvest-gold-300 transition-colors border-b border-smart-blue-800 dark:border-gray-800 pb-2 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Researches</Link>
 
-                    <button
-                        className="mt-4 bg-[#D4AF37] text-[#0B3C5D] px-8 py-3 rounded-full font-bold w-full max-w-xs shadow-lg"
-                        onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            setIsAuthModalOpen(true);
-                        }}
-                    >
-                        Apply Now
-                    </button>
+                    {isLoggedIn ? (
+                        <div className="flex flex-col gap-3 w-full max-w-xs mt-4">
+                            <button
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    router.push('/dashboard');
+                                }}
+                                className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-3 rounded-full font-bold w-full shadow-lg"
+                            >
+                                <User size={16} />
+                                Profile Dashboard
+                            </button>
+                            <button
+                                onClick={handleSignOut}
+                                className="flex items-center justify-center gap-2 bg-rose-600 text-white px-8 py-3 rounded-full font-bold w-full shadow-lg"
+                            >
+                                <LogOut size={16} />
+                                Sign Out
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            className="mt-4 bg-[#D4AF37] text-[#0B3C5D] px-8 py-3 rounded-full font-bold w-full max-w-xs shadow-lg flex items-center justify-center gap-2"
+                            onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setIsAuthModalOpen(true);
+                            }}
+                        >
+                            <LogIn size={16} />
+                            Sign In
+                        </button>
+                    )}
                     <div className="mt-6">
                         <ThemeToggle />
                     </div>
@@ -169,7 +259,7 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                 </div>
             </div>
 
-            {/* ---content SEARCH BAR --- */}
+            {/* --- SEARCH CORE SECTION PANEL --- */}
             {showFullHero && (
                 <div className="relative z-20 flex flex-col items-center text-center px-4 mt-8 md:mt-16 w-full max-w-6xl pt-16 md:pt-0">
                     <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-white mb-4 md:mb-6 drop-shadow-xl tracking-wide leading-tight">
@@ -179,7 +269,6 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                         Find your future in Alexandria University
                     </p>
 
-                    {/* THE SEARCH BAR */}
                     <form
                         onSubmit={handleSearch}
                         className="w-full max-w-3xl mt-10 md:mt-12 relative group transition-all duration-300 hover:scale-[1.02]"
@@ -205,7 +294,6 @@ export default function Hero({ showFullHero = true }: { showFullHero?: boolean }
                             </button>
                         </div>
 
-                        {/* Quick links below search */}
                         <div className="mt-5 flex flex-wrap justify-center gap-3 text-sm md:text-base text-white/90 font-medium">
                             <span className="opacity-70">Popular:</span>
                             <button type="button" onClick={() => setSearchQuery('Medicine')} className="hover:text-[#D4AF37] hover:underline transition-colors">Medicine</button>

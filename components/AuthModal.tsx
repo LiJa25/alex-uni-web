@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation"; 
 
 interface AuthModalProps {
     isOpen: boolean;
@@ -9,20 +10,21 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
+    const router = useRouter(); 
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [userType, setUserType] = useState<"student" | "staff">("student");
     const [showPassword, setShowPassword] = useState(false);
 
     // Form Data States
-    const [email, setEmail] = useState(""); // Acts as University Email (Login) or Contact Email (Sign Up)
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [fullName, setFullName] = useState("");
-    const [universityId, setUniversityId] = useState(""); // New state for Student/Staff ID
+    const [universityId, setUniversityId] = useState("");
 
     // Status States
     const [isLoading, setIsLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    const [showSuccessPopup, setShowSuccessPopup] = useState(false); // Controls the custom success window
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
     if (!isOpen) return null;
 
@@ -33,21 +35,41 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
         try {
             if (isLoginMode) {
-                // --- LOG IN ---
-                const { error } = await supabase.auth.signInWithPassword({
-                    email,
-                    password,
-                });
+                // --- TRY LIVE SUPABASE LOGIN FIRST ---
+                try {
+                    const { error } = await supabase.auth.signInWithPassword({
+                        email,
+                        password,
+                    });
 
-                if (error) throw error;
+                    if (error) throw error;
 
-                // Close modal immediately on successful login
-                onClose();
+                    // Clear any sandbox tokens since we have a genuine live connection
+                    localStorage.removeItem('demo_session');
+                    window.dispatchEvent(new Event("storage"));
 
+                    // Live login succeeded! Go to live dashboard
+                    onClose();
+                    router.push('/dashboard');
+                    return;
+                } catch (liveError) {
+                    // If it fails but it matches your presentation account, trigger offline sandbox!
+                    if (email === "arts.lujainMesbah@alexu.edu.eg" && password === "2026") {
+                        console.warn("Supabase unreachable or account unseeded. Launching offline mode.");
+                        
+                        // Seed structural token parameters to trigger navbar switches instantly
+                        localStorage.setItem('demo_session', 'active');
+                        window.dispatchEvent(new Event("storage"));
+                        
+                        onClose();
+                        router.push('/dashboard?demo=true'); 
+                        return;
+                    }
+                    // Otherwise, present standard failure trace to normal database accounts
+                    throw liveError;
+                }
             } else {
-                // --- REGISTER / APPLY (Account Request) ---
-                // Since this is a request, we insert it into a custom Supabase table 
-                // instead of creating an active auth user right away.
+                // --- REGISTER / ACCOUNT REQUEST ---
                 const { error } = await supabase.from('account_requests').insert([
                     {
                         full_name: fullName,
@@ -59,8 +81,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 ]);
 
                 if (error) throw error;
-
-                // Show the specific popup window you requested
                 setShowSuccessPopup(true);
             }
         } catch (error: any) {
@@ -126,8 +146,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <button
                                     onClick={() => setUserType("student")}
                                     className={`flex-1 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all duration-300 ${userType === "student"
-                                            ? "bg-blue-600 dark:bg-blue-700 text-white shadow-md"
-                                            : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white"
+                                        ? "bg-blue-600 dark:bg-blue-700 text-white shadow-md"
+                                        : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white"
                                         }`}
                                 >
                                     STUDENT
@@ -135,8 +155,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <button
                                     onClick={() => setUserType("staff")}
                                     className={`flex-1 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-all duration-300 ${userType === "staff"
-                                            ? "bg-blue-600 dark:bg-blue-700 text-white shadow-md"
-                                            : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white"
+                                        ? "bg-blue-600 dark:bg-blue-700 text-white shadow-md"
+                                        : "text-gray-500 dark:text-gray-400 hover:text-blue-900 dark:hover:text-white"
                                         }`}
                                 >
                                     STAFF
@@ -211,7 +231,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                             />
                                             <button
                                                 type="button"
-                                                onClick={() => setShowPassword(!showPassword)}
+                                                onClick={() => { setShowPassword(!showPassword); }}
                                                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                                             >
                                                 {showPassword ? (
@@ -239,8 +259,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <button
                                     disabled={isLoading}
                                     className={`w-full text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg mt-4 ${isLoading
-                                            ? "bg-gray-400 cursor-not-allowed"
-                                            : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 shadow-blue-600/30 dark:shadow-none"
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 shadow-blue-600/30 dark:shadow-none"
                                         }`}
                                 >
                                     {isLoading ? "PROCESSING..." : (isLoginMode ? "LOGIN" : "SUBMIT APPLICATION")}
@@ -273,15 +293,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </div>
                     </>
                 )}
-            </div> {/* <-- THIS IS THE END OF THE MODAL CARD */}
+            </div>
 
-            {/* VERY BOTTOM FLOATING TEXT (Now properly outside the modal card!) */}
             {!showSuccessPopup && (
                 <div className="absolute bottom-6 w-full text-center text-xs font-medium text-gray-300 dark:text-gray-500 z-10">
                     By continuing, you agree to our <a href="#" className="text-harvest-gold-400 hover:underline">Terms of Service</a> and <a href="#" className="text-harvest-gold-400 hover:underline">Privacy Policy</a>
                 </div>
             )}
         </div>
-
     );
 }
