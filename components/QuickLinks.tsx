@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
+import Link from "next/link"; 
 
 export default function QuickLinks() {
     const { strings, language } = useLanguage();
@@ -14,6 +15,7 @@ export default function QuickLinks() {
         {
             id: 1,
             title: "Events Calendar",
+            target: "/administration?page=council_meetings", 
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -26,6 +28,7 @@ export default function QuickLinks() {
         {
             id: 2,
             title: "Sustainable Development",
+            target: "/administration?page=community_service", 
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
@@ -36,6 +39,7 @@ export default function QuickLinks() {
         {
             id: 3,
             title: "International Ranking",
+            target: "/administration?page=graduate_studies", 
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M8 21h8"></path>
@@ -50,6 +54,7 @@ export default function QuickLinks() {
         {
             id: 4,
             title: "Electronic System",
+            target: "/administration?page=secretary_general", 
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -82,9 +87,10 @@ export default function QuickLinks() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                     {cards.map((card, index) => (
-                        <div 
+                        <Link 
                             key={card.id}
-                            className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-t-4 border-t-transparent border-b border-l border-r border-gray-100 dark:border-gray-800 hover:border-t-blue-900 dark:hover:border-t-harvest-gold-500 hover:shadow-2xl transition-all duration-300 cursor-pointer h-64"
+                            href={card.target}
+                            className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 flex flex-col items-center justify-center text-center border-t-4 border-t-transparent border-b border-l border-r border-gray-100 dark:border-gray-800 hover:border-t-blue-900 dark:hover:border-t-harvest-gold-500 hover:shadow-2xl transition-all duration-300 cursor-pointer h-64 w-full"
                         >
                             <div className="w-20 h-20 rounded-2xl bg-blue-900/95 dark:bg-gray-800 flex items-center justify-center mb-6 shadow-md transition-all duration-300 group-hover:bg-harvest-gold-500 group-hover:rotate-6">
                                 {card.icon}
@@ -95,7 +101,7 @@ export default function QuickLinks() {
                             </h3>
 
                             <div className="h-1 w-8 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 group-hover:bg-harvest-gold-500 mt-auto"></div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

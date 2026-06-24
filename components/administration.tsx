@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Crown, Users, UserCog, GraduationCap, FlaskConical, Leaf, Building2, CalendarDays, ArrowLeft, ArrowRight, Calendar, Clock, Globe, TrendingUp, Smartphone, Factory, Building, Copy, FileText, BookOpen, Mail, X, Sparkles, Shield, Search, ChevronDown, Play, Brain, Scale, Recycle, Target, Award, HeartHandshake, Briefcase, Microscope, Library, Phone, Download, Lock, ChevronRight, Gavel, Link as LinkIcon, ExternalLink, Lightbulb, MessageSquare, BarChart2, ChevronLeft, AlertCircle, CheckCircle } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
 export default function Administration() {
     const [activePage, setActivePage] = useState<'hub' | 'president' | 'head_admin' | 'leaders' | 'edu_affairs' | 'graduate_studies' | 'community_service' | 'secretary_general' | 'council_meetings'>('hub');
@@ -18,6 +19,39 @@ export default function Administration() {
     const [isGradFacultyOpen, setIsGradFacultyOpen] = useState(false);
     const [gradPillar, setGradPillar] = useState("International Joint Degrees");
     const [isGradPillarOpen, setIsGradPillarOpen] = useState(false);
+ const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const pageParam = searchParams.get('page');
+        const newsIdParam = searchParams.get('newsId');
+        const itemParam = searchParams.get('item');
+
+        if (pageParam) {
+            // 1. هذا السطر يغير الصفحة لأي قيمة تأتي من الرابط (بيشغل الكروت كلها)
+            setActivePage(pageParam as any);
+
+            // 2. هذا الجزء الخاص بالأخبار (لا يزال يعمل كما هو)
+            if (pageParam === 'secretary_general' && newsIdParam) {
+                const matchedNews = secGenNews.find(item => item.id?.toString() === newsIdParam);
+                if (matchedNews) {
+                    setActiveNewsItem(matchedNews);
+                }
+            }
+
+            // 3. هذا الجزء الخاص بـ Sustainable Development (فتح القسم مباشرة)
+            if (pageParam === 'community_service' && itemParam) {
+                const matchedItem = communityCardsData.find(item => item.title === itemParam.replace('+', ' '));
+                if (matchedItem) {
+                    setActiveCommunityItem(matchedItem);
+                }
+                // إضافة تمرير تلقائي للقسم
+                setTimeout(() => {
+                    const element = document.getElementById('community_section');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }
+        }
+    }, [searchParams]);
 
     const handleCopy = (text: string, id: string) => {
         navigator.clipboard.writeText(text);
@@ -298,6 +332,7 @@ export default function Administration() {
 
     const secGenNews = [
         { 
+            id: 1,
             date: { month: "Nov", day: "28" }, 
             hits: "1,067", 
             title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.",
@@ -317,6 +352,7 @@ export default function Administration() {
             ]
         },
         {
+            id: 2,
             date: { month: "Jul", day: "22" },
             hits: "1,585",
             title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.",
@@ -335,11 +371,12 @@ export default function Administration() {
                 "The Board also stressed that all evaluations should comply with the academic regulations and ensure a fair testing environment for all candidates."
             ]
         },
-        { date: { month: "Jun", day: "26" }, hits: "1,192", title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget." },
-        { date: { month: "May", day: "24" }, hits: "1,275 ", title: "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025." },
-        { date: { month: "Apr", day: "21" }, hits: "1,297", title: "Board of Trustees Discusses Preparations for Second Semester Final Exams." },
-        { date: { month: "Feb", day: "20" }, hits: "1,229", title: "Alexandria University organizes event for workers to train in occupational health and safety." },
+        {id: 3, date: { month: "Jun", day: "26" }, hits: "1,192", title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget." },
+        {id: 4, date: { month: "May", day: "24" }, hits: "1,275 ", title: "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025." },
+        {id: 5, date: { month: "Apr", day: "21" }, hits: "1,297", title: "Board of Trustees Discusses Preparations for Second Semester Final Exams." },
+        {id: 6, date: { month: "Feb", day: "20" }, hits: "1,229", title: "Alexandria University organizes event for workers to train in occupational health and safety." },
         { 
+            id: 7,
             date: { month: "DEC", day: "11" }, 
             hits: "1,363", 
             title: "Employees of Alexandria University Cast Their Votes in The 2024 Presidential Election",

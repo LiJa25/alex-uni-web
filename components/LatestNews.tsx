@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
+import Link from "next/link";
 
 export default function LatestNews() {
     const { strings, language } = useLanguage();
@@ -115,9 +116,10 @@ export default function LatestNews() {
                     }`}
                 >
                     {newsArticles.map((article) => (
-                        <div 
+                        <Link 
                             key={article.id}
-                            className={`bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer border border-gray-100 dark:border-gray-800 ${
+                            href={`/administration?page=secretary_general&newsId=${article.id}`}
+                            className={`bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100 dark:border-gray-800 ${
                                 showAll 
                                 ? "w-full" 
                                 : "min-w-[100%] md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.33rem)] snap-start"
@@ -145,7 +147,7 @@ export default function LatestNews() {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transform transition-transform ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

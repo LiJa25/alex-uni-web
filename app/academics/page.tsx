@@ -1,9 +1,9 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from "@/components/Hero";
 import Link from 'next/link';
-// Removed Facebook, Twitter, and Instagram from here
+import { useSearchParams } from 'next/navigation'; // الاستيراد الجديد لالتقاط الرابط
 import {
     Star,
     MapPin,
@@ -19,7 +19,6 @@ import {
     Flame
 } from 'lucide-react';
 
-// --- MOCK DATA BASED ON DESIGNS ---
 const faculties = [
     {
         id: "medicine",
@@ -112,6 +111,31 @@ const faculties = [
 ];
 
 export default function AcademicsPage() {
+    const searchParams = useSearchParams();
+
+    // التمرير التلقائي وتسليط الضوء على الكلية
+    useEffect(() => {
+        const facultyId = searchParams.get('faculty');
+        if (facultyId) {
+            setTimeout(() => {
+                const element = document.getElementById(facultyId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // تأثير لمعان بسيط لتوضيح الكلية المطلوبة لمدة ثانية
+                    element.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
+                    element.style.transform = 'scale(1.02)';
+                    element.style.boxShadow = '0 0 30px rgba(212, 175, 55, 0.4)';
+                    
+                    setTimeout(() => {
+                        element.style.transform = 'none';
+                        element.style.boxShadow = '';
+                    }, 1500);
+                }
+            }, 500);
+        }
+    }, [searchParams]);
+
     return (
         <div className="bg-[#050B14] min-h-screen relative overflow-hidden font-sans selection:bg-[#D4AF37] selection:text-[#001A33]">
 
@@ -161,6 +185,7 @@ export default function AcademicsPage() {
                     {faculties.map((faculty) => (
                         <div
                             key={faculty.id}
+                            id={faculty.id} // تم إضافة id هنا لكي يتمكن المتصفح من العثور على الكلية
                             className={`bg-[#0B1320]/80 backdrop-blur-sm border rounded-2xl p-6 flex flex-col h-full transition-all duration-500 group ${faculty.glowColor}`}
                         >
 

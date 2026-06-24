@@ -3,19 +3,21 @@
 import React from 'react';
 import { useLanguage } from "@/components/LanguageProvider"; 
 import Image from 'next/image';
+import Link from 'next/link'; // تمت إضافة Link للربط
 import { BookOpen, FlaskConical, Palette, Stethoscope, Scale, Building2 } from 'lucide-react';
 
 export default function ExploreFaculties() {
   const { language } = useLanguage(); 
   const isRTL = language === "ar";
 
+  // أضفنا id لكل كلية لربطها بصفحة الأكاديميات
   const faculties = [
-    { title: isRTL ? "كلية الهندسة" : "Faculty of Engineering", icon: Building2, img: "/imgs/eng.jpg" },
-    { title: isRTL ? "كلية العلوم" : "Faculty of Science", icon: FlaskConical, img: "/imgs/sci.jpg" },
-    { title: isRTL ? "كلية الآداب" : "Faculty of Arts", icon: BookOpen, img: "/imgs/arts.jpg" },
-    { title: isRTL ? "كلية الفنون الجميلة" : "Faculty of Fine Arts", icon: Palette, img: "/imgs/fine.jpg" },
-    { title: isRTL ? "كلية التمريض" : "Faculty of Nursing", icon: Stethoscope, img: "/imgs/med.jpg" },
-    { title: isRTL ? "كلية الحقوق" : "Faculty of Law", icon: Scale, img: "/imgs/law.jpg" },
+    { id: "engineering", title: isRTL ? "كلية الهندسة" : "Faculty of Engineering", icon: Building2, img: "/imgs/eng.jpg" },
+    { id: "science", title: isRTL ? "كلية العلوم" : "Faculty of Science", icon: FlaskConical, img: "/imgs/sci.jpg" },
+    { id: "arts", title: isRTL ? "كلية الآداب" : "Faculty of Arts", icon: BookOpen, img: "/imgs/arts.jpg" },
+    { id: "fine-arts", title: isRTL ? "كلية الفنون الجميلة" : "Faculty of Fine Arts", icon: Palette, img: "/imgs/fine.jpg" },
+    { id: "nursing", title: isRTL ? "كلية التمريض" : "Faculty of Nursing", icon: Stethoscope, img: "/imgs/med.jpg" },
+    { id: "law", title: isRTL ? "كلية الحقوق" : "Faculty of Law", icon: Scale, img: "/imgs/law.jpg" },
   ];
 
   const hoverColors = ["#10B981", "#8B5CF6", "#3B82F6"];
@@ -39,10 +41,12 @@ export default function ExploreFaculties() {
             const color = hoverColors[Math.floor(index / 2)];
             
             return (
-              <div 
+              // تم تحويل الـ div إلى Link وتوجيهه إلى صفحة الأكاديميات مع الـ id
+              <Link 
+                href={`/academics?faculty=${faculty.id}`}
                 key={index} 
                 style={{ '--hover-color': color } as React.CSSProperties}
-                className="group relative h-[350px] rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 shadow-md dark:shadow-none"
+                className="group relative h-[350px] rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 shadow-md dark:shadow-none block"
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = color; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; }}
               >
@@ -66,11 +70,11 @@ export default function ExploreFaculties() {
                   <h3 className="text-white text-2xl font-semibold mb-3 drop-shadow-sm">
                     {faculty.title}
                   </h3>
-                  <a href="#" className="text-white text-sm font-medium uppercase tracking-wider flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-[var(--hover-color)] drop-shadow-sm">
+                  <div className="text-white text-sm font-medium uppercase tracking-wider flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-[var(--hover-color)] drop-shadow-sm">
                     {isRTL ? "اعرف المزيد ←" : "Learn More →"}
-                  </a>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
