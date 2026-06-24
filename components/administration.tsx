@@ -19,36 +19,27 @@ export default function Administration() {
     const [isGradFacultyOpen, setIsGradFacultyOpen] = useState(false);
     const [gradPillar, setGradPillar] = useState("International Joint Degrees");
     const [isGradPillarOpen, setIsGradPillarOpen] = useState(false);
- const searchParams = useSearchParams();
+const searchParams = useSearchParams();
 
     useEffect(() => {
         const pageParam = searchParams.get('page');
         const newsIdParam = searchParams.get('newsId');
-        const itemParam = searchParams.get('item');
-
+        const itemParam = searchParams.get('item'); 
         if (pageParam) {
-            // 1. هذا السطر يغير الصفحة لأي قيمة تأتي من الرابط (بيشغل الكروت كلها)
             setActivePage(pageParam as any);
 
-            // 2. هذا الجزء الخاص بالأخبار (لا يزال يعمل كما هو)
+            if (pageParam === 'community_service' && itemParam === 'Sustainable_Development') {
+                const matchedItem = communityCardsData.find(item => item.title === "Sustainable Development");
+                if (matchedItem) {
+                    setActiveCommunityItem(matchedItem); 
+                }
+            }
+
             if (pageParam === 'secretary_general' && newsIdParam) {
                 const matchedNews = secGenNews.find(item => item.id?.toString() === newsIdParam);
                 if (matchedNews) {
                     setActiveNewsItem(matchedNews);
                 }
-            }
-
-            // 3. هذا الجزء الخاص بـ Sustainable Development (فتح القسم مباشرة)
-            if (pageParam === 'community_service' && itemParam) {
-                const matchedItem = communityCardsData.find(item => item.title === itemParam.replace('+', ' '));
-                if (matchedItem) {
-                    setActiveCommunityItem(matchedItem);
-                }
-                // إضافة تمرير تلقائي للقسم
-                setTimeout(() => {
-                    const element = document.getElementById('community_section');
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }, 500);
             }
         }
     }, [searchParams]);

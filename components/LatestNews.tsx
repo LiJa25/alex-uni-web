@@ -20,41 +20,42 @@ export default function LatestNews() {
         }
     };
 
+    // تم تحديث المحتوى بالكامل ليطابق تفاصيل قطاع الأمانة بدقة من حيث العناوين، التواريخ، والصور الحقيقية
     const newsArticles = [
         {
             id: 1,
-            title: strings.latestNews.articles[0]?.title || "In a Yearly Tradition... Alexandria University Brings Together Its International Students for a Ramadan Iftar",
-            day: strings.latestNews.articles[0]?.day || "10",
-            month: strings.latestNews.articles[0]?.month || "MAR",
-            image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop", 
+            title: strings.latestNews.articles[0]?.title || "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.",
+            day: "28",
+            month: "NOV",
+            image: "/imgs/Article photo 1.jpg", 
         },
         {
             id: 2,
-            title: strings.latestNews.articles[1]?.title || "On the Occasion of International Women's Day.. Women of Alexandria University: Inspiring Models of Giving and Leadership",
-            day: strings.latestNews.articles[1]?.day || "10",
-            month: strings.latestNews.articles[1]?.month || "MAR",
-            image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800&auto=format&fit=crop",
+            title: strings.latestNews.articles[1]?.title || "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.",
+            day: "22",
+            month: "JUL",
+            image: "/imgs/Article photo 5.jpg",
         },
         {
             id: 3,
-            title: strings.latestNews.articles[2]?.title || "Alexandria University Hosts Seminar to Promote Volunteering and Child Protection in Cooperation with the National...",
-            day: strings.latestNews.articles[2]?.day || "09",
-            month: strings.latestNews.articles[2]?.month || "MAR",
-            image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=800&auto=format&fit=crop",
+            title: strings.latestNews.articles[2]?.title || "Board of Trustees discusses mechanisms for implementing university's programs and performance budget.",
+            day: "26",
+            month: "JUN",
+            image: "/imgs/Article photo 3.jpg",
         },
         {
             id: 4,
-            title: strings.latestNews.articles[3]?.title || "Faculty of ICT Announces New Partnership with Top Tech Companies for Summer Internships",
-            day: strings.latestNews.articles[3]?.day || "05",
-            month: strings.latestNews.articles[3]?.month || "MAR",
-            image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+            title: strings.latestNews.articles[3]?.title || "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025.",
+            day: "24",
+            month: "MAY",
+            image: "/imgs/Article photo 6.jpg",
         },
         {
             id: 5,
-            title: isRTL ? "اجتماع الخريجين السنوي: الاحتفال بمرور 80 عاماً من التميز الأكاديمي والأثر العالمي" : "Annual Alumni Meetup: Celebrating 80 Years of Academic Excellence and Global Impact",
-            day: "01",
-            month: isRTL ? "مارس" : "MAR",
-            image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
+            title: strings.latestNews.articles[4]?.title || "Board of Trustees Discusses Preparations for Second Semester Final Exams.",
+            day: "21",
+            month: "APR",
+            image: "/imgs/Article photo 7.jpg",
         }
     ];
 
@@ -138,7 +139,7 @@ export default function LatestNews() {
                             </div>
                             
                             <div className="p-8 flex flex-col flex-grow">
-                                <h3 className="font-kameron text-[22px] font-bold text-blue-900 dark:text-gray-100 leading-snug mb-8 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300">
+                                <h3 className="font-kameron text-[22px] font-bold text-blue-900 dark:text-gray-100 leading-snug mb-8 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-3">
                                     {article.title}
                                 </h3>
                                 
