@@ -253,40 +253,91 @@ export default function Administration() {
 
 
     const eduAffairsCards = [
-
-        { title: "AU Student Life", icon: <Sparkles size={28} strokeWidth={1.5} />, desc: "Campus community, clubs, events, and social activities", links: ["Student Clubs", "Campus Events"] },
-
-        { title: "Student Services", icon: <Shield size={28} strokeWidth={1.5} />, desc: "Housing, financial aid, counseling, and support systems", links: ["Portal Login", "Housing Services"] },
-
-        { title: "Academic Life", icon: <BookOpen size={28} strokeWidth={1.5} />, desc: "Academic resources, library services, and learning support", links: ["Library Portal", "Academic Calendar"] },
-
-        { title: "International Student Services", icon: <Globe size={28} strokeWidth={1.5} />, desc: "Support for international students and exchange programs", links: ["Visa Support", "Language Programs"] }
-
-    ];
+    { 
+        title: "AU Student Life", 
+        icon: <Sparkles size={30} strokeWidth={1.5} />, 
+        desc: "Campus community, clubs, events, and social activities", 
+        links: ["Student Clubs", "Campus Events", "Student Union", "Sports & Recreation"] 
+    },
+    { 
+        title: "Student Services", 
+        icon: <Shield size={30} strokeWidth={1.5} />, 
+        desc: "Housing, financial aid, counseling, and support systems", 
+        links: ["Portal Login", "Housing Services", "Scholarships", "Counseling Center"] 
+    },
+    { 
+        title: "Academic Life", 
+        icon: <BookOpen size={30} strokeWidth={1.5} />, 
+        desc: "Academic resources, library services, and learning support", 
+        links: ["Library Portal", "Academic Calendar", "Tutoring Services", "Course Registration"] 
+    },
+    { 
+        title: "International Student Services", 
+        icon: <Globe size={30} strokeWidth={1.5} />, 
+        desc: "Support for international students and exchange programs", 
+        links: ["Visa Support", "Language Programs", "Cultural Integration", "Study Abroad"] 
+    }
+];
 
 
 
     const communityCardsData = [
-
-        { title: "Sustainable Development", desc: "Egypt's Vision 2030 tracker and carbon monitoring.", icon: <Target size={32} />, badge: "VISION 2030" },
-
-        { title: "Environmental Sector", desc: "Organizational blueprint for environmental initiatives.", icon: <Leaf size={32} /> },
-
-        { title: "Institutional Development", desc: "Egypt Government Excellence Award preparations.", icon: <Award size={32} /> },
-
-        { title: "Convoys", desc: "Medical and social caravans to remote villages.", icon: <HeartHandshake size={32} /> },
-
-        { title: "Literacy", desc: "Community adult education programs.", icon: <BookOpen size={32} /> },
-
-        { title: "Community Initiatives", desc: "Tahya Misr Fund and digital platforms.", icon: <Users size={32} /> },
-
-        { title: "Transformative Training", desc: "Vocational workshops and upskilling.", icon: <Briefcase size={32} /> },
-
-        { title: "Units of Special Nature", desc: "Nanotechnology, Occupational Health & Safety.", icon: <Microscope size={32} /> },
-
-        { title: "Alexandria University Museums", desc: "Cultural archives and museum treasures.", icon: <Library size={32} /> }
-
-    ];
+    { 
+        title: "Sustainable Development", 
+        desc: "Egypt's Vision 2030 tracker, carbon emission monitoring, and Smart Waste Management initiatives", 
+        icon: <Target />, 
+        badge: "STRATEGIC",
+        bottomBadge: "VISION 2030 ACTIVE" 
+    },
+    { 
+        title: "Forming the Environment Sector", 
+        desc: "Organizational blueprint and structural framework for environmental initiatives", 
+        icon: <Leaf />, 
+        badge: "STRATEGIC",
+    },
+    { 
+        title: "Government Excellence & Institutional Development", 
+        desc: "Egypt Government Excellence Award 2026 preparations and ISO certifications", 
+        icon: <Award />, 
+        badge: "STRATEGIC",
+    },
+    { 
+        title: "Convoys", 
+        desc: "Medical, dental, and social caravans to remote villages (Hayah Karimah initiative)", 
+        icon: <HeartHandshake />, 
+        bottomBadge: "ITEMS DISTRIBUTED" 
+    },
+    { 
+        title: "Literacy", 
+        desc: "Community adult education programs across all faculties", 
+        icon: <BookOpen />, 
+        bottomBadge: "ACTIVE CLASSES" 
+    },
+    { 
+        title: "Community Initiatives", 
+        desc: "Tahya Misr Fund (Dukan El-Farha) and INSAT digital support platform", 
+        icon: <Users />, 
+        bottomBadge: "DIGITAL PLATFORM LIVE" 
+    },
+    { 
+        title: "Transformative Training", 
+        desc: "Vocational workshops, R&D upskilling, and professional training seminars", 
+        icon: <GraduationCap />, 
+        bottomBadge: "10K+ TRAINEES/YEAR" 
+    },
+    { 
+        title: "Units and Centers of a Special Nature", 
+        desc: "8 central service units including Nanotechnology, Occupational Health & Safety, African Development", 
+        icon: <Building2 />, 
+        bottomBadge: "ACTIVE CENTERS" 
+    },
+    { 
+        title: "Alexandria University Museums", 
+        desc: "Cultural archives and museum treasures showcasing university heritage", 
+        icon: <Library />, 
+        bottomBadge: "MUSEUM ARTIFACTS" 
+    }
+];
 
 
 
@@ -319,13 +370,114 @@ export default function Administration() {
 
 
     const secGenDepts = [
-
-        { title: "General Administration for Personnel", icon: <Building size={20} />, tasks: ["Workforce planning", "Pension follow-up"] },
-
-        { title: "General Administration of Purchasing", icon: <FileText size={20} />, tasks: ["Procurement policy", "Inventory control"] },
-
-        { title: "Financial Affairs", icon: <Building2 size={20} />, tasks: ["Budget monitoring", "Inspection"] }
-
+        { 
+            title: "General Administration for Personnel and General Cadre", 
+            icon: <Building2 size={22} />, 
+            tasks: [
+                "Develop the work plan and distribute it among its departments, and coordinate work between them to ensure the proper functioning of the work.",
+                "Holding periodic meetings with the heads of various departments to discuss work problems and work to solve them.",
+                "Proposing a plan for research and studies related to planning and workforce development and supervising its implementation.",
+                "Supervising the work of organization and management, drawing conclusions, studying reports and memoranda, proposing work plans.",
+                "Conducting studies on simplifying procedures and models used in work.",
+                "Setting the necessary performance rates for the various administrative organizations.",
+                "Preparing and following up the job ranking system based on duties and responsibilities.",
+                "Follow up the implementation of the laws related to the settlement of workers' pensions and bonuses.",
+                "Review the topics to be presented in the Standing Committee for Leadership Positions and follow up the implementation of its decisions.",
+                "Follow up the application of systems and rules related to personnel affairs, their desires and health, social and cultural care.",
+                "Participate in personnel affairs committees and supervise the work of their secretariats and agendas."
+            ] 
+        },
+        { 
+            title: "General Administration of Purchasing and Stores", 
+            icon: <FileText size={22} />, 
+            tasks: [
+                "Participate with university officials in drawing up a procurement and storage policy that ensures that the university obtains necessary supplies.",
+                "Studying the markets from which the needs of the university can be obtained at the lowest prices, the finest varieties, and the best conditions.",
+                "Follow up the work of inventorying the needs of the public administration and the faculties of the university of tools, hardware and supplies.",
+                "Carrying out all procurement contracting procedures through public tenders, direct procurement or purchase by practice.",
+                "Concluding contracts and agreements for procurement and following up on the procedures for their implementation.",
+                "Organization of exchange operations from warehouses.",
+                "Follow up inventory operations for stored items and disposal of used items by selling them while following financial instructions.",
+                "Follow up of keeping inventory books and recording them in all works related to warehouse accounts.",
+                "Follow up the preparation of supply orders and preliminary invoices to implement procurement procedures.",
+                "Follow up the implementation and application of the Warehouses and Purchases Regulations and the Financial Regulations.",
+                "Participation in committees for deciding on local tenders and committees for imported devices and items.",
+                "Follow up the balances of the beneficiaries and their debts, and pay their dues in conjunction with the university accounts.",
+                "Prepare periodic and annual reports on procurement and warehouse activity and submit them to the direct presidency."
+            ] 
+        },
+        { 
+            title: "General Administration for Financial and Administrative Affairs", 
+            icon: <BookOpen size={22} />, 
+            tasks: [
+                "Preparing a system for rationalizing the work and financial and administrative procedures at the university to guide it when carrying out financial administrative guidance.",
+                "Preparing plans and programs for periodic surprise inspection of the work of financial and administrative affairs at the university, its colleges and branches.",
+                "Investigate the violations referred to it by the competent authorities of a financial and administrative nature and express an opinion on the treatment of any deficiency.",
+                "Examining and responding to tenders received from financial and administrative audit institutions in light of the results of their research.",
+                "Proposing systems to avoid the repetition of violations resulting from the directive and taking measures to implement and follow them up."
+            ] 
+        },
+        { 
+            title: "General Administration for Budget and Accounts", 
+            icon: <FileText size={22} />, 
+            tasks: [
+                "Monitor the implementation of the provisions of financial affairs laws and regulations.",
+                "Review the expenses of the first chapter on salaries and wages, in accordance with the books corresponding to the entitlements.",
+                "Reviewing pensions, indemnities, and the like, as well as all types of bonuses, and keeping the relevant records.",
+                "Taking the procedures for opening credits for the entitlements of university employees and delegates abroad.",
+                "Review all disbursement forms for general and investment expenses.",
+                "Review all exchange statements whose checks are drawn on the representatives of exchange or distribution.",
+                "Carry out investigation, search and claim procedures for the settlement of each amount requested by the division.",
+                "Representing the accounts in the tender envelope committees and handing over the insurances in which they are submitted.",
+                "Revenue Collection Control: Review receipts vouchers, monitor the payment of cash account balances, make their adjustments.",
+                "Reviewing bank statements and current accounts and making the necessary settlements.",
+                "Making adjustments related to the deduction of expenses under settlement or addition to trusts.",
+                "Follow up bookkeeping of the claims of the railway and the General Authority for Post and take disbursement and settlement procedures.",
+                "Follow up of keeping exchange journals and extracting the daily account, as well as all other books of account entry.",
+                "Follow up of claims and entitlements and recording settlements after reviewing and approving them.",
+                "Follow up the preparation of responses to the observations of the Central Auditing Organization and various inspection reports.",
+                "Extracting the remaining intermediate accounts monthly and notifying the competent authorities to investigate them.",
+                "Reviewing the work of extracting the monthly and quarterly account, interviewing the monthly statements and settlements."
+            ] 
+        },
+        { 
+            title: "General Administration for Engineering Affairs", 
+            icon: <Building2 size={22} />, 
+            tasks: [
+                "Follow up the technical aspects of the university's devices and equipment.",
+                "Participate in the preparation of engineering drawings for university buildings.",
+                "Follow up work related to construction, renovations and maintenance of university buildings.",
+                "Participation in the supply committees for equipment and devices.",
+                "Supervising the maintenance of buildings and gardens.",
+                "Follow up the preparation of a study on the needs of the University Land and buildings to meet the various expansions."
+            ] 
+        },
+        { 
+            title: "General Administration of Special Funds", 
+            icon: <FileText size={22} />, 
+            tasks: [
+                "Contribute to the development of public policies related to the various areas of work on which supervision and guidance are exercised.",
+                "Representing the university in various meetings, committees and conferences related to the field of work.",
+                "Follow up the implementation of the executive programs related to these policies.",
+                "Develop and distribute the work plan among the subordinate departments and coordinate the work between them.",
+                "Exercise of financial and administrative authorities within the limits of the mandates granted.",
+                "Holding periodic meetings with heads of various departments to discuss work problems and work to solve them.",
+                "Applying the laws, regulations and instructions that govern the work of its departments.",
+                "Collecting funds that do not enter the university budget, such as fees, donations, concessions and other funds.",
+                "Carrying out disbursement information from the proceeds of the accounts allocated for the concluded agreements.",
+                "Prepare the draft budget of special accounts and take procedures to present it to the competent authorities for approval.",
+                "Follow up the procedures for depositing the proceeds of special accounts in the bank chosen by the university.",
+                "Review the records necessary to prove all deposit and exchange operations in accordance with the system and the rules.",
+                "Review the settling and registration of changes, notify the bank and the beneficiaries, and take all related procedures.",
+                "Taking into account the application of the university's financial regulations regarding the system of special accounts.",
+                "Reviewing revenues and matching them to collection dockets and university books of accounts.",
+                "Expressing an opinion on memoranda and various topics related to the work of private accounts.",
+                "Expressing an opinion on the reports prepared by the units of a special nature on their work.",
+                "Participate in the adoption of the estimated and actual budget for each of the units of a special nature of the university.",
+                "Participation in the membership of the Board of Directors of units of a special nature of colleges, institutes and branches.",
+                "Signing correspondence issued within the limits of the authorized authorities."
+            ] 
+        }
     ];
 
 
@@ -346,8 +498,16 @@ export default function Administration() {
 
     const progressWidth = `${(timelineYears.indexOf(timelineYear) / (timelineYears.length - 1)) * 100}%`;
 
-    const filteredArchiveVideos = [{ date: "May 2026", initial: "F", category: "JOINT DEGREES", title: "Diplomas Launch", color: "#eab308" }];
-
+const filteredArchiveVideos = [
+    { date: "May 2024", initial: "F", category: "FACULTY OF EDUCATION | JOINT DEGREES", title: "Governance Frameworks & Senghor University Joint Diplomas Launch", color: "#374774" },
+    { date: "December 2025", initial: "F", category: "FACULTY OF ENGINEERING | GLOBAL RANKINGS", title: "Scopus Index Celebrations: Engineering & Veterinary Medicine Journals", color: "#165a50" },
+    { date: "September 2025", initial: "I", category: "INNOVATION | ARTIFICIAL INTELLIGENCE", title: "AI Strategy Sessions Benchmarking Stanford, Harvard & Oxford Hubs", color: "#743538" },
+    { date: "June 2024", initial: "I", category: "INTERNATIONAL PROGRAMS | DUAL DEGREES", title: "University of East London (UEL) Joint Sports Performance Protocol", color: "#543374" },
+    { date: "March 2025", initial: "F", category: "FACULTY OF MEDICINE | INTERNATIONAL FELLOWSHIPS", title: "Medicine International Residency Program & Fellowship", color: "#184f76" },
+    { date: "November 2024", initial: "F", category: "FACULTY OF SCIENCE | COUNCIL CELEBRATIONS", title: "Research Excellence Awards & Faculty Recognition Ceremony", color: "#6d4c20" },
+    { date: "July 2022", initial: "U", category: "UNIVERSITY COUNCIL | COUNCIL CELEBRATIONS", title: "Celebration for Dr. Seddik Abdel Salam - Lifetime", color: "#6b4a15" },
+    { date: "August 2023", initial: "F", category: "FACULTY OF PHARMACY | SCIENTIFIC RESEARCH", title: "Pharmaceutical Research Collaboration with Kuwait", color: "#482f76" }
+];
 
 
     return (
@@ -953,110 +1113,60 @@ export default function Administration() {
                     </div>
 
                 ) : activePage === 'edu_affairs' ? (
+    <div className="max-w-none w-full flex flex-col items-center text-center pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full flex justify-start mb-10">
+            <button
+                onClick={() => setActivePage('hub')}
+                className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-[#001A41] dark:hover:text-[#4FD1C5] transition-all duration-300 group cursor-pointer font-bold dark:font-medium p-0 bg-transparent border-none"
+            >
+                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+                <span>Back to Administration Hub</span>
+            </button>
+        </div>
 
-                    <div className="max-w-none w-full flex flex-col items-center text-center pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full flex flex-col items-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold dark:font-normal text-[#001A41] dark:text-[#4FD1C5] tracking-tight dark:tracking-wide whitespace-normal md:whitespace-nowrap mb-6">
+                Education & Students' Affairs
+            </h2>
+            <p className="text-[15px] text-slate-600 dark:text-white/80 font-bold dark:font-light max-w-2xl leading-relaxed">
+                Empowering students through comprehensive support, academic excellence, and vibrant campus life
+            </p>
+        </div>
 
-                        <div className="w-full flex justify-start mb-10">
-
-                            <button
-
-                                onClick={() => setActivePage('hub')}
-
-                                className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-[#001A41] dark:hover:text-[#4FD1C5] transition-all duration-300 group cursor-pointer font-bold dark:font-medium p-0 bg-transparent border-none"
-
-                            >
-
-                                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-
-                                <span>Back to Administration Hub</span>
-
-                            </button>
-
-                        </div>
-
-
-
-                        <div className="w-full flex flex-col items-center text-center mb-16">
-
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold dark:font-normal text-[#001A41] dark:text-[#4FD1C5] tracking-tight dark:tracking-wide whitespace-normal md:whitespace-nowrap mb-6">
-
-                                Education & Students' Affairs
-
-                            </h2>
-
-                            <p className="text-[15px] text-slate-600 dark:text-white/80 font-bold dark:font-light max-w-2xl leading-relaxed">
-
-                                Empowering students through comprehensive support, academic excellence, and vibrant campus life
-
-                            </p>
-
-                        </div>
-
-
-
-                        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-                            {eduAffairsCards.map((card, idx) => (
-
-                                <div
-
-                                    key={idx}
-
-                                    className="group relative bg-white dark:bg-[#00172e]/80 backdrop-blur-md border border-slate-200 dark:border-white/5 rounded-[32px] p-10 flex flex-col items-center transition-all duration-500 min-h-[400px] shadow-sm dark:shadow-2xl hover:shadow-xl overflow-hidden"
-
-                                >
-
-                                    <div className="flex flex-col items-center justify-center flex-1 w-full transition-transform duration-500 group-hover:-translate-y-20">
-
-                                        <div className="w-[72px] h-[72px] rounded-[24px] bg-[#001A41]/5 dark:bg-[#4FD1C5]/10 flex items-center justify-center text-[#001A41] dark:text-[#4FD1C5] mb-8 shadow-inner dark:shadow-[inset_0_0_20px_rgba(79,209,197,0.1)] border border-slate-200 dark:border-[#4FD1C5]/20 rotate-45 transition-transform duration-500">
-
-                                            <div className="-rotate-45 transition-transform duration-500">
-
-                                                {card.icon}
-
-                                            </div>
-
-                                        </div>
-
-                                        <h3 className="text-[24px] font-serif font-bold dark:font-normal text-[#001A41] dark:text-[#4FD1C5] group-hover:text-[#0B3C5D] dark:group-hover:text-[#ebd27c] transition-colors duration-500 mb-4">{card.title}</h3>
-
-                                        <p className="text-slate-600 dark:text-white/70 text-[14px] font-medium dark:font-light text-center px-4 leading-relaxed">{card.desc}</p>
-
-                                    </div>
-
-
-
-                                    <div className="absolute bottom-10 left-10 right-10 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
-
-                                        <div className="w-full h-px bg-slate-200 dark:bg-white/10 mb-6"></div>
-
-                                        <h4 className="text-[#0B3C5D] dark:text-[#ebd27c] text-[11px] font-bold tracking-[0.15em] uppercase mb-5 text-center">Quick Links</h4>
-
-                                        <div className="grid grid-cols-2 gap-3">
-
-                                            {card.links.map((link, lIdx) => (
-
-                                                <button key={lIdx} className="bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-xl py-3.5 text-[12px] text-[#001A41] dark:text-white/80 transition-colors w-full font-bold dark:font-medium shadow-sm hover:shadow-md">
-
-                                                    {link}
-
-                                                </button>
-
-                                            ))}
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {eduAffairsCards.map((card, idx) => (
+                <div
+                    key={idx}
+                    className="group relative bg-[#040e1f] border border-[#1e2d40] border-l-[3px] border-l-[#D4AF37] rounded-3xl p-10 flex flex-col items-center transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(79,209,197,0.1)] hover:-translate-y-2 overflow-hidden"
+                >
+                    {/* Icon Box */}
+                    <div className="w-[72px] h-[72px] rounded-2xl bg-[#0f2238] flex items-center justify-center text-[#4FD1C5] mb-6 shadow-[0_0_20px_rgba(79,209,197,0.15)] transition-transform duration-500 group-hover:scale-110">
+                        {card.icon}
                     </div>
 
-                ) : activePage === 'graduate_studies' ? (
+                    {/* Title & Description */}
+                    <h3 className="text-[24px] font-serif text-[#D4AF37] mb-4 text-center">{card.title}</h3>
+                    <p className="text-white/80 text-[14px] font-light text-center px-4 leading-relaxed mb-8">{card.desc}</p>
+
+                    {/* Horizontal Divider */}
+                    <div className="w-[90%] h-px bg-[#1e2d40] mb-6"></div>
+
+                    {/* Quick Links Label */}
+                    <h4 className="text-[#D4AF37] text-[11px] font-bold tracking-[0.15em] uppercase mb-5 text-center">Quick Links</h4>
+                    
+                    {/* Buttons Grid */}
+                    <div className="grid grid-cols-2 gap-4 w-full">
+                        {card.links.map((link, lIdx) => (
+                            <button key={lIdx} className="bg-[#0a1526] border border-[#1e2d40] hover:border-[#4FD1C5]/50 hover:bg-[#132337] rounded-xl py-3.5 px-2 text-[12px] text-white/80 hover:text-white transition-all w-full font-medium shadow-sm">
+                                {link}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+) : activePage === 'graduate_studies' ? (
 
                     <div className="max-w-none w-full flex flex-col items-start text-left pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
@@ -1589,60 +1699,40 @@ export default function Administration() {
 
 
                         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+    {filteredArchiveVideos.map((video, idx) => (
+        <div 
+            key={idx} 
+            className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all duration-300 shadow-md cursor-pointer min-h-[260px]"
+        >
+            <div 
+                className="h-[150px] w-full relative flex items-center justify-center transition-colors duration-500" 
+                style={{ backgroundColor: video.color }}
+            >
+                <div className="absolute top-4 right-4 bg-[#051024]/80 px-3 py-1.5 rounded-full text-white text-[10px] font-bold shadow-sm backdrop-blur-sm">
+                    {video.date}
+                </div>
+                
+                <div className="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <Play size={44} strokeWidth={1} className="text-white opacity-80 group-hover:opacity-100 ml-2" />
+                </div>
+            </div>
 
-                            {filteredArchiveVideos.map((video, idx) => (
-
-                                <div key={idx} className="group relative flex flex-col bg-white dark:bg-[#0b162c] border border-slate-200 dark:border-[#D4AF37]/20 rounded-2xl overflow-hidden hover:border-slate-300 dark:hover:border-[#D4AF37]/60 transition-all duration-300 shadow-sm dark:shadow-lg hover:shadow-lg min-h-[320px]">
-
-                                    <div className="h-44 w-full relative flex items-center justify-center transition-colors duration-500" style={{ backgroundColor: video.color }}>
-
-                                        <div className="absolute top-4 right-4 bg-white/90 dark:bg-[#000d1a]/60 backdrop-blur-md px-3 py-1 rounded-full text-[#001A41] dark:text-white text-[10px] font-bold shadow-sm">
-
-                                            {video.date}
-
-                                        </div>
-
-                                        <div className="w-14 h-14 rounded-full border border-white/40 dark:border-white/30 flex items-center justify-center text-white/70 dark:text-white/50 group-hover:bg-white/20 dark:group-hover:bg-white/10 group-hover:text-white group-hover:border-white transition-all duration-300 shadow-md dark:shadow-none backdrop-blur-sm">
-
-                                            <Play size={24} className="ml-1" />
-
-                                        </div>
-
-                                    </div>
-
-                                    <div className="p-6 pb-16 flex flex-col flex-1 bg-white dark:bg-[#101b33] relative">
-
-                                        <div className="flex items-center gap-2 mb-3">
-
-                                            <div className="w-5 h-5 rounded bg-slate-100 dark:bg-[#D4AF37]/20 text-[#001A41] dark:text-[#D4AF37] flex items-center justify-center text-[10px] font-black dark:font-bold shrink-0">
-
-                                                {video.initial}
-
-                                            </div>
-
-                                            <p className="text-slate-500 dark:text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">{video.category}</p>
-
-                                        </div>
-
-                                        <h3 className="text-[#001A41] dark:text-white text-sm font-bold dark:font-medium leading-relaxed line-clamp-3 mb-2 transition-opacity duration-300 group-hover:-translate-y-2">{video.title}</h3>
-
-                                        <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-
-                                            <button className="w-full bg-[#001A41] dark:bg-[#464835] border border-[#001A41] dark:border-[#D4AF37]/50 text-white dark:text-[#D4AF37] py-2.5 rounded-lg text-xs font-bold dark:font-semibold hover:bg-[#0B3C5D] dark:hover:bg-[#585940] transition-colors shadow-md dark:shadow-lg">
-
-                                                View Details
-
-                                            </button>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            ))}
-
-                        </div>
+            <div className="flex-1 bg-[#152336] p-5 flex flex-col justify-start">
+                <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-5 h-5 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] text-[9px] font-black border border-[#D4AF37]/30 shrink-0">
+                        {video.initial}
+                    </div>
+                    <p className="text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">
+                        {video.category}
+                    </p>
+                </div>
+                <h3 className="text-white text-[13px] font-bold leading-relaxed line-clamp-2">
+                    {video.title}
+                </h3>
+            </div>
+        </div>
+    ))}
+</div>
 
 
 
@@ -1803,52 +1893,45 @@ export default function Administration() {
 
 
                                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {communityCardsData.map((item, idx) => (
+        <div
+            key={idx}
+            onClick={() => setActiveCommunityItem(item)}
+            className="group relative flex flex-col justify-between bg-gradient-to-br from-[#508d76] to-[#213e38] rounded-2xl p-7 cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 min-h-[220px] border border-white/5 overflow-hidden"
+        >
+            {/* الأيقونة الباهتة في الخلفية (Watermark) */}
+            <div className="absolute top-4 left-4 text-white/5 pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:text-white/10">
+                {React.cloneElement(item.icon as React.ReactElement, { size: 60 } as any)}
+            </div>
 
-                                    {communityCardsData.map((item, idx) => (
+            <div className="relative z-10">
+                <div className="flex justify-end items-start mb-4 h-6">
+                    {item.badge && (
+                        <div className="bg-white/10 text-white/40 text-[9px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full">
+                            {item.badge}
+                        </div>
+                    )}
+                </div>
 
-                                        <div
+                <h3 className="text-xl font-serif text-white mb-3 leading-snug">
+                    {item.title}
+                </h3>
+                <p className="text-white/70 text-[13px] font-light leading-relaxed">
+                    {item.desc}
+                </p>
+            </div>
 
-                                            key={idx}
-
-                                            onClick={() => setActiveCommunityItem(item)}
-
-                                            className="relative overflow-hidden bg-white dark:bg-gradient-to-br dark:from-[#2a5a52]/40 dark:to-[#132d28]/60 backdrop-blur-md border border-slate-200 dark:border-[#5ab8a0]/20 rounded-2xl p-8 transition-all duration-300 group shadow-sm dark:shadow-lg min-h-[220px] flex flex-col justify-start cursor-pointer hover:border-[#0B3C5D] dark:hover:border-[#5ab8a0]/50 hover:shadow-md hover:-translate-y-1"
-
-                                        >
-
-                                            <div className="absolute top-0 right-0 p-6 z-10 flex justify-end w-full">
-
-                                                {idx !== 1 && (
-
-                                                    <div className="text-[#001A41] dark:text-[#5ab8a0]/60 text-[10px] font-black dark:font-bold uppercase tracking-widest bg-slate-100 dark:bg-[#5ab8a0]/10 px-3 py-1 rounded-full border border-slate-200 dark:border-[#5ab8a0]/20">
-
-                                                        Strategic
-
-                                                    </div>
-
-                                                )}
-
-                                            </div>
-
-                                            <div className="absolute top-8 left-8 text-[#0B3C5D] dark:text-[#5ab8a0] opacity-5 dark:opacity-10 group-hover:opacity-10 dark:group-hover:opacity-20 group-hover:scale-110 transition-all duration-500 pointer-events-none origin-top-left">
-
-                                                {React.cloneElement(item.icon as React.ReactElement, { size: 64 } as any)}
-
-                                            </div>
-
-                                            <div className="relative z-20 mt-6">
-
-                                                <h3 className="text-[19px] font-serif font-bold dark:font-normal text-[#001A41] dark:text-white mb-3 group-hover:text-[#0B3C5D] dark:group-hover:text-[#5ab8a0] transition-colors">{item.title}</h3>
-
-                                                <p className="text-slate-600 dark:text-slate-300 text-[13px] font-medium dark:font-light leading-relaxed">{item.desc}</p>
-
-                                            </div>
-
-                                        </div>
-
-                                    ))}
-
-                                </div>
+            {/* الـ Badge السفلي الباهت */}
+            {item.bottomBadge && (
+                <div className="relative z-10 mt-6">
+                    <div className="inline-block bg-white/5 text-white/20 text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-colors group-hover:bg-white/10 group-hover:text-white/40">
+                        {item.bottomBadge}
+                    </div>
+                </div>
+            )}
+        </div>
+    ))}
+</div>
 
                             </>
 
