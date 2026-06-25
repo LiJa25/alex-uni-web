@@ -1,10 +1,9 @@
-// app/registration/page.tsx
 "use client";
 
 import React, { useState } from 'react';
 import Hero from "@/components/Hero";
 import { supabase } from "@/lib/supabase";
-import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, AlertCircle, UploadCloud } from 'lucide-react';
 
 export default function RegistrationPage() {
     const [formData, setFormData] = useState({
@@ -12,20 +11,56 @@ export default function RegistrationPage() {
         lastName: "",
         email: "",
         confirmEmail: "",
+        nationality: "",
         dialingCode: "+20",
         mobileNumber: "",
         isInternational: "No",
         academicLevel: "",
         facultyOfInterest: "",
-        declarationConsent: ""
+        declarationConsent: "",
+        documentName: ""
     });
 
     const [submitted, setSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Strict validation for Dialing Code: Only numbers and '+'
+    const handleDialingCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let safeValue = e.target.value.replace(/[^0-9+]/g, '');
+        if (safeValue.indexOf('+') > 0) {
+            safeValue = safeValue.replace(/\+/g, '');
+            safeValue = '+' + safeValue; 
+        }
+        setFormData({ ...formData, dialingCode: safeValue });
+    };
+
+    // Strict validation for Mobile Number: Only numbers
+    const handleMobileNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const safeValue = e.target.value.replace(/[^0-9]/g, '');
+        setFormData({ ...formData, mobileNumber: safeValue });
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0];
+            if (file.type !== "application/pdf") {
+                setError("Please upload a valid PDF document.");
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                setError("File size must be less than 5MB.");
+                return;
+            }
+            setSelectedFile(file);
+            setFormData({ ...formData, documentName: file.name });
+            setError("");
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +68,7 @@ export default function RegistrationPage() {
         setError("");
         setIsLoading(true);
 
-        if (!formData.firstName || !formData.email || !formData.confirmEmail || !formData.academicLevel || !formData.declarationConsent) {
+        if (!formData.firstName || !formData.email || !formData.confirmEmail || !formData.nationality || !formData.academicLevel || !formData.declarationConsent) {
             setError("Please fill in all fields marked with an asterisk (*).");
             setIsLoading(false);
             return;
@@ -46,7 +81,6 @@ export default function RegistrationPage() {
         }
 
         try {
-            // Live Insert to Supabase Table
             const { error: dbError } = await supabase
                 .from('registration_applications')
                 .insert([
@@ -54,11 +88,13 @@ export default function RegistrationPage() {
                         first_name: formData.firstName,
                         last_name: formData.lastName,
                         email: formData.email,
+                        nationality: formData.nationality,
                         dialing_code: formData.dialingCode,
                         mobile_number: formData.mobileNumber,
                         is_international: formData.isInternational,
                         academic_level: formData.academicLevel,
                         faculty_of_interest: formData.facultyOfInterest,
+                        document_url: formData.documentName, 
                         status: 'pending'
                     }
                 ]);
@@ -88,7 +124,7 @@ export default function RegistrationPage() {
                             Application Successfully Received
                         </h1>
                         <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
-                            Thank you for your interest in Alexandria University. Your academic profile has been logged inside our admissions database framework. Our admissions sector will contact you via your provided email shortly.
+                            Thank you for your interest in Alexandria University. Your academic profile and documents have been securely logged inside our admissions database. Our sector will contact you via your provided email shortly.
                         </p>
                     </div>
                 ) : (
@@ -141,32 +177,48 @@ export default function RegistrationPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Mobile Dialling Code</label>
-                                        <select name="dialingCode" value={formData.dialingCode} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all">
-                                            <option value="+20">Egypt (+20)</option>
-                                            <option value="+1">USA/Canada (+1)</option>
-                                            <option value="+44">UK (+44)</option>
-                                            <option value="+966">Saudi Arabia (+966)</option>
-                                        </select>
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Nationality *</label>
+                                        <input type="text" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="e.g. Egyptian, Saudi, French..." className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all" />
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Mobile Number</label>
-                                        <input type="tel" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all" />
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Are you an International Student?</label>
+                                        <select name="isInternational" value={formData.isInternational} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all">
+                                            <option value="No">No, I am a domestic student</option>
+                                            <option value="Yes">Yes, I am an international student</option>
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-2 max-w-md">
-                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Are you an International Student?</label>
-                                    <select name="isInternational" value={formData.isInternational} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all">
-                                        <option value="No">No, I am a domestic student</option>
-                                        <option value="Yes">Yes, I am an international student</option>
-                                    </select>
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                    <div className="flex flex-col gap-2 md:col-span-4">
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Dialing Code</label>
+                                        <input 
+                                            type="text" 
+                                            name="dialingCode" 
+                                            value={formData.dialingCode} 
+                                            onChange={handleDialingCodeChange} 
+                                            placeholder="+20" 
+                                            maxLength={5} 
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all" 
+                                        />
+                                    </div>
+                                    <div className="flex flex-col gap-2 md:col-span-8">
+                                        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Mobile Number</label>
+                                        <input 
+                                            type="text" 
+                                            name="mobileNumber" 
+                                            value={formData.mobileNumber} 
+                                            onChange={handleMobileNumberChange} 
+                                            placeholder="100 123 4567" 
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all" 
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="space-y-6 pt-2">
                                 <h2 className="text-xl font-bold text-[#0B3C5D] dark:text-[#D4AF37] border-b border-slate-100 dark:border-slate-800 pb-3">
-                                    Area of Interest
+                                    Academic Profile
                                 </h2>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -183,10 +235,49 @@ export default function RegistrationPage() {
                                         <select name="facultyOfInterest" value={formData.facultyOfInterest} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-white outline-none focus:border-[#D4AF37] transition-all">
                                             <option value="">-- Select Faculty --</option>
                                             <option value="Medicine">Faculty of Medicine</option>
-                                            <option value="Engineering">Faculty of Engineering</option>
+                                            <option value="Law">Faculty of Law</option>
+                                            <option value="Dentistry">Faculty of Dentistry</option>
+                                            <option value="Science">Faculty of Science</option>
                                             <option value="Arts">Faculty of Arts</option>
+                                            <option value="FineArts">Faculty of Fine Arts</option>
+                                            <option value="Business">Faculty of Business</option>
+                                            <option value="Engineering">Faculty of Engineering</option>
+                                            <option value="Pharmacy">Faculty of Pharmacy</option>
+                                            <option value="Agriculture">Faculty of Agriculture</option>
+                                            <option value="Nursing">Faculty of Nursing</option>
+                                            <option value="Education">Faculty of Education</option>
+                                            <option value="VeterinaryMedicine">Faculty of Veterinary Medicine</option>
+                                            <option value="TourismAndHotels">Faculty of Tourism & Hotels</option>
+                                            <option value="PhysicalEdMen">Faculty of Physical Ed (Men)</option>
+                                            <option value="PhysicalEdWomen">Faculty of Physical Ed (Women)</option>
+                                            <option value="SpecificEducation">Faculty of Specific Education</option>
+                                            <option value="EconomicsAndPoliticalScience">Faculty of Economics & Political Science</option>
+                                            <option value="ComputingAndDataScience">Faculty of Computing & Data Science</option>
+                                            <option value="EarlyChildhoodEducation">Faculty of Early Childhood Education</option>
+                                            <option value="PublicHealth">High Institute of Public Health</option>
+                                            <option value="GraduateStudies">Institute of Graduate Studies & Research</option>
+                                            <option value="MedicalResearch">Medical Research Institute</option>
+                                            <option value="AgricultureSabaBasha">Faculty of Agriculture (Saba Basha)</option>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div className="space-y-6 pt-2">
+                                <h2 className="text-xl font-bold text-[#0B3C5D] dark:text-[#D4AF37] border-b border-slate-100 dark:border-slate-800 pb-3">
+                                    Document Attachment
+                                </h2>
+                                
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Upload Transcript / ID (PDF Only)</label>
+                                    <label className={`w-full flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 transition-all cursor-pointer ${selectedFile ? 'border-[#D4AF37] bg-[#D4AF37]/5' : 'border-slate-300 dark:border-slate-700 hover:border-[#D4AF37] hover:bg-slate-50 dark:hover:bg-slate-800/50'}`}>
+                                        <UploadCloud size={32} className={`mb-3 ${selectedFile ? 'text-[#D4AF37]' : 'text-slate-400'}`} />
+                                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300 text-center">
+                                            {selectedFile ? selectedFile.name : "Click to browse or drag and drop your PDF here"}
+                                        </p>
+                                        <p className="text-xs text-slate-500 mt-1">Maximum file size: 5MB</p>
+                                        <input type="file" accept="application/pdf" className="hidden" onChange={handleFileChange} />
+                                    </label>
                                 </div>
                             </div>
 
