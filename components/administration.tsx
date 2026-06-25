@@ -483,11 +483,70 @@ export default function Administration() {
 
 
     const secGenNews = [
-
-        { id: 1, date: { month: "Nov", day: "28" }, hits: "1,067", title: "Vice President discusses maintenance work for university facilities.", created: "28 Nov 2024" },
-
-        { id: 2, date: { month: "Jul", day: "22" }, hits: "1,585", title: "Board discusses preparations for Academic Year 2024/2025 entrance exams.", created: "22 Jul 2024" }
-
+{ 
+            id: 1, 
+            date: { month: "NOV", day: "28" }, 
+            hits: "1,067", 
+            title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.", 
+            fullTitle: "Vice President of Alexandria University discusses with the Board of Trustees of the University's Faculties and Institutes the completion of maintenance work for all facilities and buildings",
+            created: "28 November 2024", 
+            images: [
+                "/imgs/Article photo 1.jpg",
+                "/imgs/Article photo 2.jpg",
+                "/imgs/Article photo 3.jpg",
+                "/imgs/Article photo 4.jpg"
+            ],
+            fullText: [
+                "Dr. Saeed Allam, Vice President of Alexandria University for Community Service and Environmental Development Affairs, stressed during his participation with the Board of Trustees of the Faculties and Institutes of Alexandria University, the necessity for the trustees to complete maintenance work for all faculties' facilities and review the roofs, ceilings, rainwater drains, and electrical panels to ensure the safety of individuals and facilities in all faculties and institutes of the university.",
+                "Dr. Allam discussed with the Board of Trustees of the faculties the vision prepared by the Community Service and Environmental Development Sector to provide waste and waste sorting boxes within the faculties and institutes of the university to maintain the aesthetic appearance befitting Alexandria University.",
+                "Dr. Allam also discussed with the Board the mechanism for organizing a package of training courses for university employees, especially departments that deal directly with students, with the aim of providing a good educational service to students and overcoming all obstacles facing them.",
+                "Within the framework of the presidential initiative 'Bedaya', Dr. Allam followed up with the council the implementation of the timetable for the initiative organized by the Community Service and Environment Development Sector in coordination with the Faculty of Medicine to conduct a survey of high blood pressure and diabetes among university employees for early detection of this type of chronic non-communicable diseases and to provide the necessary guidance, in order to ensure the health of university employees."
+            ]
+        },
+{ 
+            id: 2, 
+            date: { month: "Jul", day: "22" }, 
+            hits: "1,585", 
+            title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.", 
+            fullTitle: "Alexandria University's Faculties and Institutes Board of Trustees Discusses Administrative Preparations of Faculties Organizing Entrance Exams for Academic Year 2024/2025",
+            created: "22 July 2024", 
+            images: [
+                "/imgs/Article photo 5.jpg",
+                "/imgs/Article photo 6.jpg",
+                "/imgs/Article photo 3.jpg",
+                "/imgs/Article photo 7.jpg"
+            ],
+            fullText: [
+                "Alexandria University's Board of Trustees of Faculties and Institutes, headed by Mr. Mohamed Fathy Abul-Nasr, Secretary-General of the University, discussed the administrative preparations for organizing entrance exams according to the timeframe for enrolment and registration for the academic year 2024/2025, stressing the need for the faculty secretaries to ensure the readiness of the coordination laboratories in preparation for receiving students to register to take the tests through the electronic coordination website on the Internet, during the period from Thursday 25 July 2024 until Thursday 8 August 2024. He also stressed the need to choose distinguished administrative cadres capable of overcoming all obstacles facing students while registering their majors.",
+                "The Board also reviewed the status of the annual job requirements for university employees for the fiscal year 2024/2025 in terms of need and surplus.",
+                "The Board was informed of the recommendations of the Human Resources Committee regarding organizing the procedures for secondment from abroad to work at the university, as the University Secretary stressed to the faculty secretaries to adhere to the mechanisms for implementing those recommendations.",
+                "The University Secretary stressed to the faculty secretaries the need to follow up on the lists of archives that are no longer needed according to their legal terms in preparation for sending them to the National Archives.",
+                "The Board was informed of the points that must be considered and focused on when the university units prepare later for their special needs plan.",
+                "The University Secretary thanked the secretaries of the university's faculties and institutes for the distinguished efforts made during the academic year 2023/2024, wishing them success in the coming years.",
+            ]
+        },
+        { 
+            id: 3, 
+            date: { month: "Jun", day: "26" }, 
+            hits: "1,192", 
+            title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget.", 
+            fullTitle: "Alexandria University's Board of Trustees of Faculties and Institutes Discusses Mechanisms for Implementing University's Programs and Performance Budget",
+            created: "22 July 2024", 
+            images: [
+                "/imgs/Article photo 8.jpg"
+            ],
+            fullText: [
+                "The Board of Trustees of Faculties and Institutes of Alexandria University, headed by Mr. Mohamed Abul-Nasr, Secretary-General of the University, discussed in its session held on Tuesday, June 25, 2024, the mechanisms for implementing the university's programs and performance budget, which aims to raise the efficiency and effectiveness of public spending.",
+                "Mr. Abul-Nasr stressed that Professor Dr. Abdelaziz Konsowa, President of the University, pays great attention to this matter and that Dr. Konsowa has formed a committee to supervise the preparation of this budget to ensure its accurate implementation in a manner that achieves the state's strategic goals and enhances transparency, especially since it is one of the tools of economic reform to implement Egypt's Vision 2030.",
+                "The Secretary-General of the University stressed to the trustees of faculties and institutes the need for good cooperation with the deans of faculties and institutes and to overcome any administrative obstacles that may arise in preparation for participating in the competition for the best environmentally friendly university.",
+                "The Council discussed ways of coordination between faculties, accounting units, and the General Administration of Purchasing and Warehouses to maximize the benefit from the resources available in the budget for the fiscal year 2024/2025.",
+                "The Council honoured Dr. Nancy Atef, Director of Shatby University Hospital for Obstetrics and Gynaecology, and thanked her for the efforts made during her tenure as Director of the University Students Hospital.",
+            ]
+        }        ,
+        { id: 4, date: { month: "MAY", day: "24" }, hits: "1,275", title: "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025.", created: "24 May 2024" },
+        { id: 5, date: { month: "APR", day: "21" }, hits: "1,297", title: "Alexandria University's Faculties & Institutes Board of Trustees Discusses Preparations for Second Semester Final Exams", created: "21 April 2024" },
+        { id: 6, date: { month: "FEB", day: "20" }, hits: "1,229", title: "Alexandria University organizes an event for workers to train in occupational health and safety work", created: "20 February 2024" },
+        { id: 7, date: { month: "DEC", day: "11" }, hits: "1,363", title: "Employees of Alexandria University Cast Their Votes in The 2024 Presidential Election", created: "11 December 2023" }
     ];
 
 
@@ -1612,7 +1671,7 @@ const filteredArchiveVideos = [
 
 
 
-                        <div className="w-full bg-white dark:bg-transparent border border-slate-200 dark:border-[#D4AF37]/30 rounded-[28px] p-6 lg:p-8 flex flex-col mb-10 shadow-sm dark:shadow-none">
+                        <div className="w-full bg-white dark:bg-transparent border border-slate-200 dark:border-[#D4AF37]/30 rounded-[24px] p-6 lg:p-8 flex flex-col mb-10 shadow-sm dark:shadow-none">
 
                             <p className="text-[#0B3C5D] dark:text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase mb-6">Archive Filters</p>
 
@@ -1636,7 +1695,7 @@ const filteredArchiveVideos = [
 
                                 <div className="relative flex items-center bg-slate-50 dark:bg-[#00172e]/50 border border-slate-200 dark:border-[#D4AF37]/30 rounded-xl px-5 py-4 w-full hover:border-[#0B3C5D] dark:hover:border-[#D4AF37]/60 transition-colors shadow-sm dark:shadow-none">
 
-                                    <div className="mr-3 opacity-70 text-[#0B3C5D] dark:text-[#D4AF37]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
+                                    <div className="mr-3 opacity-70 text-[#0B3C5D] dark:text-[#D4AF37]"><svg className="text-[#001A41] dark:text-[#D4AF37]" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></div>
 
                                     <input
 
@@ -1699,40 +1758,74 @@ const filteredArchiveVideos = [
 
 
                         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-    {filteredArchiveVideos.map((video, idx) => (
-        <div 
-            key={idx} 
-            className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all duration-300 shadow-md cursor-pointer min-h-[260px]"
-        >
-            <div 
-                className="h-[150px] w-full relative flex items-center justify-center transition-colors duration-500" 
-                style={{ backgroundColor: video.color }}
-            >
-                <div className="absolute top-4 right-4 bg-[#051024]/80 px-3 py-1.5 rounded-full text-white text-[10px] font-bold shadow-sm backdrop-blur-sm">
-                    {video.date}
-                </div>
-                
-                <div className="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                    <Play size={44} strokeWidth={1} className="text-white opacity-80 group-hover:opacity-100 ml-2" />
-                </div>
-            </div>
 
-            <div className="flex-1 bg-[#152336] p-5 flex flex-col justify-start">
-                <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-5 h-5 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] text-[9px] font-black border border-[#D4AF37]/30 shrink-0">
-                        {video.initial}
-                    </div>
-                    <p className="text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">
-                        {video.category}
-                    </p>
-                </div>
-                <h3 className="text-white text-[13px] font-bold leading-relaxed line-clamp-2">
-                    {video.title}
-                </h3>
-            </div>
-        </div>
-    ))}
-</div>
+                            {filteredArchiveVideos.map((video, idx) => (
+
+                                <div 
+
+                                    key={idx} 
+
+                                    className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all duration-300 shadow-md cursor-pointer min-h-[260px]"
+
+                                >
+
+                                    <div 
+
+                                        className="h-[150px] w-full relative flex items-center justify-center transition-colors duration-500" 
+
+                                        style={{ backgroundColor: video.color }}
+
+                                    >
+
+                                        <div className="absolute top-4 right-4 bg-[#051024]/80 px-3 py-1.5 rounded-full text-white text-[10px] font-bold shadow-sm backdrop-blur-sm">
+
+                                            {video.date}
+
+                                        </div>
+
+                                        
+
+                                        <div className="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+
+                                            <Play size={44} strokeWidth={1} className="text-white opacity-80 group-hover:opacity-100 ml-2" />
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div className="flex-1 bg-[#152336] p-5 flex flex-col justify-start">
+
+                                        <div className="flex items-center gap-2.5 mb-3">
+
+                                            <div className="w-5 h-5 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] text-[9px] font-black border border-[#D4AF37]/30 shrink-0">
+
+                                                {video.initial}
+
+                                            </div>
+
+                                            <p className="text-[#D4AF37] text-[9px] font-bold tracking-widest uppercase truncate">
+
+                                                {video.category}
+
+                                            </p>
+
+                                        </div>
+
+                                        <h3 className="text-white text-[13px] font-bold leading-relaxed line-clamp-2">
+
+                                            {video.title}
+
+                                        </h3>
+
+                                    </div>
+
+                                </div>
+
+                            ))}
+
+                        </div>
 
 
 
@@ -1893,45 +1986,84 @@ const filteredArchiveVideos = [
 
 
                                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {communityCardsData.map((item, idx) => (
-        <div
-            key={idx}
-            onClick={() => setActiveCommunityItem(item)}
-            className="group relative flex flex-col justify-between bg-gradient-to-br from-[#508d76] to-[#213e38] rounded-2xl p-7 cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 min-h-[220px] border border-white/5 overflow-hidden"
-        >
-            {/* الأيقونة الباهتة في الخلفية (Watermark) */}
-            <div className="absolute top-4 left-4 text-white/5 pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:text-white/10">
-                {React.cloneElement(item.icon as React.ReactElement, { size: 60 } as any)}
-            </div>
 
-            <div className="relative z-10">
-                <div className="flex justify-end items-start mb-4 h-6">
-                    {item.badge && (
-                        <div className="bg-white/10 text-white/40 text-[9px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full">
-                            {item.badge}
-                        </div>
-                    )}
-                </div>
+                                    {communityCardsData.map((item, idx) => (
 
-                <h3 className="text-xl font-serif text-white mb-3 leading-snug">
-                    {item.title}
-                </h3>
-                <p className="text-white/70 text-[13px] font-light leading-relaxed">
-                    {item.desc}
-                </p>
-            </div>
+                                        <div
 
-            {/* الـ Badge السفلي الباهت */}
-            {item.bottomBadge && (
-                <div className="relative z-10 mt-6">
-                    <div className="inline-block bg-white/5 text-white/20 text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-colors group-hover:bg-white/10 group-hover:text-white/40">
-                        {item.bottomBadge}
-                    </div>
-                </div>
-            )}
-        </div>
-    ))}
-</div>
+                                            key={idx}
+
+                                            onClick={() => setActiveCommunityItem(item)}
+
+                                            className="group relative flex flex-col justify-between bg-gradient-to-br from-[#508d76] to-[#213e38] rounded-2xl p-7 cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 min-h-[220px] border border-white/5 overflow-hidden"
+
+                                        >
+
+                                            {/* الأيقونة الباهتة في الخلفية (Watermark) */}
+
+                                            <div className="absolute top-4 left-4 text-white/5 pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:text-white/10">
+
+                                                {React.cloneElement(item.icon as React.ReactElement, { size: 60 } as any)}
+
+                                            </div>
+
+
+
+                                            <div className="relative z-10">
+
+                                                <div className="flex justify-end items-start mb-4 h-6">
+
+                                                    {item.badge && (
+
+                                                        <div className="bg-white/10 text-white/40 text-[9px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full">
+
+                                                            {item.badge}
+
+                                                        </div>
+
+                                                    )}
+
+                                                </div>
+
+
+
+                                                <h3 className="text-xl font-serif text-white mb-3 leading-snug">
+
+                                                    {item.title}
+
+                                                </h3>
+
+                                                <p className="text-white/70 text-[13px] font-light leading-relaxed">
+
+                                                    {item.desc}
+
+                                                </p>
+
+                                            </div>
+
+
+
+                                            {/* الـ Badge السفلي الباهت */}
+
+                                            {item.bottomBadge && (
+
+                                                <div className="relative z-10 mt-6">
+
+                                                    <div className="inline-block bg-white/5 text-white/20 text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-colors group-hover:bg-white/10 group-hover:text-white/40">
+
+                                                        {item.bottomBadge}
+
+                                                    </div>
+
+                                                </div>
+
+                                            )}
+
+                                        </div>
+
+                                    ))}
+
+                                </div>
 
                             </>
 
@@ -2088,21 +2220,13 @@ const filteredArchiveVideos = [
                                     </h2>
 
                                     {activeNewsItem.images && activeNewsItem.images.length > 0 && (
-
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 w-full">
-
+                                        <div className={activeNewsItem.images.length === 1 ? "w-full flex justify-center mb-10" : "grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 w-full"}>
                                             {activeNewsItem.images.map((img: string, i: number) => (
-
-                                                <div key={i} className="rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden h-48 md:h-80 bg-slate-100 dark:bg-[#001A33]/50 shadow-md">
-
+                                                <div key={i} className={`rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden bg-slate-100 dark:bg-[#001A33]/50 shadow-md ${activeNewsItem.images.length === 1 ? 'w-full max-w-2xl h-64 md:h-[380px]' : 'w-full h-48 md:h-80'}`}>
                                                     <img src={img} alt="News Illustration" className="w-full h-full object-cover" />
-
                                                 </div>
-
                                             ))}
-
                                         </div>
-
                                     )}
 
                                     {activeNewsItem.fullText ? (
@@ -2129,7 +2253,6 @@ const filteredArchiveVideos = [
 
                         ) : activeDeptItem ? (
 
-                            // ── FIXED: activeDeptItem detail view (was missing, causing the build error) ──
                             <div className="w-full flex flex-col items-start text-left animate-in fade-in zoom-in duration-300">
 
                                 <div className="w-full flex justify-start mb-10">
@@ -2376,120 +2499,70 @@ const filteredArchiveVideos = [
 
 
 
-                                <div className="w-full flex items-center justify-between mb-6">
-
-                                    <h3 className="text-[#001A41] dark:text-[#D4AF37] font-bold dark:font-semibold text-xl">Latest News</h3>
-
+                                <div className="w-full flex items-center justify-between mb-8">
+                                    <h3 className="text-[#D4AF37] font-bold text-2xl">Latest News</h3>
                                     <div className="flex items-center gap-3">
-
                                         <button
-
                                             onClick={() => setNewsIndex(Math.max(0, newsIndex - 1))}
-
                                             disabled={newsIndex === 0}
-
-                                            className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${newsIndex === 0 ? 'border-slate-200 dark:border-white/10 text-slate-300 dark:text-white/30 cursor-not-allowed bg-slate-50 dark:bg-transparent' : 'border-[#0B3C5D] dark:border-[#D4AF37]/50 text-[#0B3C5D] dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 cursor-pointer bg-white dark:bg-transparent'}`}
-
+                                            className="w-10 h-10 rounded-full border border-[#1e2d40] flex items-center justify-center text-[#D4AF37] hover:border-[#D4AF37] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                                         >
-
-                                            <ChevronLeft size={16} />
-
+                                            <ChevronLeft size={20} />
                                         </button>
-
                                         <button
-
                                             onClick={() => setNewsIndex(Math.min(maxNewsIndex, newsIndex + 1))}
-
                                             disabled={newsIndex >= maxNewsIndex}
-
-                                            className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${newsIndex >= maxNewsIndex ? 'border-slate-200 dark:border-white/10 text-slate-300 dark:text-white/30 cursor-not-allowed bg-slate-50 dark:bg-transparent' : 'border-[#001A41] dark:border-white/40 text-[#001A41] dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 cursor-pointer bg-white dark:bg-transparent'}`}
-
+                                            className="w-10 h-10 rounded-full border border-[#1e2d40] flex items-center justify-center text-[#D4AF37] hover:border-[#D4AF37] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                                         >
-
-                                            <ChevronRight size={16} />
-
+                                            <ChevronRight size={20} />
                                         </button>
-
                                     </div>
-
                                 </div>
 
-
-
-                                <div className="w-full overflow-hidden mb-4">
-
+                                <div className="w-full overflow-hidden mb-6">
                                     <div
-
-                                        className="flex transition-transform duration-500 ease-in-out -mx-2"
-
+                                        className="flex transition-transform duration-500 ease-in-out gap-6"
                                         style={{ transform: `translateX(calc(-${newsIndex * (100 / 3)}%))` }}
-
                                     >
-
                                         {secGenNews.map((news, idx) => (
-
-                                            <div key={idx} className="w-full md:w-1/3 shrink-0 px-2">
-
-                                                <div className="bg-white dark:bg-[#001124] border border-slate-200 dark:border-white/5 hover:border-[#0B3C5D] dark:hover:border-[#D4AF37]/30 rounded-2xl p-6 h-full flex flex-col cursor-pointer transition-all duration-300 group min-h-[160px] shadow-sm hover:shadow-md">
-
-                                                    <div className="flex items-center gap-4 mb-6">
-
-                                                        <div className="border border-slate-200 dark:border-[#D4AF37]/40 rounded-2xl px-4 py-2 bg-slate-50 dark:bg-[#001A33]/50 text-center min-w-[60px] shadow-inner dark:shadow-none">
-
-                                                            <span className="text-[#0B3C5D] dark:text-[#D4AF37] text-[10px] font-black dark:font-bold block mb-0.5 uppercase">{news.date.month}</span>
-
-                                                            <span className="text-[#001A41] dark:text-[#D4AF37] text-2xl font-black leading-none">{news.date.day}</span>
-
-                                                        </div>
-
-                                                        <div className="text-slate-500 text-xs flex items-center gap-1.5 font-bold dark:font-medium">
-
-                                                            <BarChart2 size={14} className="text-slate-500 dark:text-slate-600" /> {news.hits} hits
-
-                                                        </div>
-
+                                            <div key={idx} className="w-[calc(33.333%-16px)] shrink-0 bg-[#051024] border border-[#1e2d40] rounded-2xl p-8 flex flex-col hover:border-[#D4AF37]/50 transition-all shadow-lg min-h-[280px]">
+                                                <div className="flex items-center gap-4 mb-6">
+                                                    <div className="border border-[#D4AF37]/30 rounded-xl px-4 py-2 bg-[#0a172a] text-center min-w-[60px]">
+                                                        <span className="text-[#D4AF37] text-[10px] font-black block uppercase">{news.date.month}</span>
+                                                        <span className="text-white text-2xl font-black leading-none">{news.date.day}</span>
                                                     </div>
-
-                                                    <p className="text-[#001A41] dark:text-white text-[15px] leading-relaxed font-bold dark:font-medium mb-8 flex-1 group-hover:text-[#0B3C5D] dark:group-hover:text-[#D4AF37] transition-colors">{news.title}</p>
-
-                                                    <div
-
-                                                        onClick={() => setActiveNewsItem(news)}
-
-                                                        className="text-blue-600 dark:text-[#3b82f6] text-sm font-bold dark:font-semibold flex items-center gap-1.5 w-fit hover:underline cursor-pointer"
-
-                                                    >
-
-                                                        Read More <ExternalLink size={14} />
-
+                                                    <div className="text-slate-400 text-xs flex items-center gap-1.5 font-medium">
+                                                        <BarChart2 size={14} className="text-[#D4AF37]" /> {news.hits} hits
                                                     </div>
-
                                                 </div>
+                                                
+                                                <p className="text-white text-[14px] leading-relaxed font-normal mb-8 flex-1">
+                                                    {news.title}
+                                                </p>
 
+                                                <div 
+                                                    onClick={() => setActiveNewsItem(news)}
+                                                    className="text-[#3b82f6] text-sm font-bold flex items-center gap-2 hover:underline cursor-pointer mt-auto w-fit"
+                                                >
+                                                    Read More <ExternalLink size={14} />
+                                                </div>
                                             </div>
-
                                         ))}
-
                                     </div>
-
                                 </div>
 
-                                <div className="w-full flex items-center justify-center gap-3 mt-6 mb-12">
-
+                                <div className="w-full flex items-center justify-center gap-2 mb-12">
                                     {Array.from({ length: maxNewsIndex + 1 }).map((_, idx) => (
-
                                         <div
-
                                             key={idx}
-
                                             onClick={() => setNewsIndex(idx)}
-
-                                            className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === newsIndex ? 'w-10 bg-[#001A41] dark:bg-[#D4AF37]' : 'w-2.5 bg-slate-300 dark:bg-[#D4AF37]/40 hover:bg-slate-400 dark:hover:bg-[#D4AF37]/70'}`}
-
+                                            className="h-1.5 rounded-full transition-all duration-300 cursor-pointer w-2 bg-[#1e2d40] hover:bg-[#D4AF37]/50"
+                                            style={{
+                                                width: idx === newsIndex ? '32px' : '8px',
+                                                backgroundColor: idx === newsIndex ? '#D4AF37' : '#1e2d40'
+                                            }}
                                         />
-
                                     ))}
-
                                 </div>
 
 
@@ -2730,7 +2803,7 @@ const filteredArchiveVideos = [
 
                                             <div>
 
-                                                <h4 className="text-[#001A41] dark:text-[#D4AF37] font-serif font-bold dark:font-normal text-xl">Government Excellence Award</h4>
+                                                <h4 className="text-[#001A41] dark:text-[#D4AF37] font-serif font-bold dark:font-normal textxl">Government Excellence Award</h4>
 
                                                 <span className="text-[#0B3C5D] dark:text-[#D4AF37] text-[10px] tracking-widest font-black dark:font-medium uppercase">Egypt Vision 2030 - Second Session 2020</span>
 
