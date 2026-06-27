@@ -10,7 +10,6 @@ export default function ExploreFaculties() {
   const { language } = useLanguage(); 
   const isRTL = language === "ar";
 
-  // أضفنا id لكل كلية لربطها بصفحة الأكاديميات
   const faculties = [
     { id: "engineering", title: isRTL ? "كلية الهندسة" : "Faculty of Engineering", icon: Building2, img: "/imgs/eng.jpg" },
     { id: "science", title: isRTL ? "كلية العلوم" : "Faculty of Science", icon: FlaskConical, img: "/imgs/sci.jpg" },

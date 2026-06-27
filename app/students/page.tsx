@@ -4,40 +4,18 @@ import React, { useState, useEffect } from 'react';
 import Hero from "@/components/Hero";
 import { supabase } from "@/lib/supabase";
 import {
-    BookOpen,
-    Flame,
-    Home,
-    Trophy,
-    Video,
-    ChevronRight,
-    Lock,
-    Loader2,
-    Eye,
-    EyeOff,
-    ArrowLeft,
-    Calendar,
-    History,
-    Users,
-    Settings,
-    Mic,
-    MicOff,
-    Camera,
-    VideoOff,
-    Monitor,
-    MessageSquare,
-    Send,
-    Radio,
-    Play,
-    AlertTriangle,
-    Maximize,
-    Minimize,
-    X
+    BookOpen, Flame, Home, Trophy, Video, ChevronRight, Lock, Loader2, Eye, EyeOff,
+    ArrowLeft, Calendar, History, Users, Settings, Mic, MicOff, Camera, VideoOff,
+    Monitor, MessageSquare, Send, Radio, Play, AlertTriangle, Maximize, Minimize, X,
+    Stethoscope, FlaskConical, Scale, CheckCircle, Download, FileText, UploadCloud,
+    MapPin, Clock, Phone, Mail, Shield, Star, Award, Activity
 } from 'lucide-react';
 
 type ClassroomTab = "schedule" | "assignments" | "history" | "groups" | "boardroom";
+type ActiveView = "portal" | "classroom" | "study" | "activities" | "accommodation" | "laureates";
 
 export default function StudentsPage() {
-    const [activeView, setActiveView] = useState<"portal" | "classroom">("portal");
+    const [activeView, setActiveView] = useState<ActiveView>("portal");
     const [classroomTab, setClassroomTab] = useState<ClassroomTab>("schedule");
     const [isStreaming, setIsStreaming] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -154,7 +132,7 @@ export default function StudentsPage() {
                             </div>
                             <button type="submit" disabled={authLoading} className="w-full bg-[#0B3C5D] dark:bg-[#D4AF37] hover:bg-[#D4AF37] dark:hover:bg-[#bda032] text-white dark:text-[#001A41] hover:text-[#001A41] font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 mt-2">
                                 {authLoading && <Loader2 className="animate-spin" size={14} />}
-                                <span>{authLoading ? "Verifying Credentials..." : "Sign In to Portal"}</span>
+                                <span>{authLoading ? "Verifying Credentials..." : "Sign In for access"}</span>
                             </button>
                         </form>
                     </div>
@@ -167,7 +145,7 @@ export default function StudentsPage() {
         return (
             <div className="bg-[#F8FAFC] dark:bg-[#040B16] min-h-screen text-[#001A41] dark:text-white font-sans antialiased selection:bg-[#D4AF37]/30 transition-colors duration-500">
                 <Hero showFullHero={false} />
-                <main className="pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-16">
+                <main className="pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-16 animate-fadeIn">
                     <div className="text-center space-y-4 max-w-2xl mx-auto">
                         <div className="w-14 h-14 bg-[#0B3C5D]/5 dark:bg-[#D4AF37]/10 text-[#0B3C5D] dark:text-[#D4AF37] rounded-full flex items-center justify-center mx-auto border border-[#0B3C5D]/10 dark:border-[#D4AF37]/20 shadow-sm">
                             <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" /></svg>
@@ -180,7 +158,7 @@ export default function StudentsPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
+                        <div onClick={() => setActiveView("study")} className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
                             <div className="space-y-4">
                                 <div className="flex items-start justify-between">
                                     <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 flex items-center justify-center text-[#0B3C5D] dark:text-[#D4AF37]"><BookOpen size={18} /></div>
@@ -200,7 +178,7 @@ export default function StudentsPage() {
                             </div>
                         </div>
 
-                        <div className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
+                        <div onClick={() => setActiveView("activities")} className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
                             <div className="space-y-4">
                                 <div className="flex items-start justify-between">
                                     <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 flex items-center justify-center text-[#0B3C5D] dark:text-[#D4AF37]"><Flame size={18} /></div>
@@ -220,7 +198,7 @@ export default function StudentsPage() {
                             </div>
                         </div>
 
-                        <div className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
+                        <div onClick={() => setActiveView("accommodation")} className="group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
                             <div className="space-y-4">
                                 <div className="flex items-start justify-between">
                                     <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 flex items-center justify-center text-[#0B3C5D] dark:text-[#D4AF37]"><Home size={18} /></div>
@@ -242,7 +220,7 @@ export default function StudentsPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                        <div className="md:col-span-2 group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
+                        <div onClick={() => setActiveView("laureates")} className="md:col-span-2 group bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 hover:border-[#D4AF37]/40 dark:hover:border-[#D4AF37]/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm dark:shadow-md transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl cursor-pointer">
                             <div className="space-y-4">
                                 <div className="flex items-start justify-between">
                                     <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 flex items-center justify-center text-[#0B3C5D] dark:text-[#D4AF37]"><Trophy size={18} /></div>
@@ -298,6 +276,440 @@ export default function StudentsPage() {
                     </div>
                     <footer className="pt-8 border-t border-slate-200 dark:border-slate-800 text-center text-[11px] text-slate-400 dark:text-slate-500 font-bold tracking-wide">El Guish Road, El Shatby · Alexandria 21526, Egypt · +20 3 5921676</footer>
                 </main>
+            </div>
+        );
+    }
+
+    if (activeView === "study") {
+        return (
+            <div className="bg-[#F8FAFC] dark:bg-[#040B16] min-h-screen text-[#001A41] dark:text-white font-sans antialiased selection:bg-[#D4AF37]/30 transition-colors duration-500">
+                <Hero showFullHero={false} />
+                <div className="animate-in fade-in zoom-in-95 duration-300 pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 w-full">
+                    <button onClick={() => setActiveView("portal")} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold hover:text-[#001A41] dark:hover:text-white transition-colors">
+                        <ArrowLeft size={18} /> Back to Gateway
+                    </button>
+                    
+                    <div className="flex items-center gap-4 mb-10">
+                        <div className="w-12 h-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#091527] flex items-center justify-center text-[#0B3C5D] dark:text-[#4FD1C5] shadow-sm">
+                            <BookOpen size={24} />
+                        </div>
+                        <div>
+                            <h2 className="text-3xl font-bold text-[#001A41] dark:text-white tracking-tight">Study @ AU — Academic Tracks</h2>
+                            <p className="text-sm font-bold text-[#0B3C5D] dark:text-[#4FD1C5]">Alexandria University · 2024/2025 Academic Year</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="text-[#0B3C5D] dark:text-[#4FD1C5]"><Stethoscope size={20} /></div>
+                                <h3 className="font-bold text-[#001A41] dark:text-white">Medical Sciences</h3>
+                            </div>
+                            <div className="space-y-4">
+                                {[
+                                    { name: "Medicine (MBBCH)", enrolled: "8,200", duration: "7yr" },
+                                    { name: "Dentistry", enrolled: "3,100", duration: "6yr" },
+                                    { name: "Pharmacy", enrolled: "4,800", duration: "5yr" },
+                                    { name: "Nursing", enrolled: "2,300", duration: "4yr" },
+                                    { name: "Physical Therapy", enrolled: "1,900", duration: "5yr" }
+                                ].map((prog, idx) => (
+                                    <div key={idx} className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800/50 last:border-0 last:pb-0">
+                                        <div>
+                                            <p className="text-sm font-bold text-[#001A41] dark:text-slate-200">{prog.name}</p>
+                                            <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">{prog.enrolled} enrolled</p>
+                                        </div>
+                                        <span className="text-xs font-bold text-[#0B3C5D] dark:text-[#4FD1C5]">{prog.duration}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="text-amber-600 dark:text-[#D4AF37]"><FlaskConical size={20} /></div>
+                                <h3 className="font-bold text-[#001A41] dark:text-white">Scientific Faculties</h3>
+                            </div>
+                            <div className="space-y-4">
+                                {[
+                                    { name: "Computer Science", enrolled: "5,600", duration: "4yr" },
+                                    { name: "Mathematics", enrolled: "2,100", duration: "4yr" },
+                                    { name: "Physics & Optics", enrolled: "1,800", duration: "4yr" },
+                                    { name: "Chemistry", enrolled: "2,400", duration: "4yr" },
+                                    { name: "Marine Biotechnology", enrolled: "890", duration: "5yr" }
+                                ].map((prog, idx) => (
+                                    <div key={idx} className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800/50 last:border-0 last:pb-0">
+                                        <div>
+                                            <p className="text-sm font-bold text-[#001A41] dark:text-slate-200">{prog.name}</p>
+                                            <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">{prog.enrolled} enrolled</p>
+                                        </div>
+                                        <span className="text-xs font-bold text-amber-600 dark:text-[#D4AF37]">{prog.duration}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="text-blue-600 dark:text-[#89c5ff]"><BookOpen size={20} /></div>
+                                <h3 className="font-bold text-[#001A41] dark:text-white">Educational Tracks</h3>
+                            </div>
+                            <div className="space-y-4">
+                                {[
+                                    { name: "Primary Education", enrolled: "6,200", duration: "4yr" },
+                                    { name: "Special Education", enrolled: "1,400", duration: "4yr" },
+                                    { name: "Educational Psychology", enrolled: "980", duration: "4yr" },
+                                    { name: "TEFL / Applied Linguistics", enrolled: "2,100", duration: "4yr" },
+                                    { name: "Educational Technology", enrolled: "1,300", duration: "4yr" }
+                                ].map((prog, idx) => (
+                                    <div key={idx} className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800/50 last:border-0 last:pb-0">
+                                        <div>
+                                            <p className="text-sm font-bold text-[#001A41] dark:text-slate-200">{prog.name}</p>
+                                            <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">{prog.enrolled} enrolled</p>
+                                        </div>
+                                        <span className="text-xs font-bold text-blue-600 dark:text-[#89c5ff]">{prog.duration}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="text-emerald-600 dark:text-[#10b981]"><Scale size={20} /></div>
+                                <h3 className="font-bold text-[#001A41] dark:text-white">Humanities & Law</h3>
+                            </div>
+                            <div className="space-y-4">
+                                {[
+                                    { name: "Arabic Literature", enrolled: "7,800", duration: "4yr" },
+                                    { name: "History & Archaeology", enrolled: "3,400", duration: "4yr" },
+                                    { name: "Law", enrolled: "11,200", duration: "4yr" },
+                                    { name: "Political Science", enrolled: "2,800", duration: "4yr" },
+                                    { name: "Media & Communications", enrolled: "3,100", duration: "4yr" }
+                                ].map((prog, idx) => (
+                                    <div key={idx} className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800/50 last:border-0 last:pb-0">
+                                        <div>
+                                            <p className="text-sm font-bold text-[#001A41] dark:text-slate-200">{prog.name}</p>
+                                            <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">{prog.enrolled} enrolled</p>
+                                        </div>
+                                        <span className="text-xs font-bold text-emerald-600 dark:text-[#10b981]">{prog.duration}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md text-center">
+                            <p className="text-3xl font-black text-[#0B3C5D] dark:text-[#4FD1C5] mb-1">78,400+</p>
+                            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">Total Students</p>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md text-center">
+                            <p className="text-3xl font-black text-amber-600 dark:text-[#D4AF37] mb-1">21</p>
+                            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">Academic Faculties</p>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md text-center">
+                            <p className="text-3xl font-black text-blue-600 dark:text-[#89c5ff] mb-1">14</p>
+                            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">Research Centers</p>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md text-center">
+                            <p className="text-3xl font-black text-emerald-600 dark:text-[#10b981] mb-1">38</p>
+                            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">International Partners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeView === "activities") {
+        return (
+            <div className="bg-[#F8FAFC] dark:bg-[#040B16] min-h-screen text-[#001A41] dark:text-white font-sans antialiased selection:bg-[#D4AF37]/30 transition-colors duration-500">
+                <Hero showFullHero={false} />
+                <div className="animate-in fade-in zoom-in-95 duration-300 pt-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto pb-24 w-full">
+                    <button onClick={() => setActiveView("portal")} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold hover:text-[#001A41] dark:hover:text-white transition-colors">
+                        <ArrowLeft size={18} /> Back to Gateway
+                    </button>
+                    
+                    <div className="flex items-center gap-4 mb-10">
+                        <div className="w-12 h-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#091527] flex items-center justify-center text-[#D4AF37] shadow-sm">
+                            <Activity size={24} />
+                        </div>
+                        <div>
+                            <h2 className="text-3xl font-bold text-[#001A41] dark:text-white tracking-tight">Student Activities Central</h2>
+                            <p className="text-sm font-bold text-[#0B3C5D] dark:text-[#4FD1C5]">47 Active Clubs · Fall 2024 Season</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm dark:shadow-md text-center">
+                            <p className="text-4xl font-black text-[#0B3C5D] dark:text-[#4FD1C5] mb-2">47</p>
+                            <p className="text-sm font-bold text-slate-500 dark:text-slate-400">Active Clubs</p>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm dark:shadow-md text-center">
+                            <p className="text-4xl font-black text-amber-600 dark:text-[#D4AF37] mb-2">12,400</p>
+                            <p className="text-sm font-bold text-slate-500 dark:text-slate-400">Participants</p>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm dark:shadow-md text-center">
+                            <p className="text-4xl font-black text-blue-600 dark:text-[#89c5ff] mb-2">180+</p>
+                            <p className="text-sm font-bold text-slate-500 dark:text-slate-400">Events / Term</p>
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[#001A41] dark:text-white mb-6">Sports Teams</h3>
+                    <div className="space-y-4">
+                        {[
+                            { name: "Football Team", detail: "Match vs Cairo University · Dec 15", status: "Active", members: "28 members", open: false },
+                            { name: "Basketball Team", detail: "Training · Tue & Thu 5:00 PM", status: "Active", members: "18 members", open: false },
+                            { name: "Swimming Club", detail: "Open tryouts · Dec 10, Pool B", status: "Open Tryouts", members: "42 members", open: true },
+                            { name: "Volleyball League", detail: "League Finals · Jan 8, 2025", status: "Active", members: "24 members", open: false }
+                        ].map((team, idx) => (
+                            <div key={idx} className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md transition-all hover:border-slate-300 dark:hover:border-slate-700">
+                                <div className="flex items-start justify-between mb-6">
+                                    <div>
+                                        <h4 className="text-lg font-bold text-[#001A41] dark:text-white mb-1">{team.name}</h4>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{team.detail}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 ${team.open ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-[#89c5ff] border border-blue-200 dark:border-blue-500/20' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10'}`}>
+                                            {team.status}
+                                        </span>
+                                        <p className="text-xs text-slate-400 font-medium">{team.members}</p>
+                                    </div>
+                                </div>
+                                <button className="w-full bg-slate-50 dark:bg-[#040B16] hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-slate-800 text-[#001A41] dark:text-[#4FD1C5] font-bold text-sm py-3 rounded-xl transition-colors">
+                                    Join Club →
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeView === "accommodation") {
+        return (
+            <div className="bg-[#F8FAFC] dark:bg-[#040B16] min-h-screen text-[#001A41] dark:text-white font-sans antialiased selection:bg-[#D4AF37]/30 transition-colors duration-500">
+                <Hero showFullHero={false} />
+                <div className="animate-in fade-in zoom-in-95 duration-300 pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 w-full">
+                    <button onClick={() => setActiveView("portal")} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold hover:text-[#001A41] dark:hover:text-white transition-colors">
+                        <ArrowLeft size={18} /> Back to Gateway
+                    </button>
+                    
+                    <div className="flex items-center gap-4 mb-10">
+                        <div className="w-12 h-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#091527] flex items-center justify-center text-[#0B3C5D] dark:text-[#4FD1C5] shadow-sm">
+                            <Home size={24} />
+                        </div>
+                        <div>
+                            <h2 className="text-3xl font-bold text-[#001A41] dark:text-white tracking-tight">Student Accommodation Gateway</h2>
+                            <p className="text-sm font-bold text-[#0B3C5D] dark:text-[#4FD1C5]">Automated Housing Management Portal · Academic Year 2024/2025</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2 space-y-6">
+                            <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm dark:shadow-md">
+                                <h3 className="text-xl font-bold text-[#001A41] dark:text-white mb-4">Automated Housing Portal</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-4">
+                                    Alexandria University's Student Accommodation Gateway offers a fully automated, paperless housing application system. Students registered for the 2024/2025 academic year may apply for on-campus residence through this portal. Applications are reviewed by the General Directorate of Student Affairs and processed within 5–10 business days.
+                                </p>
+                                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-8">
+                                    All housing contracts are governed by the Official Student Accommodation Regulations as approved by the University Council. Priority is given to first-year students, students with special needs, and those from outside Alexandria Governorate.
+                                </p>
+                                <div className="flex flex-wrap items-center gap-4">
+                                    <button className="bg-[#D4AF37] hover:bg-[#bda032] text-[#001A41] font-bold text-sm py-3 px-6 rounded-xl flex items-center gap-2 transition-colors shadow-md">
+                                        <Home size={16} /> Apply for Housing
+                                    </button>
+                                    <button className="bg-slate-50 dark:bg-transparent hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-slate-700 text-[#001A41] dark:text-[#4FD1C5] font-bold text-sm py-3 px-6 rounded-xl flex items-center gap-2 transition-colors shadow-sm dark:shadow-none">
+                                        <Download size={16} /> Download Regulations PDF
+                                    </button>
+                                    <button className="bg-slate-50 dark:bg-transparent hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-slate-700 text-[#001A41] dark:text-slate-300 font-bold text-sm py-3 px-6 rounded-xl flex items-center gap-2 transition-colors shadow-sm dark:shadow-none">
+                                        <FileText size={16} /> View My Application
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm dark:shadow-md">
+                                <h3 className="text-xl font-bold text-[#001A41] dark:text-white mb-8">Application Process</h3>
+                                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-800 before:to-transparent">
+                                    {[
+                                        { title: "Eligibility Check", desc: "Verify enrollment status and academic year for housing eligibility", icon: <CheckCircle size={14} />, active: true },
+                                        { title: "Submit Application", desc: "Complete the online form with personal and academic details", icon: <CheckCircle size={14} />, active: true },
+                                        { title: "Document Upload", desc: "Upload national ID, enrollment certificate, and guardian consent", num: "03" },
+                                        { title: "Await Confirmation", desc: "Housing committee reviews within 5–10 business days", num: "04" },
+                                        { title: "Sign Contract & Pay", desc: "Complete payment via the university financial portal", num: "05" }
+                                    ].map((step, idx) => (
+                                        <div key={idx} className="relative flex items-start gap-6 group">
+                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-2 z-10 bg-white dark:bg-[#091527] transition-colors ${step.active ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-600'}`}>
+                                                {step.icon || <span className="text-[10px] font-bold font-mono">{step.num}</span>}
+                                            </div>
+                                            <div className="pt-1">
+                                                <h4 className={`text-sm font-bold mb-1 ${step.active ? 'text-[#001A41] dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>{step.title}</h4>
+                                                <p className="text-xs text-slate-500 dark:text-slate-500 font-medium">{step.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                                <h3 className="text-base font-bold text-[#001A41] dark:text-white mb-6">Available Room Types</h3>
+                                <div className="space-y-4">
+                                    <div className="pb-4 border-b border-slate-100 dark:border-slate-800/50">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <h4 className="text-sm font-bold text-[#001A41] dark:text-white">Single Room</h4>
+                                            <span className="text-sm font-bold text-amber-600 dark:text-[#D4AF37]">1,800 EGP/mo</span>
+                                        </div>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">124 units available</p>
+                                    </div>
+                                    <div className="pb-4 border-b border-slate-100 dark:border-slate-800/50">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <h4 className="text-sm font-bold text-[#001A41] dark:text-white">Double Room</h4>
+                                            <span className="text-sm font-bold text-amber-600 dark:text-[#D4AF37]">1,200 EGP/mo</span>
+                                        </div>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">380 units available</p>
+                                    </div>
+                                    <div>
+                                        <div className="flex justify-between items-center mb-1">
+                                            <h4 className="text-sm font-bold text-[#001A41] dark:text-white">Triple Room</h4>
+                                            <span className="text-sm font-bold text-amber-600 dark:text-[#D4AF37]">900 EGP/mo</span>
+                                        </div>
+                                        <p className="text-[11px] text-slate-500 dark:text-slate-500 font-medium">210 units available</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                                <h3 className="text-base font-bold text-[#001A41] dark:text-white mb-6">Campus Facilities</h3>
+                                <ul className="space-y-3">
+                                    {["High-Speed WiFi · 100 Mbps", "24/7 Security & CCTV", "On-Site Medical Clinic", "Laundry Rooms (Each Floor)", "Study Halls & Reading Rooms", "Mosque & Prayer Rooms", "Cafeteria — 3 Meals/Day"].map((fac, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 font-medium">
+                                            <div className="text-[#0B3C5D] dark:text-[#4FD1C5]"><CheckCircle size={16} /></div>
+                                            {fac}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md">
+                                <h3 className="text-base font-bold text-[#001A41] dark:text-white mb-6">Housing Office</h3>
+                                <div className="space-y-4 text-sm text-slate-600 dark:text-slate-400 font-medium">
+                                    <div className="flex items-center gap-3">
+                                        <MapPin size={16} className="text-amber-600 dark:text-[#D4AF37]" />
+                                        <span>Building A, Main Campus, El Shatby</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Clock size={16} className="text-amber-600 dark:text-[#D4AF37]" />
+                                        <span>Sun–Thu: 8:00 AM – 3:00 PM</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Phone size={16} className="text-amber-600 dark:text-[#D4AF37]" />
+                                        <span>+20 3 5921676 (Ext. 220)</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Mail size={16} className="text-amber-600 dark:text-[#D4AF37]" />
+                                        <span>housing@alexu.edu.eg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (activeView === "laureates") {
+        return (
+            <div className="bg-[#F8FAFC] dark:bg-[#040B16] min-h-screen text-[#001A41] dark:text-white font-sans antialiased selection:bg-[#D4AF37]/30 transition-colors duration-500">
+                <Hero showFullHero={false} />
+                <div className="animate-in fade-in zoom-in-95 duration-300 pt-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 w-full">
+                    <button onClick={() => setActiveView("portal")} className="mb-8 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold hover:text-[#001A41] dark:hover:text-white transition-colors">
+                        <ArrowLeft size={18} /> Back to Gateway
+                    </button>
+                    
+                    <div className="flex items-center gap-4 mb-10">
+                        <div className="w-12 h-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#091527] flex items-center justify-center text-[#D4AF37] shadow-sm">
+                            <Trophy size={24} />
+                        </div>
+                        <div>
+                            <h2 className="text-3xl font-bold text-[#001A41] dark:text-white tracking-tight">Scientific Laureates & Awards</h2>
+                            <p className="text-sm font-bold text-[#0B3C5D] dark:text-[#4FD1C5]">Student Innovators & Patent Holders — Alexandria University 2023/2024</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-white/5 border border-amber-100 dark:border-white/10 flex items-center justify-center text-amber-600 dark:text-[#D4AF37] shrink-0"><Shield size={20} /></div>
+                            <div>
+                                <p className="text-2xl font-black text-[#001A41] dark:text-white leading-none mb-1">38</p>
+                                <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Active Patents</p>
+                            </div>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-white/5 border border-blue-100 dark:border-white/10 flex items-center justify-center text-blue-600 dark:text-[#89c5ff] shrink-0"><Star size={20} /></div>
+                            <div>
+                                <p className="text-2xl font-black text-[#001A41] dark:text-white leading-none mb-1">52</p>
+                                <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Awards Won</p>
+                            </div>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-white/5 border border-emerald-100 dark:border-white/10 flex items-center justify-center text-emerald-600 dark:text-[#10b981] shrink-0"><FileText size={20} /></div>
+                            <div>
+                                <p className="text-2xl font-black text-[#001A41] dark:text-white leading-none mb-1">147</p>
+                                <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Research Papers</p>
+                            </div>
+                        </div>
+                        <div className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-md flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-white/5 border border-purple-100 dark:border-white/10 flex items-center justify-center text-purple-600 dark:text-[#8b5cf6] shrink-0"><Award size={20} /></div>
+                            <div>
+                                <p className="text-2xl font-black text-[#001A41] dark:text-white leading-none mb-1">19</p>
+                                <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Int'l Recognition</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {[
+                            { name: "Ahmed Kamal Al-Rashidi", faculty: "Faculty of Engineering", project: "AI-Powered Medical Diagnostic System", award: "National Innovation Prize 2024", patent: "Patent #AU-2024-0182", status: "Approved", year: "2024", gradient: "from-blue-600 to-indigo-700", initials: "AK" },
+                            { name: "Sara Hassan Ibrahim", faculty: "Faculty of Science", project: "Perovskite-Based Renewable Energy Cells", award: "Excellence Award in Green Tech 2023", patent: "Patent #AU-2023-0095", status: "Approved", year: "2023", gradient: "from-emerald-500 to-teal-700", initials: "SH" },
+                            { name: "Mohamed Adel Nasser", faculty: "Faculty of Science — Marine Biology", project: "Marine Microplastic Filtration Prototype", award: "UNDP Environment Fellowship 2024", patent: "Patent #AU-2024-0211", status: "Pending Review", year: "2024", gradient: "from-cyan-500 to-blue-700", initials: "MN" },
+                            { name: "Nour Abdallah Fawzi", faculty: "Faculty of Computer Science", project: "Smart City Traffic Optimization Engine", award: "Arab Youth Technology Prize 2024", patent: "Patent #AU-2024-0183", status: "Approved", year: "2024", gradient: "from-purple-500 to-pink-600", initials: "NF" },
+                            { name: "Omar Hassan Fathy", faculty: "Faculty of Medicine", project: "Non-Invasive Blood Glucose Monitor", award: "Medical Innovation Grant 2024", patent: "Patent #AU-2024-0199", status: "Under Approval", year: "2024", gradient: "from-rose-500 to-red-700", initials: "OF" },
+                            { name: "Laila Mostafa Saleh", faculty: "Faculty of Pharmacy", project: "Targeted Drug Delivery Nanoparticles", award: "African Union Science Award 2023", patent: "Patent #AU-2023-0142", status: "Approved", year: "2023", gradient: "from-amber-500 to-orange-600", initials: "LS" }
+                        ].map((person, idx) => (
+                            <div key={idx} className="bg-white dark:bg-[#091527] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm dark:shadow-md hover:shadow-lg dark:hover:shadow-xl hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col sm:flex-row gap-6 items-start relative overflow-hidden group">
+                                <div className="absolute top-6 right-6 bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 text-[10px] font-bold px-2.5 py-1 rounded border border-slate-200 dark:border-white/10">
+                                    {person.year}
+                                </div>
+                                <div className={`w-20 h-20 rounded-full shrink-0 flex items-center justify-center text-white font-bold text-2xl shadow-lg bg-gradient-to-br ${person.gradient} border-[3px] border-white dark:border-[#040B16] group-hover:scale-105 transition-transform`}>
+                                    {person.initials}
+                                </div>
+                                <div className="space-y-3 pt-1">
+                                    <div>
+                                        <h3 className="text-lg font-bold text-[#001A41] dark:text-white mb-1 leading-tight">{person.name}</h3>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{person.faculty}</p>
+                                    </div>
+                                    <p className="text-sm font-bold text-[#0B3C5D] dark:text-white leading-snug">{person.project}</p>
+                                    <span className="inline-block bg-amber-50 dark:bg-[#D4AF37]/10 text-amber-700 dark:text-[#D4AF37] text-[10px] font-bold px-3 py-1.5 rounded-md border border-amber-100 dark:border-[#D4AF37]/20">
+                                        {person.award}
+                                    </span>
+                                    <div className="flex items-center gap-2 pt-2">
+                                        {person.status === "Approved" ? (
+                                            <CheckCircle size={14} className="text-emerald-600 dark:text-[#10b981]" />
+                                        ) : (
+                                            <Clock size={14} className="text-amber-600 dark:text-[#D4AF37]" />
+                                        )}
+                                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{person.patent}</span>
+                                        <span className="text-slate-300 dark:text-slate-600 mx-1">·</span>
+                                        <span className={`text-xs font-bold ${person.status === "Approved" ? "text-emerald-600 dark:text-[#10b981]" : "text-amber-600 dark:text-[#D4AF37]"}`}>{person.status}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }

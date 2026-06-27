@@ -253,91 +253,91 @@ export default function Administration() {
 
 
     const eduAffairsCards = [
-    { 
-        title: "AU Student Life", 
-        icon: <Sparkles size={30} strokeWidth={1.5} />, 
-        desc: "Campus community, clubs, events, and social activities", 
-        links: ["Student Clubs", "Campus Events", "Student Union", "Sports & Recreation"] 
-    },
-    { 
-        title: "Student Services", 
-        icon: <Shield size={30} strokeWidth={1.5} />, 
-        desc: "Housing, financial aid, counseling, and support systems", 
-        links: ["Portal Login", "Housing Services", "Scholarships", "Counseling Center"] 
-    },
-    { 
-        title: "Academic Life", 
-        icon: <BookOpen size={30} strokeWidth={1.5} />, 
-        desc: "Academic resources, library services, and learning support", 
-        links: ["Library Portal", "Academic Calendar", "Tutoring Services", "Course Registration"] 
-    },
-    { 
-        title: "International Student Services", 
-        icon: <Globe size={30} strokeWidth={1.5} />, 
-        desc: "Support for international students and exchange programs", 
-        links: ["Visa Support", "Language Programs", "Cultural Integration", "Study Abroad"] 
-    }
-];
+        {
+            title: "AU Student Life",
+            icon: <Sparkles size={30} strokeWidth={1.5} />,
+            desc: "Campus community, clubs, events, and social activities",
+            links: ["Student Clubs", "Campus Events", "Student Union", "Sports & Recreation"]
+        },
+        {
+            title: "Student Services",
+            icon: <Shield size={30} strokeWidth={1.5} />,
+            desc: "Housing, financial aid, counseling, and support systems",
+            links: ["Portal Login", "Housing Services", "Scholarships", "Counseling Center"]
+        },
+        {
+            title: "Academic Life",
+            icon: <BookOpen size={30} strokeWidth={1.5} />,
+            desc: "Academic resources, library services, and learning support",
+            links: ["Library Portal", "Academic Calendar", "Tutoring Services", "Course Registration"]
+        },
+        {
+            title: "International Student Services",
+            icon: <Globe size={30} strokeWidth={1.5} />,
+            desc: "Support for international students and exchange programs",
+            links: ["Visa Support", "Language Programs", "Cultural Integration", "Study Abroad"]
+        }
+    ];
 
 
 
     const communityCardsData = [
-    { 
-        title: "Sustainable Development", 
-        desc: "Egypt's Vision 2030 tracker, carbon emission monitoring, and Smart Waste Management initiatives", 
-        icon: <Target />, 
-        badge: "STRATEGIC",
-        bottomBadge: "VISION 2030 ACTIVE" 
-    },
-    { 
-        title: "Forming the Environment Sector", 
-        desc: "Organizational blueprint and structural framework for environmental initiatives", 
-        icon: <Leaf />, 
-        badge: "STRATEGIC",
-    },
-    { 
-        title: "Government Excellence & Institutional Development", 
-        desc: "Egypt Government Excellence Award 2026 preparations and ISO certifications", 
-        icon: <Award />, 
-        badge: "STRATEGIC",
-    },
-    { 
-        title: "Convoys", 
-        desc: "Medical, dental, and social caravans to remote villages (Hayah Karimah initiative)", 
-        icon: <HeartHandshake />, 
-        bottomBadge: "ITEMS DISTRIBUTED" 
-    },
-    { 
-        title: "Literacy", 
-        desc: "Community adult education programs across all faculties", 
-        icon: <BookOpen />, 
-        bottomBadge: "ACTIVE CLASSES" 
-    },
-    { 
-        title: "Community Initiatives", 
-        desc: "Tahya Misr Fund (Dukan El-Farha) and INSAT digital support platform", 
-        icon: <Users />, 
-        bottomBadge: "DIGITAL PLATFORM LIVE" 
-    },
-    { 
-        title: "Transformative Training", 
-        desc: "Vocational workshops, R&D upskilling, and professional training seminars", 
-        icon: <GraduationCap />, 
-        bottomBadge: "10K+ TRAINEES/YEAR" 
-    },
-    { 
-        title: "Units and Centers of a Special Nature", 
-        desc: "8 central service units including Nanotechnology, Occupational Health & Safety, African Development", 
-        icon: <Building2 />, 
-        bottomBadge: "ACTIVE CENTERS" 
-    },
-    { 
-        title: "Alexandria University Museums", 
-        desc: "Cultural archives and museum treasures showcasing university heritage", 
-        icon: <Library />, 
-        bottomBadge: "MUSEUM ARTIFACTS" 
-    }
-];
+        {
+            title: "Sustainable Development",
+            desc: "Egypt's Vision 2030 tracker, carbon emission monitoring, and Smart Waste Management initiatives",
+            icon: <Target />,
+            badge: "STRATEGIC",
+            bottomBadge: "VISION 2030 ACTIVE"
+        },
+        {
+            title: "Forming the Environment Sector",
+            desc: "Organizational blueprint and structural framework for environmental initiatives",
+            icon: <Leaf />,
+            badge: "STRATEGIC",
+        },
+        {
+            title: "Government Excellence & Institutional Development",
+            desc: "Egypt Government Excellence Award 2026 preparations and ISO certifications",
+            icon: <Award />,
+            badge: "STRATEGIC",
+        },
+        {
+            title: "Convoys",
+            desc: "Medical, dental, and social caravans to remote villages (Hayah Karimah initiative)",
+            icon: <HeartHandshake />,
+            bottomBadge: "ITEMS DISTRIBUTED"
+        },
+        {
+            title: "Literacy",
+            desc: "Community adult education programs across all faculties",
+            icon: <BookOpen />,
+            bottomBadge: "ACTIVE CLASSES"
+        },
+        {
+            title: "Community Initiatives",
+            desc: "Tahya Misr Fund (Dukan El-Farha) and INSAT digital support platform",
+            icon: <Users />,
+            bottomBadge: "DIGITAL PLATFORM LIVE"
+        },
+        {
+            title: "Transformative Training",
+            desc: "Vocational workshops, R&D upskilling, and professional training seminars",
+            icon: <GraduationCap />,
+            bottomBadge: "10K+ TRAINEES/YEAR"
+        },
+        {
+            title: "Units and Centers of a Special Nature",
+            desc: "8 central service units including Nanotechnology, Occupational Health & Safety, African Development",
+            icon: <Building2 />,
+            bottomBadge: "ACTIVE CENTERS"
+        },
+        {
+            title: "Alexandria University Museums",
+            desc: "Cultural archives and museum treasures showcasing university heritage",
+            icon: <Library />,
+            bottomBadge: "MUSEUM ARTIFACTS"
+        }
+    ];
 
 
 
@@ -370,9 +370,9 @@ export default function Administration() {
 
 
     const secGenDepts = [
-        { 
-            title: "General Administration for Personnel and General Cadre", 
-            icon: <Building2 size={22} />, 
+        {
+            title: "General Administration for Personnel and General Cadre",
+            icon: <Building2 size={22} />,
             tasks: [
                 "Develop the work plan and distribute it among its departments, and coordinate work between them to ensure the proper functioning of the work.",
                 "Holding periodic meetings with the heads of various departments to discuss work problems and work to solve them.",
@@ -385,11 +385,11 @@ export default function Administration() {
                 "Review the topics to be presented in the Standing Committee for Leadership Positions and follow up the implementation of its decisions.",
                 "Follow up the application of systems and rules related to personnel affairs, their desires and health, social and cultural care.",
                 "Participate in personnel affairs committees and supervise the work of their secretariats and agendas."
-            ] 
+            ]
         },
-        { 
-            title: "General Administration of Purchasing and Stores", 
-            icon: <FileText size={22} />, 
+        {
+            title: "General Administration of Purchasing and Stores",
+            icon: <FileText size={22} />,
             tasks: [
                 "Participate with university officials in drawing up a procurement and storage policy that ensures that the university obtains necessary supplies.",
                 "Studying the markets from which the needs of the university can be obtained at the lowest prices, the finest varieties, and the best conditions.",
@@ -404,22 +404,22 @@ export default function Administration() {
                 "Participation in committees for deciding on local tenders and committees for imported devices and items.",
                 "Follow up the balances of the beneficiaries and their debts, and pay their dues in conjunction with the university accounts.",
                 "Prepare periodic and annual reports on procurement and warehouse activity and submit them to the direct presidency."
-            ] 
+            ]
         },
-        { 
-            title: "General Administration for Financial and Administrative Affairs", 
-            icon: <BookOpen size={22} />, 
+        {
+            title: "General Administration for Financial and Administrative Affairs",
+            icon: <BookOpen size={22} />,
             tasks: [
                 "Preparing a system for rationalizing the work and financial and administrative procedures at the university to guide it when carrying out financial administrative guidance.",
                 "Preparing plans and programs for periodic surprise inspection of the work of financial and administrative affairs at the university, its colleges and branches.",
                 "Investigate the violations referred to it by the competent authorities of a financial and administrative nature and express an opinion on the treatment of any deficiency.",
                 "Examining and responding to tenders received from financial and administrative audit institutions in light of the results of their research.",
                 "Proposing systems to avoid the repetition of violations resulting from the directive and taking measures to implement and follow them up."
-            ] 
+            ]
         },
-        { 
-            title: "General Administration for Budget and Accounts", 
-            icon: <FileText size={22} />, 
+        {
+            title: "General Administration for Budget and Accounts",
+            icon: <FileText size={22} />,
             tasks: [
                 "Monitor the implementation of the provisions of financial affairs laws and regulations.",
                 "Review the expenses of the first chapter on salaries and wages, in accordance with the books corresponding to the entitlements.",
@@ -438,11 +438,11 @@ export default function Administration() {
                 "Follow up the preparation of responses to the observations of the Central Auditing Organization and various inspection reports.",
                 "Extracting the remaining intermediate accounts monthly and notifying the competent authorities to investigate them.",
                 "Reviewing the work of extracting the monthly and quarterly account, interviewing the monthly statements and settlements."
-            ] 
+            ]
         },
-        { 
-            title: "General Administration for Engineering Affairs", 
-            icon: <Building2 size={22} />, 
+        {
+            title: "General Administration for Engineering Affairs",
+            icon: <Building2 size={22} />,
             tasks: [
                 "Follow up the technical aspects of the university's devices and equipment.",
                 "Participate in the preparation of engineering drawings for university buildings.",
@@ -450,11 +450,11 @@ export default function Administration() {
                 "Participation in the supply committees for equipment and devices.",
                 "Supervising the maintenance of buildings and gardens.",
                 "Follow up the preparation of a study on the needs of the University Land and buildings to meet the various expansions."
-            ] 
+            ]
         },
-        { 
-            title: "General Administration of Special Funds", 
-            icon: <FileText size={22} />, 
+        {
+            title: "General Administration of Special Funds",
+            icon: <FileText size={22} />,
             tasks: [
                 "Contribute to the development of public policies related to the various areas of work on which supervision and guidance are exercised.",
                 "Representing the university in various meetings, committees and conferences related to the field of work.",
@@ -476,20 +476,20 @@ export default function Administration() {
                 "Participate in the adoption of the estimated and actual budget for each of the units of a special nature of the university.",
                 "Participation in the membership of the Board of Directors of units of a special nature of colleges, institutes and branches.",
                 "Signing correspondence issued within the limits of the authorized authorities."
-            ] 
+            ]
         }
     ];
 
 
 
     const secGenNews = [
-{ 
-            id: 1, 
-            date: { month: "NOV", day: "28" }, 
-            hits: "1,067", 
-            title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.", 
+        {
+            id: 1,
+            date: { month: "NOV", day: "28" },
+            hits: "1,067",
+            title: "Vice President Dr. Saeed Allam discusses with the Board of Trustees the completion of maintenance work for all facilities and buildings.",
             fullTitle: "Vice President of Alexandria University discusses with the Board of Trustees of the University's Faculties and Institutes the completion of maintenance work for all facilities and buildings",
-            created: "28 November 2024", 
+            created: "28 November 2024",
             images: [
                 "/imgs/Article photo 1.jpg",
                 "/imgs/Article photo 2.jpg",
@@ -503,13 +503,13 @@ export default function Administration() {
                 "Within the framework of the presidential initiative 'Bedaya', Dr. Allam followed up with the council the implementation of the timetable for the initiative organized by the Community Service and Environment Development Sector in coordination with the Faculty of Medicine to conduct a survey of high blood pressure and diabetes among university employees for early detection of this type of chronic non-communicable diseases and to provide the necessary guidance, in order to ensure the health of university employees."
             ]
         },
-{ 
-            id: 2, 
-            date: { month: "Jul", day: "22" }, 
-            hits: "1,585", 
-            title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.", 
+        {
+            id: 2,
+            date: { month: "Jul", day: "22" },
+            hits: "1,585",
+            title: "Board of Trustees discusses administrative preparations for organizing entrance exams for Academic Year 2024/2025.",
             fullTitle: "Alexandria University's Faculties and Institutes Board of Trustees Discusses Administrative Preparations of Faculties Organizing Entrance Exams for Academic Year 2024/2025",
-            created: "22 July 2024", 
+            created: "22 July 2024",
             images: [
                 "/imgs/Article photo 5.jpg",
                 "/imgs/Article photo 6.jpg",
@@ -525,13 +525,13 @@ export default function Administration() {
                 "The University Secretary thanked the secretaries of the university's faculties and institutes for the distinguished efforts made during the academic year 2023/2024, wishing them success in the coming years.",
             ]
         },
-        { 
-            id: 3, 
-            date: { month: "Jun", day: "26" }, 
-            hits: "1,192", 
-            title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget.", 
+        {
+            id: 3,
+            date: { month: "Jun", day: "26" },
+            hits: "1,192",
+            title: "Board of Trustees discusses mechanisms for implementing university's programs and performance budget.",
             fullTitle: "Alexandria University's Board of Trustees of Faculties and Institutes Discusses Mechanisms for Implementing University's Programs and Performance Budget",
-            created: "22 July 2024", 
+            created: "22 July 2024",
             images: [
                 "/imgs/Article photo 8.jpg"
             ],
@@ -542,7 +542,7 @@ export default function Administration() {
                 "The Council discussed ways of coordination between faculties, accounting units, and the General Administration of Purchasing and Warehouses to maximize the benefit from the resources available in the budget for the fiscal year 2024/2025.",
                 "The Council honoured Dr. Nancy Atef, Director of Shatby University Hospital for Obstetrics and Gynaecology, and thanked her for the efforts made during her tenure as Director of the University Students Hospital.",
             ]
-        }        ,
+        },
         { id: 4, date: { month: "MAY", day: "24" }, hits: "1,275", title: "Board of Trustees directs necessity of optimal budget use for Fiscal Year 2024/2025.", created: "24 May 2024" },
         { id: 5, date: { month: "APR", day: "21" }, hits: "1,297", title: "Alexandria University's Faculties & Institutes Board of Trustees Discusses Preparations for Second Semester Final Exams", created: "21 April 2024" },
         { id: 6, date: { month: "FEB", day: "20" }, hits: "1,229", title: "Alexandria University organizes an event for workers to train in occupational health and safety work", created: "20 February 2024" },
@@ -557,16 +557,16 @@ export default function Administration() {
 
     const progressWidth = `${(timelineYears.indexOf(timelineYear) / (timelineYears.length - 1)) * 100}%`;
 
-const filteredArchiveVideos = [
-    { date: "May 2024", initial: "F", category: "FACULTY OF EDUCATION | JOINT DEGREES", title: "Governance Frameworks & Senghor University Joint Diplomas Launch", color: "#374774" },
-    { date: "December 2025", initial: "F", category: "FACULTY OF ENGINEERING | GLOBAL RANKINGS", title: "Scopus Index Celebrations: Engineering & Veterinary Medicine Journals", color: "#165a50" },
-    { date: "September 2025", initial: "I", category: "INNOVATION | ARTIFICIAL INTELLIGENCE", title: "AI Strategy Sessions Benchmarking Stanford, Harvard & Oxford Hubs", color: "#743538" },
-    { date: "June 2024", initial: "I", category: "INTERNATIONAL PROGRAMS | DUAL DEGREES", title: "University of East London (UEL) Joint Sports Performance Protocol", color: "#543374" },
-    { date: "March 2025", initial: "F", category: "FACULTY OF MEDICINE | INTERNATIONAL FELLOWSHIPS", title: "Medicine International Residency Program & Fellowship", color: "#184f76" },
-    { date: "November 2024", initial: "F", category: "FACULTY OF SCIENCE | COUNCIL CELEBRATIONS", title: "Research Excellence Awards & Faculty Recognition Ceremony", color: "#6d4c20" },
-    { date: "July 2022", initial: "U", category: "UNIVERSITY COUNCIL | COUNCIL CELEBRATIONS", title: "Celebration for Dr. Seddik Abdel Salam - Lifetime", color: "#6b4a15" },
-    { date: "August 2023", initial: "F", category: "FACULTY OF PHARMACY | SCIENTIFIC RESEARCH", title: "Pharmaceutical Research Collaboration with Kuwait", color: "#482f76" }
-];
+    const filteredArchiveVideos = [
+        { date: "May 2024", initial: "F", category: "FACULTY OF EDUCATION | JOINT DEGREES", title: "Governance Frameworks & Senghor University Joint Diplomas Launch", color: "#374774" },
+        { date: "December 2025", initial: "F", category: "FACULTY OF ENGINEERING | GLOBAL RANKINGS", title: "Scopus Index Celebrations: Engineering & Veterinary Medicine Journals", color: "#165a50" },
+        { date: "September 2025", initial: "I", category: "INNOVATION | ARTIFICIAL INTELLIGENCE", title: "AI Strategy Sessions Benchmarking Stanford, Harvard & Oxford Hubs", color: "#743538" },
+        { date: "June 2024", initial: "I", category: "INTERNATIONAL PROGRAMS | DUAL DEGREES", title: "University of East London (UEL) Joint Sports Performance Protocol", color: "#543374" },
+        { date: "March 2025", initial: "F", category: "FACULTY OF MEDICINE | INTERNATIONAL FELLOWSHIPS", title: "Medicine International Residency Program & Fellowship", color: "#184f76" },
+        { date: "November 2024", initial: "F", category: "FACULTY OF SCIENCE | COUNCIL CELEBRATIONS", title: "Research Excellence Awards & Faculty Recognition Ceremony", color: "#6d4c20" },
+        { date: "July 2022", initial: "U", category: "UNIVERSITY COUNCIL | COUNCIL CELEBRATIONS", title: "Celebration for Dr. Seddik Abdel Salam - Lifetime", color: "#6b4a15" },
+        { date: "August 2023", initial: "F", category: "FACULTY OF PHARMACY | SCIENTIFIC RESEARCH", title: "Pharmaceutical Research Collaboration with Kuwait", color: "#482f76" }
+    ];
 
 
     return (
@@ -606,24 +606,6 @@ const filteredArchiveVideos = [
             <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-200/40 dark:bg-blue-600/10 blur-[150px] rounded-full pointer-events-none transition-colors"></div>
 
             <div className="absolute top-1/3 right-1/3 w-[300px] h-[300px] bg-amber-200/30 dark:bg-amber-500/[0.03] blur-[100px] rounded-full pointer-events-none transition-colors"></div>
-
-
-
-            <div className="absolute top-8 left-8 z-50">
-
-                <button
-
-                    onClick={() => router.push('/')}
-
-                    className="flex items-center gap-2 bg-white/80 dark:bg-black/20 hover:bg-white dark:hover:bg-white/10 text-[#001A41] dark:text-white border border-slate-200 dark:border-white/10 px-4 py-2 rounded-lg font-bold text-sm backdrop-blur-md transition-all shadow-sm"
-
-                >
-
-                    <ArrowLeft size={16} /> Home Gateway
-
-                </button>
-
-            </div>
 
 
 
@@ -1172,60 +1154,60 @@ const filteredArchiveVideos = [
                     </div>
 
                 ) : activePage === 'edu_affairs' ? (
-    <div className="max-w-none w-full flex flex-col items-center text-center pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="w-full flex justify-start mb-10">
-            <button
-                onClick={() => setActivePage('hub')}
-                className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-[#001A41] dark:hover:text-[#4FD1C5] transition-all duration-300 group cursor-pointer font-bold dark:font-medium p-0 bg-transparent border-none"
-            >
-                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-                <span>Back to Administration Hub</span>
-            </button>
-        </div>
-
-        <div className="w-full flex flex-col items-center text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold dark:font-normal text-[#001A41] dark:text-[#4FD1C5] tracking-tight dark:tracking-wide whitespace-normal md:whitespace-nowrap mb-6">
-                Education & Students' Affairs
-            </h2>
-            <p className="text-[15px] text-slate-600 dark:text-white/80 font-bold dark:font-light max-w-2xl leading-relaxed">
-                Empowering students through comprehensive support, academic excellence, and vibrant campus life
-            </p>
-        </div>
-
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {eduAffairsCards.map((card, idx) => (
-                <div
-                    key={idx}
-                    className="group relative bg-[#040e1f] border border-[#1e2d40] border-l-[3px] border-l-[#D4AF37] rounded-3xl p-10 flex flex-col items-center transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(79,209,197,0.1)] hover:-translate-y-2 overflow-hidden"
-                >
-                    {/* Icon Box */}
-                    <div className="w-[72px] h-[72px] rounded-2xl bg-[#0f2238] flex items-center justify-center text-[#4FD1C5] mb-6 shadow-[0_0_20px_rgba(79,209,197,0.15)] transition-transform duration-500 group-hover:scale-110">
-                        {card.icon}
-                    </div>
-
-                    {/* Title & Description */}
-                    <h3 className="text-[24px] font-serif text-[#D4AF37] mb-4 text-center">{card.title}</h3>
-                    <p className="text-white/80 text-[14px] font-light text-center px-4 leading-relaxed mb-8">{card.desc}</p>
-
-                    {/* Horizontal Divider */}
-                    <div className="w-[90%] h-px bg-[#1e2d40] mb-6"></div>
-
-                    {/* Quick Links Label */}
-                    <h4 className="text-[#D4AF37] text-[11px] font-bold tracking-[0.15em] uppercase mb-5 text-center">Quick Links</h4>
-                    
-                    {/* Buttons Grid */}
-                    <div className="grid grid-cols-2 gap-4 w-full">
-                        {card.links.map((link, lIdx) => (
-                            <button key={lIdx} className="bg-[#0a1526] border border-[#1e2d40] hover:border-[#4FD1C5]/50 hover:bg-[#132337] rounded-xl py-3.5 px-2 text-[12px] text-white/80 hover:text-white transition-all w-full font-medium shadow-sm">
-                                {link}
+                    <div className="max-w-none w-full flex flex-col items-center text-center pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="w-full flex justify-start mb-10">
+                            <button
+                                onClick={() => setActivePage('hub')}
+                                className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-[#001A41] dark:hover:text-[#4FD1C5] transition-all duration-300 group cursor-pointer font-bold dark:font-medium p-0 bg-transparent border-none"
+                            >
+                                <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+                                <span>Back to Administration Hub</span>
                             </button>
-                        ))}
+                        </div>
+
+                        <div className="w-full flex flex-col items-center text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold dark:font-normal text-[#001A41] dark:text-[#4FD1C5] tracking-tight dark:tracking-wide whitespace-normal md:whitespace-nowrap mb-6">
+                                Education & Students' Affairs
+                            </h2>
+                            <p className="text-[15px] text-slate-600 dark:text-white/80 font-bold dark:font-light max-w-2xl leading-relaxed">
+                                Empowering students through comprehensive support, academic excellence, and vibrant campus life
+                            </p>
+                        </div>
+
+                        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                            {eduAffairsCards.map((card, idx) => (
+                                <div
+                                    key={idx}
+                                    className="group relative bg-[#040e1f] border border-[#1e2d40] border-l-[3px] border-l-[#D4AF37] rounded-3xl p-10 flex flex-col items-center transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(79,209,197,0.1)] hover:-translate-y-2 overflow-hidden"
+                                >
+                                    {/* Icon Box */}
+                                    <div className="w-[72px] h-[72px] rounded-2xl bg-[#0f2238] flex items-center justify-center text-[#4FD1C5] mb-6 shadow-[0_0_20px_rgba(79,209,197,0.15)] transition-transform duration-500 group-hover:scale-110">
+                                        {card.icon}
+                                    </div>
+
+                                    {/* Title & Description */}
+                                    <h3 className="text-[24px] font-serif text-[#D4AF37] mb-4 text-center">{card.title}</h3>
+                                    <p className="text-white/80 text-[14px] font-light text-center px-4 leading-relaxed mb-8">{card.desc}</p>
+
+                                    {/* Horizontal Divider */}
+                                    <div className="w-[90%] h-px bg-[#1e2d40] mb-6"></div>
+
+                                    {/* Quick Links Label */}
+                                    <h4 className="text-[#D4AF37] text-[11px] font-bold tracking-[0.15em] uppercase mb-5 text-center">Quick Links</h4>
+
+                                    {/* Buttons Grid */}
+                                    <div className="grid grid-cols-2 gap-4 w-full">
+                                        {card.links.map((link, lIdx) => (
+                                            <button key={lIdx} className="bg-[#0a1526] border border-[#1e2d40] hover:border-[#4FD1C5]/50 hover:bg-[#132337] rounded-xl py-3.5 px-2 text-[12px] text-white/80 hover:text-white transition-all w-full font-medium shadow-sm">
+                                                {link}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
-    </div>
-) : activePage === 'graduate_studies' ? (
+                ) : activePage === 'graduate_studies' ? (
 
                     <div className="max-w-none w-full flex flex-col items-start text-left pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
@@ -1761,17 +1743,17 @@ const filteredArchiveVideos = [
 
                             {filteredArchiveVideos.map((video, idx) => (
 
-                                <div 
+                                <div
 
-                                    key={idx} 
+                                    key={idx}
 
                                     className="group relative flex flex-col rounded-2xl overflow-hidden border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all duration-300 shadow-md cursor-pointer min-h-[260px]"
 
                                 >
 
-                                    <div 
+                                    <div
 
-                                        className="h-[150px] w-full relative flex items-center justify-center transition-colors duration-500" 
+                                        className="h-[150px] w-full relative flex items-center justify-center transition-colors duration-500"
 
                                         style={{ backgroundColor: video.color }}
 
@@ -1783,7 +1765,7 @@ const filteredArchiveVideos = [
 
                                         </div>
 
-                                        
+
 
                                         <div className="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
 
@@ -1871,9 +1853,7 @@ const filteredArchiveVideos = [
 
                                         >
 
-                                            <div className={`transition-all duration-300 rounded-full flex items-center justify-center ${
-
-                                                isActive
+                                            <div className={`transition-all duration-300 rounded-full flex items-center justify-center ${isActive
 
                                                     ? 'w-[14px] h-[14px] bg-[#001A41] dark:bg-[#D4AF37] shadow-[0_0_12px_rgba(0,26,65,0.4)] dark:shadow-[0_0_12px_rgba(212,175,55,0.8)] border-2 border-white dark:border-none'
 
@@ -1883,7 +1863,7 @@ const filteredArchiveVideos = [
 
                                                         : 'w-[14px] h-[14px] border-[2px] border-slate-300 dark:border-slate-600 bg-white dark:bg-[#020b1a] group-hover:border-slate-400 dark:group-hover:border-slate-500'
 
-                                            }`}></div>
+                                                }`}></div>
 
                                             <div className="absolute top-8 flex flex-col items-center w-40">
 
@@ -2535,12 +2515,12 @@ const filteredArchiveVideos = [
                                                         <BarChart2 size={14} className="text-[#D4AF37]" /> {news.hits} hits
                                                     </div>
                                                 </div>
-                                                
+
                                                 <p className="text-white text-[14px] leading-relaxed font-normal mb-8 flex-1">
                                                     {news.title}
                                                 </p>
 
-                                                <div 
+                                                <div
                                                     onClick={() => setActiveNewsItem(news)}
                                                     className="text-[#3b82f6] text-sm font-bold flex items-center gap-2 hover:underline cursor-pointer mt-auto w-fit"
                                                 >
@@ -2969,15 +2949,13 @@ const filteredArchiveVideos = [
 
                                     onClick={() => setActiveFilter(category)}
 
-                                    className={`px-5 py-2.5 rounded-xl text-sm font-bold dark:font-medium transition-all flex items-center gap-2 shadow-sm dark:shadow-none ${
-
-                                        activeFilter === category
+                                    className={`px-5 py-2.5 rounded-xl text-sm font-bold dark:font-medium transition-all flex items-center gap-2 shadow-sm dark:shadow-none ${activeFilter === category
 
                                             ? 'bg-[#001A41] dark:bg-[#D4AF37]/10 text-white dark:text-[#D4AF37] border border-[#001A41] dark:border-[#D4AF37]'
 
                                             : 'bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20'
 
-                                    }`}
+                                        }`}
 
                                 >
 
